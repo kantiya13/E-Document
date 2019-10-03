@@ -45,190 +45,80 @@
 <body>
 
 	<div class="body-inner">
+		<!-- Start include header -->
+		<?php include 'template/header.php' ?>
+		<!-- End include header -->
 
-		<div id="top-bar" class="top-bar">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-						<ul class="top-info">
-							<li><i class="fa fa-map-marker">&nbsp;</i>
-								<p class="info-text">9051 Constra Incorporate, USA</p>
-							</li>
-						</ul>
-					</div>
-					<!--/ Top info end -->
+		<!-- Carousel -->
+		<div id="main-slide" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators visible-lg visible-md">
+				<li data-target="#main-slide" data-slide-to="0" class="active"></li>
+				<li data-target="#main-slide" data-slide-to="1"></li>
+				<li data-target="#main-slide" data-slide-to="2"></li>
+			</ol>
+			<!--/ Indicators end-->
 
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 top-social text-right">
-						<ul class="unstyled">
-							<li>
-								<a title="Facebook" href="https://facebbok.com/themefisher.com">
-									<span class="social-icon"><i class="fa fa-facebook"></i></span>
-								</a>
-								<a title="Twitter" href="https://twitter.com/themefisher.com">
-									<span class="social-icon"><i class="fa fa-twitter"></i></span>
-								</a>
-								<a title="Instagram" href="https://instagram.com/themefisher.com">
-									<span class="social-icon"><i class="fa fa-instagram"></i></span>
-								</a>
-								<a title="Linkdin" href="https://github.com/themefisher.com">
-									<span class="social-icon"><i class="fa fa-github"></i></span>
-								</a>
-							</li>
-						</ul>
+			<!-- Carousel inner -->
+			<div class="carousel-inner">
+
+				<div class="item active" style="background-image:url(images/slider-main/bg1.jpg)">
+					<div class="slider-content">
+						<div class="col-md-12 text-center">
+							<h2 class="slide-title animated4">17 Years of excellence in</h2>
+							<h3 class="slide-sub-title animated5">Construction Industry</h3>
+							<p>
+								<a href="services.html" class="slider btn btn-primary">Our Services</a>
+								<a href="contact.html" class="slider btn btn-primary border">Contact Now</a>
+							</p>
+						</div>
 					</div>
-					<!--/ Top social end -->
 				</div>
-				<!--/ Content row end -->
-			</div>
-			<!--/ Container end -->
+				<!--/ Carousel item 1 end -->
+
+				<div class="item" style="background-image:url(images/slider-main/bg2.jpg)">
+					<div class="slider-content text-left">
+						<div class="col-md-12">
+							<h2 class="slide-title-box animated2">World Class Service</h2>
+							<h3 class="slide-title animated3">When Service Matters</h3>
+							<h3 class="slide-sub-title animated3">Your Choice is Simple</h3>
+							<p class="animated3">
+								<a href="services.html" class="slider btn btn-primary border">Our Services</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!--/ Carousel item 2 end -->
+
+				<div class="item" style="background-image:url(images/slider-main/bg3.jpg)">
+					<div class="slider-content text-right">
+						<div class="col-md-12">
+							<h2 class="slide-title animated6">Meet Our Engineers</h2>
+							<h3 class="slide-sub-title animated7">We believe sustainability</h3>
+							<p class="slider-description lead animated7">We will deal with your failure that determines how you
+								achieve success.</p>
+							<p>
+								<a href="contact.html" class="slider btn btn-primary">Get Free Quote</a>
+								<a href="about.html" class="slider btn btn-primary border">Learn More</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<!--/ Carousel item 3 end -->
+
+			</div><!-- Carousel inner end-->
+
+			<!-- Controllers -->
+			<a class="left carousel-control" href="#main-slide" data-slide="prev">
+				<span><i class="fa fa-angle-left"></i></span>
+			</a>
+			<a class="right carousel-control" href="#main-slide" data-slide="next">
+				<span><i class="fa fa-angle-right"></i></span>
+			</a>
 		</div>
-		<!--/ Topbar end -->
+		<!--/ Carousel end -->
 
-		<!-- Header start -->
-		<header id="header" class="header-two">
-			<div class="container">
-				<div class="row">
-					<div class="navbar-header">
-						<div class="logo">
-							<a href="index.html">
-								<img src="images/logo.png" alt="">
-							</a>
-						</div><!-- logo end -->
-					</div><!-- Navbar header end -->
-
-					<nav class="site-navigation navigation pull-right">
-						<div class="site-nav-inner">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-
-							<div class="collapse navbar-collapse navbar-responsive-collapse">
-								<ul class="nav navbar-nav">
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Home <i class="fa fa-angle-down"></i></a>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="index.html">Home One</a></li>
-											<li class="active"><a href="index-2.html">Home Two</a></li>
-										</ul>
-									</li>
-
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Company <i
-												class="fa fa-angle-down"></i></a>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="about.html">About Us</a></li>
-											<li><a href="team.html">Our People</a></li>
-											<li><a href="testimonials.html">Testimonials</a></li>
-											<li><a href="faq.html">Faq</a></li>
-											<li><a href="pricing.html">Pricing</a></li>
-										</ul>
-									</li>
-
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <i
-												class="fa fa-angle-down"></i></a>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="projects.html">Projects All</a></li>
-											<li><a href="projects-single.html">Projects Single</a></li>
-										</ul>
-									</li>
-
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <i
-												class="fa fa-angle-down"></i></a>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="services.html">Services All</a></li>
-											<li><a href="service-single.html">Services Single</a></li>
-										</ul>
-									</li>
-
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Features <i
-												class="fa fa-angle-down"></i></a>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="typography.html">Typography</a></li>
-											<li><a href="404.html">404</a></li>
-											<li class="dropdown-submenu">
-												<a href="#.">Parent Menu</a>
-												<ul class="dropdown-menu">
-													<li><a href="#">Child Menu 1</a></li>
-													<li><a href="#">Child Menu 2</a></li>
-													<li><a href="#">Child Menu 3</a></li>
-												</ul>
-											</li>
-										</ul>
-									</li>
-
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">News <i class="fa fa-angle-down"></i></a>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="news-left-sidebar.html">News Left Sidebar</a></li>
-											<li><a href="news-right-sidebar.html">News Right Sidebar</a></li>
-											<li><a href="news-single.html">News Single</a></li>
-										</ul>
-									</li>
-
-									<li><a href="contact.html">Contact</a></li>
-									<li class="header-get-a-quote">
-										<a class="btn btn-primary" href="#">Get Free Quote</a>
-									</li>
-
-								</ul>
-								<!--/ Nav ul end -->
-							</div>
-							<!--/ Collapse end -->
-
-						</div><!-- Site Navbar inner end -->
-
-					</nav>
-					<!--/ Navigation end -->
-
-				</div><!-- Row end -->
-			</div><!-- Container end -->
-		</header>
-		<!--/ Header end -->
-
-		<div id="box-slide" class="owl-carousel owl-theme page-slider">
-
-			<div class="item" style="background-image:url(images/slider-main/bg4.jpg)">
-				<div class="container">
-					<div class="box-slider-content">
-						<div class="box-slider-text">
-							<h2 class="box-slide-title">17 Years Of Excellence In</h2>
-							<h3 class="box-slide-sub-title">Construction Industry</h3>
-							<p class="box-slide-description">You have ideas, goals, and dreams. We have a culturally diverse, forward
-								thinking team looking for talent like.</p>
-							<p>
-								<a href="services.html" class="slider btn btn-primary">Our Service</a>
-							</p>
-						</div>
-					</div>
-				</div>
-
-			</div><!-- Item 1 end -->
-
-			<div class="item" style="background-image:url(images/slider-main/bg5.jpg)">
-				<div class="container">
-					<div class="box-slider-content">
-						<div class="box-slider-text">
-							<h2 class="box-slide-title">When Services Matters</h2>
-							<h3 class="box-slide-sub-title">Your Choice is Simple</h3>
-							<p class="box-slide-description">You have ideas, goals, and dreams. We have a culturally diverse, forward
-								thinking team looking for talent like.</p>
-							<p>
-								<a href="about.html" class="slider btn btn-primary">Know Us</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div><!-- Item 2 end -->
-
-		</div><!-- Box owl carousel end-->
-
-		<section class="call-to-action no-padding">
+		<section class="call-to-action-box no-padding">
 			<div class="container">
 				<div class="action-style-box">
 					<div class="row">
@@ -239,7 +129,7 @@
 						</div><!-- Col end -->
 						<div class="col-md-2">
 							<div class="call-to-action-btn">
-								<a class="btn btn-primary" href="contact.html">Request Quote</a>
+								<a class="btn btn-dark" href="#">Request Quote</a>
 							</div>
 						</div><!-- col end -->
 					</div><!-- row end -->
@@ -250,57 +140,124 @@
 		<section id="ts-features" class="ts-features">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4">
-						<div class="ts-service-box">
-							<div class="ts-service-image-wrapper">
-								<img class="img-responsive" src="images/services/service1.jpg" alt="">
-							</div>
-							<div class="ts-service-box-img pull-left">
-								<img src="images/icon-image/service-icon1.png" alt="" />
-							</div>
-							<div class="ts-service-info">
-								<h3 class="service-box-title"><a href="service-single.html">Zero Harm Everyday</a></h3>
-								<p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for
-									talent like. Lorem ipsum dolor sit amet integer suscipit.</p>
-								<p><a class="learn-more" href="service-single.html"><i class="fa fa-caret-right"></i> Learn More</a></p>
-							</div>
-						</div><!-- Service1 end -->
-					</div><!-- Col 1 end -->
+					<div class="col-md-6 col-xs-12">
+						<div class="ts-intro">
+							<h2 class="into-title">About Us</h2>
+							<h3 class="into-sub-title">We deliver landmark projects</h3>
+							<p>We are rethoric question ran over her cheek When she reached the first hills of the Italic Mountains,
+								she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village
+								and the subline of her own road, the Line Lane.</p>
+						</div><!-- Intro box end -->
 
-					<div class="col-md-4">
-						<div class="ts-service-box">
-							<div class="ts-service-image-wrapper">
-								<img class="img-responsive" src="images/services/service2.jpg" alt="">
-							</div>
-							<div class="ts-service-box-img pull-left">
-								<img src="images/icon-image/service-icon2.png" alt="" />
-							</div>
-							<div class="ts-service-info">
-								<h3 class="service-box-title"><a href="service-single.html">Virtual Construction</a></h3>
-								<p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for
-									talent like. Lorem ipsum dolor sit amet integer suscipit.</p>
-								<p><a class="learn-more" href="service-single.html"><i class="fa fa-caret-right"></i> Learn More</a></p>
-							</div>
-						</div><!-- Service2 end -->
-					</div><!-- Col 2 end -->
+						<div class="gap-20"></div>
 
-					<div class="col-md-4">
-						<div class="ts-service-box">
-							<div class="ts-service-image-wrapper">
-								<img class="img-responsive" src="images/services/service3.jpg" alt="">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ts-service-box">
+									<span class="ts-service-icon">
+										<i class="fa fa-trophy"></i>
+									</span>
+									<div class="ts-service-box-content">
+										<h3 class="service-box-title">We've Repution for Excellence</h3>
+									</div>
+								</div><!-- Service 1 end -->
+							</div><!-- col end -->
+
+							<div class="col-md-6">
+								<div class="ts-service-box">
+									<span class="ts-service-icon">
+										<i class="fa fa-sliders"></i>
+									</span>
+									<div class="ts-service-box-content">
+										<h3 class="service-box-title">We Build Partnerships</h3>
+									</div>
+								</div><!-- Service 2 end -->
+							</div><!-- col end -->
+						</div><!-- Content row 1 end -->
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="ts-service-box">
+									<span class="ts-service-icon">
+										<i class="fa fa-thumbs-up"></i>
+									</span>
+									<div class="ts-service-box-content">
+										<h3 class="service-box-title">Guided by Commitment</h3>
+									</div>
+								</div><!-- Service 1 end -->
+							</div><!-- col end -->
+
+							<div class="col-md-6">
+								<div class="ts-service-box">
+									<span class="ts-service-icon">
+										<i class="fa fa-users"></i>
+									</span>
+									<div class="ts-service-box-content">
+										<h3 class="service-box-title">A Team of Professionals</h3>
+									</div>
+								</div><!-- Service 2 end -->
+							</div><!-- col end -->
+						</div><!-- Content row 1 end -->
+					</div><!-- Col end -->
+
+					<div class="col-md-6 col-xs-12">
+						<h3 class="into-sub-title">Our Values</h3>
+						<p>Minim Austin 3 wolf moon scenester aesthetic, umami odio pariatur bitters. Pop-up occaecat taxidermy
+							street art, tattooed beard literally.</p>
+						<div class="panel-group" id="accordion">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Safety</a>
+									</h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in">
+									<div class="panel-body">
+										<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+											wolf moon officia aute, non cupidata</p>
+									</div>
+								</div>
 							</div>
-							<div class="ts-service-box-img pull-left">
-								<img src="images/icon-image/service-icon3.png" alt="" />
+							<!--/ Panel 1 end-->
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseTwo"> Customer
+											Service</a>
+									</h4>
+								</div>
+								<div id="collapseTwo" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+											wolf moon officia aute, non cupidata</p>
+									</div>
+								</div>
 							</div>
-							<div class="ts-service-info">
-								<h3 class="service-box-title"><a href="service-single.html">Build To Last</a></h3>
-								<p>You have ideas, goals, and dreams. We have a culturally diverse, forward thinking team looking for
-									talent like. Lorem ipsum dolor sit amet integer suscipit.</p>
-								<p><a class="learn-more" href="service-single.html"><i class="fa fa-caret-right"></i> Learn More</a></p>
+							<!--/ Panel 2 end-->
+
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseThree">
+											Integrity</a>
+									</h4>
+								</div>
+								<div id="collapseThree" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+											wolf moon officia aute, non cupidata</p>
+									</div>
+								</div>
 							</div>
-						</div><!-- Service3 end -->
-					</div><!-- Col 3 end -->
-				</div><!-- Content row end -->
+							<!--/ Panel 3 end-->
+
+						</div>
+						<!--/ Accordion end -->
+
+					</div><!-- Col end -->
+				</div><!-- Row end -->
 			</div><!-- Container end -->
 		</section><!-- Feature are end -->
 
@@ -798,7 +755,7 @@
 				<!--/ Content row end -->
 
 				<div class="general-btn text-center">
-					<a class="btn btn-primary" href="news-right-sidebar.html">See All Posts</a>
+					<a class="btn btn-primary" href="news-left-sidebar.html">See All Posts</a>
 				</div>
 
 			</div>
