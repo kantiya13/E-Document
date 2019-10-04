@@ -33,6 +33,9 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 	<!-- Colorbox -->
 	<link rel="stylesheet" href="css/colorbox.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 	<!--[if lt IE 9]>
@@ -45,56 +48,29 @@
 <body>
 
 	<div class="body-inner">
-		<!-- Header start -->
-		<header id="header" class="header-one">
-			<div class="container">
-				<div class="row">
-					<div class="logo-area clearfix">
-						<div class="logo col-xs-12 col-md-3">
-							<a href="index.php">
-								<img src="images/logoSCSC.png" alt="" width="200px">
-							</a>
-						</div><!-- logo end -->
-					</div><!-- logo area end -->
-
-				</div><!-- Row end -->
-			</div><!-- Container end -->
-
-			<nav class="site-navigation navigation navdown">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="site-nav-inner pull-left">
-								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-
-								<div class="collapse navbar-collapse navbar-responsive-collapse">
-									<ul class="nav navbar-nav">
-                  <li><a href="index.php">หน้าหลัก</a></li>
-                  <li><a href="DocAcceptance.php">การตอบรับเอกสาร</a></li>
-									<li><a href="DownloadDoc.php">ดาวน์โหลดเอกสาร</a></li>
-                  <li><a href="SearchDoc.php">ค้นเอกสารย้อนหลัง</a></li>
-									</ul>
-									<!--/ Nav ul end -->
+		<!-- Start include header -->
+		<?php include 'template/header.php' ?>
+		<!-- End include header -->
+	<section id="main-container" class="main-container">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <h3 class="column-title">การตอบรับเอกสาร</h3>
+               <div class="list-group">
+										<a href="#" class="list-group-item list-group-item-action">
+											<i class="fa fa-star-o" aria-hidden="true"></i> เอกสาร A
+											<a href="#"><span class="glyphicon glyphicon-envelope pull-right"></span></a>
+										</a>
+										<a href="#" class="list-group-item list-group-item-action">
+											<i class="fa fa-star-o" aria-hidden="true"></i> เอกสาร B
+										</a>
 								</div>
-								<!--/ Collapse end -->
 
-							</div><!-- Site Navbar inner end -->
+            </div><!-- Col end -->
+         </div><!-- Content row end -->
 
-						</div>
-						<!--/ Col end -->
-					</div>
-					<!--/ Row end -->
-				</div>
-				<!--/ Container end -->
-
-			</nav>
-			<!--/ Navigation end -->
-		</header>
+      </div><!-- Container end -->
+	 </section><!-- Main container end -->
 		<!-- Javascript Files
 	================================================== -->
 
