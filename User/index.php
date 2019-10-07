@@ -40,7 +40,7 @@
 <body>
   <?php include 'template/header.php'; ?>
   <section id="intro">
-    <div class="container">
+    <!-- <div class="container">
       <div class="row">
         <div class="span6">
           <h2><strong>Bootstrap <span class="highlight primary">business theme</span></strong></h2>
@@ -74,84 +74,59 @@
                 </li>
               </ul>
             </div>
-            <!-- /.section-2 -->
           </div>
 
         </div>
       </div>
-    </div>
+    </div> -->
 
   </section>
   <section id="maincontent">
     <div class="container">
-      <div class="row">
-        <div class="span4">
-          <div class="features">
-            <div class="icon">
-              <i class="icon-bg-light icon-circled icon-code icon-5x active"></i>
-            </div>
-            <div class="features_content">
-              <h3>Valid Coding</h3>
-              <p class="left">
-                Dolorem adipiscing definiebas ut nec. Dolore consectetuer eu vim, elit molestie ei has, petentium imperdiet in pri mel virtute nam.
-              </p>
-              <a href="#" class="btn btn-color btn-rounded"><i class="icon-angle-right"></i> Read more</a>
-            </div>
-          </div>
-        </div>
-        <div class="span4">
-          <div class="features">
-            <div class="icon">
-              <i class="icon-bg-dark icon-circled icon-bug icon-5x"></i>
-            </div>
-            <div class="features_content">
-              <h3>Bug free</h3>
-              <p class="left">
-                Dolorem adipiscing definiebas ut nec. Dolore consectetuer eu vim, elit molestie ei has, petentium imperdiet in pri mel virtute nam.
-              </p>
-              <a href="#" class="btn btn-color btn-rounded"><i class="icon-angle-right"></i> Read more</a>
-            </div>
-          </div>
-        </div>
-        <div class="span4">
-          <div class="features">
-            <div class="icon">
-              <i class="icon-bg-dark icon-circled icon-android icon-5x"></i>
-            </div>
-            <div class="features_content">
-              <h3>Mobile ready</h3>
-              <p class="left">
-                Dolorem adipiscing definiebas ut nec. Dolore consectetuer eu vim, elit molestie ei has, petentium imperdiet in pri mel virtute nam.
-              </p>
-              <a href="#" class="btn btn-color btn-rounded"><i class="icon-angle-right"></i> Read more</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- blank divider -->
-      <div class="row">
+     <div class="row">
         <div class="span12">
-          <div class="blank10"></div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="span12">
-          <div class="cta-box">
-            <div class="cta-text">
-              <h2>Put special offer in standout call to action area here</h2>
+              <h4>เอกสารทั้งหมด</h4>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>
+                      First Name
+                    </th>
+                    <th>
+                      Last Name
+                    </th>
+                    <th>
+                      Username
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      Mark
+                    </td>
+                    <td>
+                      Otto
+                    </td>
+                    <td>
+                      @mdo
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Jacob
+                    </td>
+                    <td>
+                      Thornton
+                    </td>
+                    <td>
+                      @fat
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="cta">
-              <a class="btn btn-large btn-rounded btn-color" href="#">
-					<i class="icon-chevron-right"></i> Call action</a>
-            </div>
-          </div>
-          <!-- end tagline -->
-        </div>
-      </div>
-
+     </div>
       <div class="row">
         <div class="span6">
           <h4>What people say about us</h4>
