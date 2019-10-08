@@ -1,6 +1,10 @@
+<?php
+  $strSQL = "SELECT * FROM member WHERE m_uname = '".$_SESSION['UserID']."' ";
+  $objQuery = mysqli_query($link,$strSQL);
+  $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
-<head></head>
 <body>
   <header>
     <!-- Navbar
@@ -13,7 +17,7 @@
             <div class="span4">
               <!-- logo -->
               <div class="logo">
-                <h1><a href="index.html">Plato</a></h1>
+                <h1><a href="index.php">Plato</a></h1>
                 <!-- <img src="assets/img/logo.png" alt="" /> -->
               </div>
               <!-- end logo -->
@@ -38,10 +42,10 @@
                         <a href="#">ค้นเอกสารย้อนหลัง</a>
                       </li>
                       <li class="dropdown">
-                        <a href="#"><i class="icon-user"></i> ชื่อผู้ใช้งาน</a>
+                        <a href="#"><i class="icon-user"></i> <?php echo $objResult["m_uname"]; ?> </a>
                         <ul class="dropdown-menu">
                           <li><a href="#">โปร์ไฟล์</a></li>
-                          <li><a href="#">ออกจากระบบ</a></li>
+                          <li><a href="logout.php">ออกจากระบบ</a></li>
                         </ul>
                       </li>
                       <!-- <li class="dropdown">

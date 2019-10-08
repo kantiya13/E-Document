@@ -116,6 +116,7 @@
                                       <th>อีเมลล์</th>
                                       <th>เบอร์โทร</th>
                                       <th>สถานะ</th>
+                                      <th>การอนุมัติ</th>
                                       <th></th>
                                     </tr>
                                   </thead>
@@ -142,6 +143,13 @@
                                           if($member['s_name'] == 'ไม่ยืนยัน'){
                                             echo '<td><span class="text-danger">'.$member['s_name'].'</span></td>';
                                           }
+                                          if ($member['m_confirm'] == 'yes') {
+                                              echo '<td><span class="text-success">อนุมัติแล้ว</span></td>';
+                                          }
+                                          if ($member['m_confirm'] == 'no') {
+                                              echo '<td><span class="text-danger">ยังไม่อนุมัติ</span></td>';
+                                          }
+                                            
                                             echo '<td align="center"><a href="manage_list.php?id='.$member['m_uname'].'">แก้ไข</a><a class="text-danger del-user" data-id="'.$member['m_uname'].'" href="javascript:void(0)">ลบ</a></td>
                                                 </tr>';
                                                 $i++;
