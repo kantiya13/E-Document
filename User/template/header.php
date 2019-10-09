@@ -33,16 +33,16 @@
                         <a href="index.php">เอกสารทั้งหมด</a>
                       </li>
                       <li class="dropdown">
-                        <a href="#">การตอบรับเอกสาร</a>
+                        <a href="">การตอบรับเอกสาร</a>
                       </li>
                       <li class="dropdown">
-                        <a href="#">ดาวน์โหลดเอกสาร</a>
+                        <a href="">ดาวน์โหลดเอกสาร</a>
                       </li>
                       <li class="dropdown">
                         <a href="searchDocument.php">ค้นเอกสารย้อนหลัง</a>
                       </li>
                       <li class="dropdown">
-                        <a href="#"><i class="icon-user"></i> <?php echo $objResult["m_uname"]; ?> </a>
+                        <a href=""><i class="icon-user"></i> <?php echo $objResult["m_uname"]; ?> </a>
                         <ul class="dropdown-menu">
                           <li><a href="profile.php">โปร์ไฟล์</a></li>
                           <li><a href="logout.php">ออกจากระบบ</a></li>

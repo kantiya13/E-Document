@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bda65c0e-a1fb-4dcc-a854-190fa25c6e00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/User/profile.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/User/searchDocument.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/function/Check_register.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/function/Check_register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/function/Check_login.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/function/Check_login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/User/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/searchDocument.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/searchDocument.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/User/template/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/template/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +54,16 @@
       <updated>1570203895527</updated>
       <workItem from="1570203898780" duration="59000" />
       <workItem from="1570471336794" duration="121000" />
-      <workItem from="1570634126562" duration="8957000" />
+      <workItem from="1570634126562" duration="10687000" />
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1570643170372</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1570643170372</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -77,5 +84,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>

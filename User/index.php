@@ -2,11 +2,11 @@
 include("../connection/connect.php");
 session_start();
 if ($_SESSION['UserID'] == "") {
-    echo "<script>alert(\"กรุณาเข้าสู่ระบบ ก่อนเข้าใช้งานระบบ\");window.location.href=\"../login.php\";</script>";
+    echo "<script>alert(\"กรุณาเข้าสู่ระบบ ก่อนเข้าใช้งานระบบ\");window.location.href=\"login.php\";</script>";
     exit();
 }
 if ($_SESSION['Status'] == 1) {
-    echo "<script>alert(\"ชื่แผู้ใช้งาน หรือรัหสผ่านไม่ถูกต้อง!!!\");window.location.href=\"../login.php\";</script>";
+    echo "<script>alert(\"ชื่อผู้ใช้งาน หรือรหัสผ่านไม่ถูกต้อง!!!\");window.location.href=\"login.php\";</script>";
     exit();
 }
 ?>

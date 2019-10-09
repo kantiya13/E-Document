@@ -16,6 +16,7 @@
       $_SESSION["Confirm"] = $objResult["m_confirm"];
 
       session_write_close();
+
       if ($_SESSION["Confirm"] == 'yes') {
             if($_SESSION["Status"] == 2 || $_SESSION["Status"] == 3)
             {

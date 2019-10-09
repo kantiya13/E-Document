@@ -2,16 +2,16 @@
 include("../connection/connect.php");
 session_start();
 if ($_SESSION['UserID'] == "") {
-    echo "<script>alert(\"กรุณาเข้าสู่ระบบ ก่อนเข้าใช้งานระบบ\");window.location.href=\"../login.php\";</script>";
+    echo "<script>alert(\"กรุณาเข้าสู่ระบบ ก่อนเข้าใช้งานระบบ\");window.location.href=\"login.php\";</script>";
     exit();
 }
 if ($_SESSION['Status'] == 1) {
-    echo "<script>alert(\"ชื่แผู้ใช้งาน หรือรัหสผ่านไม่ถูกต้อง!!!\");window.location.href=\"../login.php\";</script>";
+    echo "<script>alert(\"ชื่อผู้ใช้งาน หรือรหัสผ่านไม่ถูกต้อง!!!\");window.location.href=\"login.php\";</script>";
     exit();
 }
-$strSQL = "SELECT * FROM member WHERE m_uname = '".$_SESSION['UserID']."' ";
-$objQuery = mysqli_query($link,$strSQL);
-$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+$strSQL = "SELECT * FROM member WHERE m_uname = '" . $_SESSION['UserID'] . "' ";
+$objQuery = mysqli_query($link, $strSQL);
+$objResult = mysqli_fetch_array($objQuery, MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +55,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
 <body>
 <?php include 'template/header.php'; ?>
-<section id="subintro" style="height: 65px;">
+<!--<section id="subintro" style="height: 65px;">
     <div class="container">
         <div class="row">
             <div class="span4">
@@ -69,9 +69,10 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
             </div>
         </div>
     </div>
-
+</section>-->
+<section id="intro">
 </section>
-<section id="maincontent">
+<section id="maincontent" style="height: 600px">
     <div class="container">
         <div class="row">
             <div class="span12">
@@ -83,7 +84,8 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                                     <div class="well" style="margin: 0px">
                                         <div class="centered e_bounce">
                                             <i class="icon-bg-light icon-circled icon-user icon-3x active"></i>
-                                            <h4 style="margin-top: 15px">ผู้ใช้งาน <strong><?php echo $objResult['m_uname']?></strong></h4>
+                                            <h4 style="margin-top: 15px">ผู้ใช้งาน
+                                                <strong><?php echo $objResult['m_uname'] ?></strong></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -93,14 +95,19 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                             <aside>
                                 <div class="widget">
                                     <ul class="project-detail">
-                                        <li><label>ชื่อ - นามสกุล :</label> <?php echo $objResult['m_fname']?> <?php echo $objResult['m_lname']?></li>
-                                        <li><label>เบอร์โทรศัพท์ :</label> <?php echo $objResult['m_phone']?></li>
-                                        <li><label>อีเมล์ :</label><?php echo $objResult['m_mail']?></li>
-                                        <li><label>คณะ :</label><?php echo $objResult['m_sector']?></li>
-                                        <li><label>สาขาวิชา :</label><?php echo $objResult['m_major']?></li>
+                                        <li><label>ชื่อ - นามสกุล
+                                                :</label> <?php echo $objResult['m_fname'] ?> <?php echo $objResult['m_lname'] ?>
+                                        </li>
+                                        <li><label>เบอร์โทรศัพท์ :</label> <?php echo $objResult['m_phone'] ?></li>
+                                        <li><label>อีเมล์ :</label><?php echo $objResult['m_mail'] ?></li>
+                                        <li><label>คณะ :</label><?php echo $objResult['m_sector'] ?></li>
+                                        <li><label>สาขาวิชา :</label><?php echo $objResult['m_major'] ?></li>
                                     </ul>
                                     <div align="right">
-                                        <button href="" class="btn" style="margin-right: 5px" data-toggle="modal" data-target="#myModal">เปลี่ยนรหัสผ่าน</>
+                                        <button href="" class="btn" style="margin-right: 5px" data-toggle="modal"
+                                                data-target="#myModal">เปลี่ยนรหัสผ่าน
+                                        </
+                                        >
                                         <button href="" class="btn btn-warning">แก้ไขโปร์ไฟล์</button>
                                     </div>
                                 </div>
