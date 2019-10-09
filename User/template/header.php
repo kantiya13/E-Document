@@ -17,7 +17,7 @@
             <div class="span4">
               <!-- logo -->
               <div class="logo">
-                <h1><a href="index.php">Plato</a></h1>
+                <h1><a href="index.php">E-Document</a></h1>
                 <!-- <img src="assets/img/logo.png" alt="" /> -->
               </div>
               <!-- end logo -->
@@ -29,7 +29,7 @@
                 <div class="navbar-inner">
                   <nav>
                     <ul class="nav topnav">
-                      <li class="dropdown active">
+                      <li class="dropdown">
                         <a href="index.php">เอกสารทั้งหมด</a>
                       </li>
                       <li class="dropdown">
@@ -39,12 +39,12 @@
                         <a href="#">ดาวน์โหลดเอกสาร</a>
                       </li>
                       <li class="dropdown">
-                        <a href="#">ค้นเอกสารย้อนหลัง</a>
+                        <a href="searchDocument.php">ค้นเอกสารย้อนหลัง</a>
                       </li>
                       <li class="dropdown">
                         <a href="#"><i class="icon-user"></i> <?php echo $objResult["m_uname"]; ?> </a>
                         <ul class="dropdown-menu">
-                          <li><a href="#">โปร์ไฟล์</a></li>
+                          <li><a href="profile.php">โปร์ไฟล์</a></li>
                           <li><a href="logout.php">ออกจากระบบ</a></li>
                         </ul>
                       </li>

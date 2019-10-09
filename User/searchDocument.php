@@ -2,11 +2,11 @@
 include("../connection/connect.php");
 session_start();
 if ($_SESSION['UserID'] == "") {
-    echo "<script>alert(\"กรุณาเข้าสู่ระบบ ก่อนเข้าใช้งานระบบ\");window.location.href=\"../login.php\";</script>";
+    echo "<script>alert(\"กรุณาเข้าสู่ระบบ ก่อนเข้าใช้งานระบบ\");window.location.href=\"login.php\";</script>";
     exit();
 }
 if ($_SESSION['Status'] == 1) {
-    echo "<script>alert(\"ชื่แผู้ใช้งาน หรือรัหสผ่านไม่ถูกต้อง!!!\");window.location.href=\"../login.php\";</script>";
+    echo "<script>alert(\"ชื่แผู้ใช้งาน หรือรัหสผ่านไม่ถูกต้อง!!!\");window.location.href=\"login.php\";</script>";
     exit();
 }
 ?>
@@ -41,7 +41,6 @@ if ($_SESSION['Status'] == 1) {
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 
-
     <!-- =======================================================
       Theme Name: Plato
       Theme URL: https://bootstrapmade.com/plato-responsive-bootstrap-website-template/
@@ -53,53 +52,47 @@ if ($_SESSION['Status'] == 1) {
 <body>
 <?php include 'template/header.php'; ?>
 <section id="intro">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="widget ">
+                    <h4>ค้นหาเอกสาร ย้อนหลัง</h4>
+                    <form class="form-search">
+                        <input placeholder="ค้นหา..." type="text" class="input-medium search-query span11" style="height: 30px;">
+                        <button type="submit" class="btn btn-flat btn-color" style="height: 38px;">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <section id="maincontent" style="height: 600px">
     <div class="container">
         <div class="row">
             <div class="span12">
-                <h4>เอกสารสำคัญ</h4>
                 <table class="table table-hover">
+                    <thead>
+                        <th width="75px">ลำดับ</th>
+                        <th>ชื่อเอกสาร</th>
+                        <th>ประเภทเอกสาร</th>
+                    </thead>
                     <tbody align="right">
                     <tr>
-                        <td>
-                            <i class="icon-star-empty"></i>
-                            กำหนดการกีฬาสี
-                        </td>
+                        <td>1</td>
+                        <td>กำหนดการกีฬาสี</td>
+                        <td>หนังสือราชการ</td>
                     </tr>
                     <tr>
-                        <td>
-                            <i class="icon-star-empty"></i>
-                            การจัดตั้งโครงการอบรมสสาขาวิชาวิทยาการคอมพิวเตอร์
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="span12">
-                <h4>เอกสารทั้งหมด</h4>
-                <table class="table table-hover">
-                    <tbody align="right">
-                    <tr>
-                        <td>
-                            กำหนดการกีฬาสี
-                        </td>
+                        <td>2</td>
+                        <td>การจัดตั้งโครงการอบรมสสาขาวิชาวิทยาการคอมพิวเตอร์</td>
+                        <td>หนังสือราชการ</td>
                     </tr>
                     <tr>
-                        <td>
-                            การจัดตั้งโครงการอบรมสสาขาวิชาวิทยาการคอมพิวเตอร์
-                        </td>
+                        <td>3</td>
+                        <td>กำหนดการการจัดอบรมนักศึกษาปีที่ 4</td>
+                        <td>หนังสือราชการ</td>
                     </tr>
-                    <tr>
-                        <td>
-                            กำหนดการการจัดอบรมนักศึกษาปีที่ 4
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            กำหนดการการจัดอบรมนักศึกษาปีที่ 4
-                        </td>
-                    </tr>
+
                     </tbody>
                 </table>
             </div>

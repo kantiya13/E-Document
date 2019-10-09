@@ -1,16 +1,8 @@
-<?php 
-  include("../connection/connect.php");  
+<?php
+  include("../connection/connect.php");
   $strSQL = "SELECT * FROM status";
   $objQuery = mysqli_query($link,$strSQL);
   $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
-
-  $strMember = "SELECT * FROM member";
-  $objMember = mysqli_query($link,$strMember);
-  $objResultMember = mysqli_fetch_array($objMember,MYSQLI_ASSOC);
-
-  if ($objResultMember['m_uname'] == '') {
-    # code...
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -143,9 +135,9 @@
       if(document.fromregister.txtpassword.value != document.fromregister.txtconpassword.value)
         {
           alert('รหัสผ่านไม่ตรงกัน !!!');
-          document.fromregister.txtconpassword.focus();    
+          document.fromregister.txtconpassword.focus();
           return false;
-        } 
+        }
 
       document.fromregister.submit();
     }
@@ -155,7 +147,7 @@
     body, html {
         height: 100%;
         background-repeat: no-repeat;
-        background-color: #b5bac1; 
+        background-color: #b5bac1;
     /*    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
     */}
 

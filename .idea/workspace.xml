@@ -2,13 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bda65c0e-a1fb-4dcc-a854-190fa25c6e00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/User/profile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User/searchDocument.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/function/Check_register.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/function/Check_register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/template/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/template/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/froala_editor_3.0.0/composer.json</pharConfigPath>
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -17,6 +29,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -42,6 +55,7 @@
       <updated>1570203895527</updated>
       <workItem from="1570203898780" duration="59000" />
       <workItem from="1570471336794" duration="121000" />
+      <workItem from="1570634126562" duration="8957000" />
     </task>
     <servers />
   </component>
