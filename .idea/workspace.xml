@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bda65c0e-a1fb-4dcc-a854-190fa25c6e00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Admin/accountlist_admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/adddocument_admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/allaccounts_admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/connection/connect.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/login_admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/templateAdmin/footer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/templateAdmin/header.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/templateAdmin/title_page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/e_document.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/write.php" beforeDir="false" afterPath="$PROJECT_DIR$/write.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/templateAdmin/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/templateAdmin/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +63,7 @@
       <workItem from="1570203898780" duration="59000" />
       <workItem from="1570471336794" duration="121000" />
       <workItem from="1570634126562" duration="12190000" />
-      <workItem from="1570861016995" duration="13258000" />
+      <workItem from="1570861016995" duration="13361000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1570643170372</created>
@@ -90,7 +79,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570645584276</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update">
+      <created>1570902278738</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1570902278738</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
