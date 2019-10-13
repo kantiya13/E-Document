@@ -1,7 +1,22 @@
+<?php
+session_start();
+include("../connection/connect.php");
+if (!isset($_SESSION["UserID"])) {
+    $_SESSION["UserID"] == '';
+    header("location:login_admin.php");
+}elseif ($_SESSION["Status"] != 1){
+    header("location:login_admin.php");
+}
+
+$strSQL = "SELECT * FROM member WHERE m_uname = '".$_SESSION['UserID']."' ";
+$objQuery = mysqli_query($link,$strSQL);
+$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title><?php include 'templateAdmin/title_page.php'?></title>
+    <title><?php include 'templateAdmin/title_page.php' ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">

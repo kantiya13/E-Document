@@ -41,20 +41,20 @@
                         E-Document Login
                     </h1>
                     <hr>
-                    <form action="" method="POST">
+                    <form action="fucntion_script/check_loginadmin.php" method="post">
                         <div class="row p-4">
                             <div class="col-lg-9 col-md-9">
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <label for="username" class="formRow--input-wrapper js-inputWrapper">
-                                            <input type="text" class="formRow--input js-input" id="username" placeholder="Username">
+                                            <input type="text" class="formRow--input js-input" id="txtUsername" name="txtUsername" placeholder="Username">
                                         </label>
                                     </div>
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <label for="password" class="formRow--input-wrapper js-inputWrapper">
-                                            <input type="password" class="formRow--input js-input" id="password" placeholder="Password ">
+                                            <input type="password" class="formRow--input js-input" id="txtPassword" name="txtPassword" placeholder="Password ">
                                         </label>
                                     </div>
                                 </fieldset>

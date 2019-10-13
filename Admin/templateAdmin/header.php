@@ -1,3 +1,10 @@
+<?php
+include("../connection/connect.php");
+
+$strSQL = "SELECT * FROM member WHERE m_uname = '".$_SESSION['UserID']."' ";
+$objQuery = mysqli_query($link,$strSQL);
+$objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -12,9 +19,7 @@
     <!-- Stylesheets -->
 
     <link href="plugin-frameworks/bootstrap.css" rel="stylesheet">
-
     <link href="fonts/ionicons.css" rel="stylesheet">
-
     <link href="common/styles.css" rel="stylesheet">
 
 </head>
@@ -24,7 +29,6 @@
     <div class="bg-191">
         <div class="container">
             <div class="oflow-hidden color-ash font-9 text-sm-center ptb-sm-5">
-
                 <ul class="float-left float-sm-none list-a-plr-10 list-a-plr-sm-5 list-a-ptb-15 list-a-ptb-sm-10">
                     <li><a class="pl-0 pl-sm-10" href="#">About</a></li>
                     <li><a href="#">Advertise</a></li>
@@ -38,7 +42,6 @@
                     <li><a href="#"><i class="ion-social-instagram"></i></a></li>
                     <li><a href="#"><i class="ion-social-bitcoin"></i></a></li>
                 </ul>
-
             </div><!-- top-menu -->
         </div><!-- container -->
     </div><!-- bg-191 -->
@@ -52,10 +55,10 @@
             <li><a href="index.php"><i class="active ion-document-text"></i> เอกสารทั้งหมด</a></li>
             <li><a href="allaccounts_admin.php"><i class="active ion-ios-book"></i> บัญชีทั้งหมด</a></li>
             <li><a href="editdocument_admin.php"><i class="active ion-android-document"></i> จัดการหมวดหมู่เอกสาร</a></li>
-            <li class="drop-down"><a href="#"><i class="active ion-android-person"></i> ชื่อผู้ใช้งาน<i class="ion-arrow-down-b"></i></a>
+            <li class="drop-down"><a href="#"><i class="active ion-android-person"></i> <?php echo $objResult["m_uname"]; ?><i class="ion-arrow-down-b"></i></a>
                 <ul class="drop-down-menu drop-down-inner">
                     <li><a href="useraccount_admin.php"><i class="active ion-android-person"></i> บัญชีของฉัน</a></li>
-                    <li><a href="#"><i class="active ion-log-out"></i> ออกจากระบ</a></li>
+                    <li><a href="fucntion_script/logout_admin.php"><i class="active ion-log-out"></i> ออกจากระบ</a></li>
                 </ul>
             </li>
         </ul>
@@ -66,11 +69,8 @@
 <!-- SCIPTS -->
 
 <script src="plugin-frameworks/jquery-3.2.1.min.js"></script>
-
 <script src="plugin-frameworks/tether.min.js"></script>
-
 <script src="plugin-frameworks/bootstrap.js"></script>
-
 <script src="common/scripts.js"></script>
 
 </body>

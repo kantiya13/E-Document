@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bda65c0e-a1fb-4dcc-a854-190fa25c6e00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/changePassword_admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_loginadmin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_updateProfile_admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/logout_admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/useraccount_admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/login_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/login_admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Admin/templateAdmin/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/templateAdmin/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,9 +38,12 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Work\xampp\htdocs\E-Document\Admin\fucntion_script" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Work\xampp\htdocs\E-Document\Admin" />
     </key>
@@ -63,7 +73,7 @@
       <workItem from="1570203898780" duration="59000" />
       <workItem from="1570471336794" duration="121000" />
       <workItem from="1570634126562" duration="12190000" />
-      <workItem from="1570861016995" duration="13361000" />
+      <workItem from="1570861016995" duration="30696000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1570643170372</created>
