@@ -1,3 +1,19 @@
+<?php
+session_start();
+include("../connection/connect.php");
+
+if (!isset($_SESSION["UserID"])) {
+    $_SESSION["UserID"] == '';
+    header("location:login_admin.php");
+} elseif ($_SESSION["Status"] != 1) {
+    header("location:login_admin.php");
+}
+
+
+/*if(mysqli_num_rows($result) == 0){
+    header("location:pages-error-404.php");
+}*/
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>

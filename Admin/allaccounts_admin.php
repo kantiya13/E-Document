@@ -1,7 +1,23 @@
+<?php
+session_start();
+include("../connection/connect.php");
+
+if (!isset($_SESSION["UserID"])) {
+    $_SESSION["UserID"] == '';
+    header("location:login_admin.php");
+} elseif ($_SESSION["Status"] != 1) {
+    header("location:login_admin.php");
+}
+
+
+/*if(mysqli_num_rows($result) == 0){
+    header("location:pages-error-404.php");
+}*/
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title><?php include 'templateAdmin/title_page.php'?></title>
+    <title><?php include 'templateAdmin/title_page.php' ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -14,14 +30,14 @@ include 'templateAdmin/header.php';
     <div class="mb-30 brdr-ash-1 opacty-5"></div>
     <div class="container">
         <a class="mt-10" href="index.php"><i class="mr-5 ion-ios-home"></i>หน้าแรก<i
-                class="mlr-10 ion-chevron-right"></i></a>
+                    class="mlr-10 ion-chevron-right"></i></a>
         <a class="color-ash mt-10" href="adddocument_admin.php">บัญชีทั้งหมด</a>
     </div><!-- container -->
 </section>
 
 
 <section>
-    <div class="container" style="min-height: 450px">
+    <div class="container" style="min-height: 550px">
         <div class="row">
             <div class="card col-sm-12">
                 <div class="col-sm-12 col-md-12 m-3">
@@ -42,22 +58,52 @@ include 'templateAdmin/header.php';
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>
-                                    <a href="accountlist_admin.php" class="mr-10" style="color: green;">แก้ไข</a>
-                                    <a href="delectlist_admin.php" class="ml-10" style="color: red;">ลบ</a>
-                                </td>
-                            </tr>
+                            <?php
+                            $i = 1;
+                            $strSQL = "SELECT * FROM member INNER JOIN status WHERE  m_status != 1 AND m_status = s_id";
+                            $objQuery = mysqli_query($link, $strSQL) or die(mysqli_error());
+                            $total = mysqli_num_rows($objQuery);
+                            while ($result = mysqli_fetch_array($objQuery, MYSQLI_ASSOC)) {
+                                if ($result["m_status"] == 2) {
+                                    $status = 'อาจารย์';
+                                    $color = 'text-primary';
+                                }
+                                if ($result["m_status"] == 3) {
+                                    $status = 'บุคลากร';
+                                    $color = 'text-success';
+                                }
+                                if ($result["m_confirm"] == 'no'){
+                                    $confirm = 'ยังไม่ได้อนุมัติ';
+                                    $color = 'text-danger';
+                                }
+                                if ($result["m_confirm"] == 'yes'){
+                                    $confirm = 'อนุมัติแล้ว';
+                                    $color = 'text-success';
+                                }
+                                ?>
+                                <tr>
+                                    <th scope="row"><?= number_format($i); ?></th>
+                                    <td><?php echo $result["m_uname"]; ?></td>
+                                    <td><?php echo $result["m_pass"]; ?></td>
+                                    <td><?php echo $result["m_fname"]; ?></td>
+                                    <td><?php echo $result["m_mail"]; ?></td>
+                                    <td><?php echo $result["m_phone"]; ?></td>
+                                    <td class="<?php echo $color; ?>"><?php echo $status; ?></td>
+                                    <td class="<?php echo $color; ?>"><?php echo $confirm; ?></td>
+                                    <td>
+                                        <a href="accountlist_admin.php?id=<?php echo $result['m_uname']; ?>" class="mr-10" style="color: green;">แก้ไข</a>
+                                        <a href="delectlist_admin.php" class="ml-10" style="color: red;">ลบ</a>
+                                    </td>
+                                </tr>
+                                <?php
+                                $i++;
+                            }
+                            ?>
                             </tbody>
                         </table>
+                        <?php
+                        mysqli_close($link);
+                        ?>
                     </div>
                 </div><!-- col-md-6 -->
             </div>
