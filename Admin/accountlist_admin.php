@@ -45,44 +45,48 @@ include 'templateAdmin/header.php';
                 <div class="col-xs-7 m-20" align="center">
                     <img src="images/slider-6-450x600.jpg" class="rounded-circle1"/>
                 </div>
-                <h3 class="mb-20 mt-sm-50" align="center"><b><?php echo $objResultUSer['m_uname'] ?></b></h3>
+                <h3 class="mb-10" align="center"><b><?php echo $objResultUSer['m_uname'] ?></b></h3>
+
+
             </div><!-- col-md-6 -->
 
             <div class="col-sm-12 col-md-8">
-                <form class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0" method="post"
-                      action="fucntion_script/check_updateUser_admin.php?id=<?php echo $User_id; ?>">
-                    <?php
-                    $sql = "SELECT m_confirm FROM member WHERE m_uname = '$User_id'";
-                    $result = mysqli_query($link,$sql);
-                    if(mysqli_num_rows($result) > 0){
-                        while($mem = mysqli_fetch_assoc($result)){
-                            $confirm = $mem['m_confirm'];
-                        }
+                <?php
+                $sql = "SELECT m_confirm FROM member WHERE m_uname = '$User_id'";
+                $result = mysqli_query($link,$sql);
+                if(mysqli_num_rows($result) > 0){
+                    while($mem = mysqli_fetch_assoc($result)){
+                        $confirm = $mem['m_confirm'];
                     }
-                    if(isset($_POST['confirm'])){
-                        $sql = "UPDATE member SET m_confirm = 'yes' WHERE m_uname = '$User_id'";
-                        mysqli_query($link,$sql);
-                        header("location:accountlist_admin.php?id=".$User_id);
-                    }
-                    if(isset($_POST['notconfirm'])){
-                        $sql = "UPDATE member SET m_confirm = 'no' WHERE m_uname = '$User_id'";
-                        mysqli_query($link,$sql);
-                        header("location:accountlist_admin.php?id=".$User_id);
-                    }
-                    ?>
+                }
+                if(isset($_POST['confirm'])){
+                    $sql = "UPDATE member SET m_confirm = 'yes' WHERE m_uname = '$User_id'";
+                    mysqli_query($link,$sql);
+                    header("location:accountlist_admin.php?id=".$User_id);
+                }
+                if(isset($_POST['notconfirm'])){
+                    $sql = "UPDATE member SET m_confirm = 'no' WHERE m_uname = '$User_id'";
+                    mysqli_query($link,$sql);
+                    header("location:accountlist_admin.php?id=".$User_id);
+                }
+                ?>
+                <p >
+
+                </p>
+                <form class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0" action="" method="post">
                     <div class="row">
-                        <div class="col-sm-6 mb-30">
+                        <div class="col-sm-6 mb-50" align="left">
                             <div class="pos-relative">
                                 <?php
                                 if($confirm == 'yes'){
-                                    echo '<p class="float-left text-success">อนุมัติแล้ว</p>';
+                                    echo '<p class="text-success">อนุมัติแล้ว</p>';
                                 }else{
-                                    echo '<p class="float-left text-danger">ยังไม่อนุมัติ</p>';
+                                    echo '<p class="text-danger">ยังไม่อนุมัติ</p>';
                                 }
                                 ?>
-                            </div><!-- pos-relative -->
-                        </div><!-- col-sm-6 -->
-                        <div class="col-sm-6 mb-30" align="right">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-50" align="right">
                             <div class="pos-relative">
                                 <?php
                                 if($confirm == 'yes'){
@@ -93,7 +97,13 @@ include 'templateAdmin/header.php';
                                 }
                                 ?>
                             </div><!-- pos-relative -->
-                        </div><!-- col-sm-6 -->
+                        </div>
+                    </div>
+                </form>
+                <form class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0" method="post"
+                      action="fucntion_script/check_updateUser_admin.php?id=<?php echo $User_id; ?>">
+
+                    <div class="row">
                         <div class="col-sm-6">
                             <p class="color-ash">ชื่อ</p>
                             <div class="pos-relative">

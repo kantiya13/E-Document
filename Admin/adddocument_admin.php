@@ -16,7 +16,8 @@ $objResult = mysqli_fetch_array($objQuery, MYSQLI_ASSOC);
 
 $status = $objResult["m_status"];
 $sector = $objResult["m_major"];
-
+$mail = $objResult['m_mail'];
+$uname = $objResult['m_uname'];
 /*if(mysqli_num_rows($result) == 0){
     header("location:pages-error-404.php");
 }*/
@@ -28,6 +29,36 @@ $sector = $objResult["m_major"];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>AdminWrap - Easy to Customize Bootstrap 4 Admin Template</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <!-- chartist CSS -->
+    <link href="assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <!--c3 CSS -->
+    <link href="assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href="css/pages/dashboard1.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="css/colors/default.css" id="theme" rel="stylesheet">
+    <!-- Text Editor -->
+    <link href='froala_editor_3.0.0/css/froala_editor.pkgd.css' rel='stylesheet'>
+    <script src='froala_editor_3.0.0/js/froala_editor.pkgd.min.js'></script>
+
+    <!-- AutoComplete -->
+    <link href='assets/node_modules/jquery-ui-1.12.1.custom/jquery-ui.css' rel='stylesheet'>
+
+    <link href='email-multiple/email.multiple.css' rel='stylesheet'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9] -->
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 </head>
 <body>
 <?php
@@ -62,7 +93,7 @@ include 'templateAdmin/header.php';
             if ($success) {
                 $sql = "INSERT INTO
                                 document(d_id,d_title,d_detail,m_uname,d_datenow,t_type)
-                              VALUES('" . sprintf("%05d", ($id + 1)) . "','" . $_POST['title'] . "','" . $file . "','" . $_SESSION['uname'] . "',NOW(),'" . $_POST['type'] . "')";
+                              VALUES('" . sprintf("%05d", ($id + 1)) . "','" . $_POST['title'] . "','" . $file . "','" . $_SESSION['UserID'] . "',NOW(),'" . $_POST['type'] . "')";
                 mysqli_query($link, $sql);
                 $i = 0;
                 if (count($_POST['all_mail']) == 0) {
@@ -319,37 +350,60 @@ include 'templateAdmin/header.php';
 
 <?php include 'templateAdmin/footer.php' ?>
 <!-- SCIPTS -->
+<script src="assets/node_modules/jquery/jquery.min.js"></script>
+<!-- Bootstrap popper Core JavaScript -->
+<script src="assets/node_modules/bootstrap/js/popper.min.js"></script>
+<script src="assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="js/perfect-scrollbar.jquery.min.js"></script>
+<!--Wave Effects -->
+<script src="js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="js/custom.min.js"></script>
+<!-- ============================================================== -->
+<!-- This page plugins -->
+<!-- ============================================================== -->
+<!--morris JavaScript -->
+<script src="assets/node_modules/raphael/raphael-min.js"></script>
+<script src="assets/node_modules/morrisjs/morris.min.js"></script>
+<!--c3 JavaScript -->
+<script src="assets/node_modules/d3/d3.min.js"></script>
+<script src="assets/node_modules/c3-master/c3.min.js"></script>
+<!-- Chart JS -->
+<script src="js/dashboard1.js"></script>
+<script src="js/main.js"></script>
 <script type="text/javascript">
-    $("#upload-file").change(function () {
-        $("#p-file").text($(this).val().replace(/\\/g, '/').replace(/.*\//, ''));
+    $("#upload-file").change(function(){
+        $("#p-file").text($(this).val().replace(/\\/g,'/').replace(/.*\//, ''));
     })
 
     //uploadfileclick
-    $("#btn-file").click(function () {
+    $("#btn-file").click(function(){
         $("#upload-file").click();
     })
 
-    $("#send").click(function () {
+    $("#send").click(function(){
         $('form#document').submit();
     })
-    $("#add_type").click(function () {
+    $("#add_type").click(function(){
         $("#sh_type").append('<div class="col-md-6 row"><div class="col-md-8 form-group"><input name="add_type[]" type="text" class="form-control add_type" placeholder="ชื่อหมวดหมู่"></div></div>');
     });
-    $(document).on("click", ".del_type", function () {
+    $(document).on("click",".del_type",function(){
         var del = $(this).data('id');
-        if (confirm("ต้องการลบหรือไม่")) {
+        if(confirm("ต้องการลบหรือไม่")){
             deltype(del);
         }
     })
-
-    function deltype(id) {
+    function deltype(id){
         $.ajax({
-            type: 'post',
-            url: 'write.php',
-            data: {del: id}
+            type:'post',
+            url:'write.php',
+            data:{del:id}
         })
-            .done(function (data) {
-                location.href = "adddocument_admin.php";
+            .done(function(data){
+                location.href="write.php";
             })
     }
 
@@ -373,61 +427,61 @@ include 'templateAdmin/header.php';
         if (e.keyCode == 13 || e.keyCode == 32) {
             //alert('You Press enter');
             var getValue = $(this).val();
-            if (getValue != '') {
-                $('.all-mail').append('<span class="email-ids">' + getValue + ' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="' + getValue + '">');
+            if(getValue != ''){
+                $('.all-mail').append('<span class="email-ids">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
                 $(this).val('');
             }
         }
     });
     $(".enter-mail-id").focusout(function (e) {
         var getValue = $(this).val();
-        if (getValue != '') {
-            $('.all-mail').append('<span class="email-ids">' + getValue + ' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="' + getValue + '">');
+        if(getValue != ''){
+            $('.all-mail').append('<span class="email-ids">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
             $(this).val('');
         }
     });
     /// Cancel
-    $(document).on('click', '.cancel-email', function () {
+    $(document).on('click','.cancel-email',function(){
         $(this).parent().remove();
     });
     // $('.enter-mail-id').click()
 
     //toggle checkbox major
-    $("#checkbox-major label").click(function () {
+    $("#checkbox-major label").click(function(){
         var select = $(this).data("select");
-        $("#select" + select).attr("checked", !$("#select" + select).attr("checked"));
+        $("#select"+select).attr("checked", !$("#select"+select).attr("checked"));
         var getValue = $(this).html();
-        if ($("#select" + select).attr("checked")) {
-            $('.all-mail').append('<span id="remove-ids' + select + '" class="email-ids">' + getValue + ' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="' + getValue + '">');
-        } else {
-            $("#remove-ids" + select).remove();
+        if($("#select"+select).attr("checked")){
+            $('.all-mail').append('<span id="remove-ids'+select+'" class="email-ids">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
+        }else{
+            $("#remove-ids"+select).remove();
         }
     })
 
 
     //toggle checkbox name
-    $(document).on('click', '#checkbox-name label', function () {
+    $(document).on('click','#checkbox-name label',function(){
         var select = $(this).data("select");
-        $("#name" + select).attr("checked", !$("#name" + select).attr("checked"));
+        $("#name"+select).attr("checked", !$("#name"+select).attr("checked"));
         var getValue = $(this).html();
         var getMail = $(this).data('mail');
-        if ($("#name" + select).attr("checked")) {
-            $('.all-mail').append('<span id="remove-ids' + select + '" class="email-ids">' + getValue + ' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="' + getMail + '">');
-        } else {
-            $("#remove-ids" + select).remove();
+        if($("#name"+select).attr("checked")){
+            $('.all-mail').append('<span id="remove-ids'+select+'" class="email-ids">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getMail +'">');
+        }else{
+            $("#remove-ids"+select).remove();
         }
     })
 
 
     // search_name
-    function search_name() {
+    function search_name(){
         var val = $("#search-name").val();
         $.ajax({
-            type: 'post',
-            url: 'searchName.php',
-            data: {val: val}
+            type:'post',
+            url:'searchName.php',
+            data:{val:val}
         })
-            .done(function (data) {
+            .done(function(data){
                 $("#sh_searchName").html(data);
             })
     }

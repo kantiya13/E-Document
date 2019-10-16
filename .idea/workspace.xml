@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bda65c0e-a1fb-4dcc-a854-190fa25c6e00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Admin/detail.php" afterDir="false" />
+    <list default="true" id="c0bf1543-0adc-4bfb-8d82-30e588f0bc21" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Admin/editdocument_admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_addtypedocument.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_deletetype.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_updateType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/show_edittype.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/accountlist_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/accountlist_admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/adddocument_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/adddocument_admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/templateAdmin/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/templateAdmin/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +25,11 @@
     </execution>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RkGtQkACzoZPoaMXoc37oqqB4A" />

@@ -21,6 +21,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
     <link href="plugin-frameworks/bootstrap.css" rel="stylesheet">
     <link href="fonts/ionicons.css" rel="stylesheet">
     <link href="common/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 </head>
 <body>
