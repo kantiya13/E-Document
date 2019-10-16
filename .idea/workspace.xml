@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bda65c0e-a1fb-4dcc-a854-190fa25c6e00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Admin/detail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/adddocument_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/adddocument_admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,11 +35,11 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Work\xampp\htdocs\E-Document\Admin\fucntion_script" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Work\xampp\htdocs\E-Document\Admin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Work\xampp\htdocs\E-Document\Admin\fucntion_script" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -77,7 +77,9 @@
       <workItem from="1570203898780" duration="59000" />
       <workItem from="1570471336794" duration="121000" />
       <workItem from="1570634126562" duration="12190000" />
-      <workItem from="1570861016995" duration="48182000" />
+      <workItem from="1570861016995" duration="48230000" />
+      <workItem from="1571154835846" duration="6235000" />
+      <workItem from="1571210826002" duration="602000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1570643170372</created>
@@ -114,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570982869853</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update account profile">
+      <created>1571056051237</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1571056051237</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

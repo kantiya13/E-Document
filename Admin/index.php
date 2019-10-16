@@ -3,11 +3,24 @@ session_start();
 ob_start();
 include("../connection/connect.php");
 
-if (!isset($_SESSION["UserID"])) {
+/*if (!isset($_SESSION["UserID"])) {
     $_SESSION["UserID"] == '';
     header("location:login_admin.php");
 } elseif ($_SESSION["Status"] != 1) {
     header("location:login_admin.php");
+}*/
+
+$sql = "SELECT * FROM member WHERE m_uname = '" . $_SESSION['UserID'] . "'";
+$result = mysqli_query($link, $sql);
+if (mysqli_num_rows($result) == 0) {
+    header("location:pages-error-404.php");
+} else {
+    while ($mem = mysqli_fetch_assoc($result)) {
+        $status = $mem['m_status'];
+        $major = $mem['m_sector'];
+        $mail = $mem['m_mail'];
+        $uname = $mem['m_uname'];
+    }
 }
 
 ?>
@@ -31,36 +44,146 @@ include 'templateAdmin/header.php';
         <a class="color-ash mt-10" href="adddocument_admin.php">เอกสารทั้งหมด </a>
     </div><!-- container -->
 </section>
+<?php
+//form
+$sql = "SELECT s_form FROM send WHERE s_form = '" . $_SESSION['UserID'] . "'";
+$result = mysqli_query($link, $sql);
+$row = mysqli_num_rows($result);
 
+if ($status == 1) {
+    $sql = "SELECT * FROM send INNER JOIN member,document WHERE send.s_document = document.d_id AND send.s_form = member.m_uname GROUP BY document.d_id DESC";
+    $result = mysqli_query($link, $sql);
+    $total = mysqli_num_rows($result);
+} else if ($row > 0) {
+    $sql = "SELECT * FROM send INNER JOIN member,document WHERE send.s_document = document.d_id AND send.s_form = member.m_uname GROUP BY document.d_id DESC";
+    $result = mysqli_query($link, $sql);
+    $total = mysqli_num_rows($result);
+} else {
+    $sql = "SELECT * FROM send INNER JOIN member,document WHERE send.s_document = document.d_id AND send.s_form = member.m_uname AND (send.s_to = '" . $major . "' OR send.s_to = '" . $mail . "') GROUP BY document.d_id DESC";
+    $result = mysqli_query($link, $sql);
+    $total = mysqli_num_rows($result);
+}
+if (isset($_POST['bookmark'])) {
+    $sql = "SELECT * FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "' AND document_id = '" . $_POST['bookmark'] . "'";
+    $result = mysqli_query($link, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        while ($status = mysqli_fetch_assoc($result)) {
+            if ($status['b_status'] == 'no') {
+                $sql = "UPDATE bookmark SET b_status = 'yes' WHERE m_uname = '" . $_SESSION['UserID'] . "' AND document_id = '" . $_POST['bookmark'] . "'";
+                mysqli_query($link, $sql);
+            } else {
+                $sql = "DELETE FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "' AND document_id = '" . $_POST['bookmark'] . "'";
+                mysqli_query($link, $sql);
+            }
+        }
+    } else {
+        $sql = "INSERT INTO bookmark(m_uname,document_id,b_status) VALUES('" . $_SESSION['UserID'] . "','" . $_POST['bookmark'] . "','yes')";
+        mysqli_query($link, $sql);
+    }
+}
+if (isset($_POST['trash'])) {
+    $sql = "DELETE FROM document WHERE d_id = '" . $_POST['trash'] . "'";
+    mysqli_query($link, $sql);
+    $sql = "DELETE FROM bookmark WHERE document_id = '" . $_POST['trash'] . "'";
+    mysqli_query($link, $sql);
+    $sql = "DELETE FROM send WHERE s_document = '" . $_POST['trash'] . "'";
+    mysqli_query($link, $sql);
+}
+?>
 
 <section>
     <div class="container" style="min-height: 450px">
         <div class="row">
             <div class="card col-sm-12">
                 <div class="col-sm-12 col-md-12 m-3">
-                    <h3 class="mb-4"><b>เอกสารทั้งหมด ()</b></h3>
-                    <table class="table table-sm table-hover">
-                        <?php
-                        $strSQL = "SELECT * FROM member WHERE m_uname = '" . $_SESSION['UserID'] . "' ";
-                        $objQuery = mysqli_query($link, $strSQL);
-                        while ($result = mysqli_fetch_array($objQuery, MYSQLI_ASSOC)) {
-                            ?>
-                            <tbody>
-                            <tr>
-                                <th scope="row"><a href="javascript:void(0)" class="ion-android-star-outline"></a>
-                                </th>
-                                <td></td>
-                                <td>Otto</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            </tbody>
-                            <?php
-                        }
-                        ?>
-                    </table>
+                    <h3 class="mb-4"><b>เอกสารทั้งหมด (<?php echo $total; ?>)</b></h3>
                     <?php
-                    mysqli_close($link);
+                    $type = [];
+                    if ($status == 1) {
+                        $sql = "SELECT * FROM document INNER JOIN member,bookmark,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
+                    } else if ($row > 0) {
+                        $sql = "SELECT * FROM document INNER JOIN member,send,bookmark,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
+                    } else if ($row == 0) {
+                        $sql = "SELECT * FROM document INNER JOIN member,send,bookmark,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND (send.s_to = '" . $major . "' OR send.s_to = '" . $mail . "') AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
+                    }
+                    $result = mysqli_query($link, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        $i = 0;
+                        while ($doc = mysqli_fetch_assoc($result)) {
+                            $type[$i] = $doc['t_type'];
+                            if ($i > 0) {
+                                if ($type[$i - 1] != $doc['t_type']) {
+                                    echo '<p>' . $doc['t_name'] . '</p>';
+                                }
+                            } else {
+                                echo '<p>' . $doc['t_name'] . '</p>';
+                            }
+                            echo '<a href="javascript:void(0)" class="d-block">
+                                              <i data-id="' . $doc['d_id'] . '" style="font-size:18px;" ';
+                            if ($doc['b_status'] == 'yes') {
+                                echo 'class="ios-star-outline"';
+                            }
+                            echo '></i>
+                                              <div onclick=window.location.href="detail.php?id=' . $doc['d_id'] . '" class="mail-contnet">
+                                                <div class="row">
+                                                  <div class="col-md-4">
+                                                    <h5 style="max-width:200px;" class="text-truncate">' . $doc['m_fname'] . ' ' . $doc['m_lname'] . '</h5>
+                                                  </div>
+                                                  <div class="col-md-8">
+                                                    <p style="max-width:450px;" class="text-truncate">' . $doc['d_title'] . '</p>
+                                                  </div>
+                                                </div>
+                                              </div>';
+                            if ($status == '1' || $uname == $doc['m_uname']) {
+                                echo '<i data-id="' . $doc['d_id'] . '" style="font-size:18px;" class="fa fa-trash-o ml-3 p-1 trash"></i>
+                                              <i style="font-size:18px;" class="fa fa-edit ml-3 p-1"></i>';
+                            }
+                            echo '</a>';
+                            $i++;
+                        }
+                    }
+
+                    if ($status == 1) {
+                        $sql = "SELECT * FROM document INNER JOIN member,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
+                    } else if ($row > 0) {
+                        $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
+                    } else if ($row == 0) {
+                        $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND (send.s_to = '" . $major . "' OR send.s_to = '" . $mail . "') AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
+                    }
+                    $result = mysqli_query($link, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        $i = 0;
+                        while ($doc = mysqli_fetch_assoc($result)) {
+                            $type[$i] = $doc['t_type'];
+                            if ($i > 0) {
+                                if ($type[$i - 1] != $doc['t_type']) {
+                                    echo '<p>' . $doc['t_name'] . '</p>';
+                                }
+                            } else {
+                                echo '<p>' . $doc['t_name'] . '</p>';
+                            }
+                            echo '<a href="javascript:void(0)" class="d-block">
+                                              <i data-id="' . $doc['d_id'] . '" style="font-size:18px;" ';
+                            echo 'class="fa fa-star-o bookmark"';
+                            echo '></i>
+                                              <div onclick=window.location.href="detail.php?id=' . $doc['d_id'] . '"  class="mail-contnet">
+                                                <div class="row">
+                                                  <div class="col-md-4">
+                                                    <h5 style="max-width:200px;" class="text-truncate">' . $doc['m_fname'] . ' ' . $doc['m_lname'] . '</h5>
+                                                  </div>
+                                                  <div class="col-md-8">
+                                                    <p style="max-width:450px;" class="text-truncate">' . $doc['d_title'] . '</p>
+                                                  </div>
+                                                </div>
+                                              </div>';
+                            if ($status == '1' || $uname == $doc['m_uname']) {
+                                echo '<i data-id="' . $doc['d_id'] . '" style="font-size:18px;" class="fa fa-trash-o ml-3 p-1 trash"></i>
+                                              <i style="font-size:18px;" class="fa fa-edit ml-3 p-1"></i>';
+                            }
+                            echo '</a>';
+                            $i++;
+                        }
+                    }
                     ?>
                 </div>
             </div>
@@ -68,7 +191,33 @@ include 'templateAdmin/header.php';
     </div><!-- container -->
 </section>
 
-<?php include 'templateAdmin/footer.php' ?>
+<?php //include 'templateAdmin/footer.php' ?>
 <!-- SCIPTS -->
+<script type="text/javascript">
+    $(document).on('click', '.bookmark', function () {
+        var id = $(this).data('id');
+        $.ajax({
+            method: "post",
+            url: "index.php",
+            data: {bookmark: id},
+            success: function () {
+                window.location.href = "index.php";
+            }
+        })
+    })
+    $(document).on('click', '.trash', function () {
+        if (confirm('ต้องการลบหรือไม่')) {
+            var id = $(this).data('id');
+            $.ajax({
+                method: "post",
+                url: "index.php",
+                data: {trash: id},
+                success: function () {
+                    window.location.href = "index.php";
+                }
+            })
+        }
+    })
+</script>
 </body>
 </html>
