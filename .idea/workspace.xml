@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0bf1543-0adc-4bfb-8d82-30e588f0bc21" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Admin/editdocument_admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_addtypedocument.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_deletetype.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_updateType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/show_edittype.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_deletetypemodal.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_modalAddType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_updateTypemodal.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/showmodal_edittype.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/accountlist_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/accountlist_admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Admin/adddocument_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/adddocument_admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/templateAdmin/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/templateAdmin/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,7 +32,7 @@
   <component name="ProjectId" id="1RkGtQkACzoZPoaMXoc37oqqB4A" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Admin/fucntion_script" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -46,11 +43,13 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Work\xampp\htdocs\E-Document\Admin" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Work\xampp\htdocs\E-Document\Admin\fucntion_script" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Admin/fucntion_script" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="D:\Work\xampp\htdocs\E-Document\Admin" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -80,7 +79,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bda65c0e-a1fb-4dcc-a854-190fa25c6e00" name="Default Changelist" comment="" />
+      <changelist id="c0bf1543-0adc-4bfb-8d82-30e588f0bc21" name="Default Changelist" comment="" />
       <created>1570203895527</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -91,6 +90,7 @@
       <workItem from="1570861016995" duration="48230000" />
       <workItem from="1571154835846" duration="6235000" />
       <workItem from="1571210826002" duration="602000" />
+      <workItem from="1571320941551" duration="6017000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1570643170372</created>
@@ -134,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571056051237</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update account profile">
+      <created>1571256424615</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1571256424615</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
