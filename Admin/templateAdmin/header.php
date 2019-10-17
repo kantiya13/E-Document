@@ -8,7 +8,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Newsbit</title>
+    <title><?php include "title_page.php"; ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -48,7 +48,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
     </div><!-- bg-191 -->
 
     <div class="container">
-        <a class="logo" href="index.html"><img src="images/logo-black.png" alt="Logo"></a>
+        <a class="logo" href="index.html"><h2>E-Document</h2></a>
         <a class="menu-nav-icon" data-menu="#main-menu" href="#"><i class="ion-navicon"></i></a>
 
         <ul class="main-menu" id="main-menu">
