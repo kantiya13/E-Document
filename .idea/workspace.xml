@@ -2,10 +2,60 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0bf1543-0adc-4bfb-8d82-30e588f0bc21" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_deletetypemodal.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_modalAddType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_updateTypemodal.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/showmodal_edittype.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/searchName.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/02_archive-page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/03_single-post.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/04_FAQs.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/05_FAQs-single.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/06_contact-us.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/Document_acceptance.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/Download_Doc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/common/scripts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/common/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/connection/connect.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/fonts/ionicons.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/fonts/ionicons.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/fonts/ionicons.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/fonts/ionicons.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/fonts/ionicons.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/fucntion_script/check_loginUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/banner-1-600x450.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/crypto-news-1-600x450.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/crypto-news-2-600x450.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/crypto-news-3-600x450.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/crypto-news-4-600x450.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/crypto-news-5-600x450.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/crypto-news-6-600x450.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/logo-black.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/logo-white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/map.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/polular-1-100x100.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/polular-2-100x100.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/polular-3-100x100.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/polular-4-100x100.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/profile-1-120x120.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/profile-2-120x120.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/profile-3-120x120.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/recent-news-1-600x450.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/slider-1-1200x900.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/slider-2-450x600.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/slider-3-450x600.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/slider-4-450x600.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/slider-5-450x600.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/images/slider-6-450x600.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/index_user.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/login_user.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/logout.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/plugin-frameworks/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/plugin-frameworks/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/plugin-frameworks/jquery-3.2.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/plugin-frameworks/tether.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/profile_user.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/search_Doc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/templateAdmin/footer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/templateAdmin/header.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/User-test/templateAdmin/title_page.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Admin/adddocument_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/adddocument_admin.php" afterDir="false" />
     </list>
@@ -32,7 +82,7 @@
   <component name="ProjectId" id="1RkGtQkACzoZPoaMXoc37oqqB4A" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Admin/fucntion_script" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/User-test" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -47,8 +97,9 @@
       <recent name="D:\Work\xampp\htdocs\E-Document\Admin\fucntion_script" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Admin/fucntion_script" />
+      <recent name="$PROJECT_DIR$/User-test" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Admin/fucntion_script" />
       <recent name="D:\Work\xampp\htdocs\E-Document\Admin" />
     </key>
   </component>
@@ -90,7 +141,7 @@
       <workItem from="1570861016995" duration="48230000" />
       <workItem from="1571154835846" duration="6235000" />
       <workItem from="1571210826002" duration="602000" />
-      <workItem from="1571320941551" duration="6017000" />
+      <workItem from="1571320941551" duration="13730000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1570643170372</created>
@@ -141,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571256424615</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update account profile">
+      <created>1571329078977</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1571329078978</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
