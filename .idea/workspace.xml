@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c0bf1543-0adc-4bfb-8d82-30e588f0bc21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/templateAdmin/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/templateAdmin/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/templateAdmin/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/templateAdmin/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +87,7 @@
       <workItem from="1570861016995" duration="48230000" />
       <workItem from="1571154835846" duration="6235000" />
       <workItem from="1571210826002" duration="602000" />
-      <workItem from="1571320941551" duration="20433000" />
+      <workItem from="1571320941551" duration="21234000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1570643170372</created>
@@ -162,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571344836846</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="update account profile">
+      <created>1571347572402</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1571347572402</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
