@@ -2,23 +2,22 @@
 <?php
 //1. เชื่อมต่อ database:
 include("../../connection/connect.php"); //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
-$confirm = 'no';
-$fileinfo = PATHINFO($_FILES["image"]["name"]);
+$id = $_GET['id'];
+$fileinfo = PATHINFO($_FILES["file"]["name"]);
 $newFilename = $fileinfo['filename'] . "_" . time() . "." . $fileinfo['extension'];
-$path = 'img/';
+$path = 'file/';
 $location = $path . $newFilename;
-move_uploaded_file($_FILES["image"]["tmp_name"], $location);
-$strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_profile, m_status, m_sector, m_major, m_confirm)
-		VALUES ('" . $_POST["txtusername"] . "','" . $_POST["txtpassword"] . "','" . $_POST["txtname"] . "'
-		,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','$location','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "', '" . $confirm . "')";
+move_uploaded_file($_FILES["file"]["tmp_name"], $location);
+
+$strSQL = "INSERT INTO document(d_id,d_title,d_detail,m_uname,d_datenow,t_type) VALUES('" . $_POST['doc_id'] . "','" . $_POST['title'] . "','" . $location . "','" . $id . "',NOW(),'" . $_POST['type'] . "')";
 $objQuery = mysqli_query($link, $strSQL);
 mysqli_close($link);
-
+/*
 if ($objQuery) {
     echo '<script>alert("สมัครสมาชิกสำเร็จ");window.location.href="../login_user.php";</script>';
 } else {
     echo '<script>alert("สมัครสมาชิกไม่สำเร็จ กรุณาทำรายการใหม่อีกครั้ง");window.location.href="../login_user.php";</script>';
-}
+}*/
 
 
 ?>

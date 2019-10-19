@@ -63,15 +63,16 @@
                                 <button type="submit" class="vamos_mudar_um_pouco" style="background-color: #F9B500;border: 0px" title="Login"><i
                                             class="fas fa-sign-in-alt fa-2x"></i></button>
                             </div>
-                            <div class="col-lg-12 col-md-12 mt-3 ml-2">
-                                <fieldset class="formRow">
-                                    <div class="formRow--item">
-                                        <p style="font-size: 15px">Do you have an account? <a href="regiter_user.php">regiter </a></p st>
-                                    </div>
-                                </fieldset>
-                            </div>
+
                         </div>
                     </form>
+                </div>
+                <div class="col-lg-12 col-md-12 mt-3 ml-2">
+                    <fieldset class="formRow">
+                        <div class="formRow--item" align="center">
+                            <p style="font-size: 15px">Login for <a href="../User/login_user.php" style="color: #be1a18">User </a></p st>
+                        </div>
+                    </fieldset>
                 </div>
             </div>
             <div class="col-lg-3"></div>

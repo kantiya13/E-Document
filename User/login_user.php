@@ -66,12 +66,19 @@
                             <div class="col-lg-12 col-md-12 mt-3 ml-2">
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
-                                        <p style="font-size: 15px">Do you have an account? <a href="register_user.php">regiter </a></p st>
+                                        <p style="font-size: 15px">Do you have an account? <a href="register_user.php">register </a></p st>
                                     </div>
                                 </fieldset>
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="col-lg-12 col-md-12 mt-3 ml-2">
+                    <fieldset class="formRow">
+                        <div class="formRow--item" align="center">
+                            <p style="font-size: 15px">Login for <a href="../Admin/login_admin.php" style="color: #be1a18">Admin </a></p st>
+                        </div>
+                    </fieldset>
                 </div>
             </div>
             <div class="col-lg-3"></div>

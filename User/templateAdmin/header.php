@@ -59,7 +59,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
             <li class="drop-down"><a href="#"><i class="active ion-android-person"></i> <?php echo $objResult["m_uname"]; ?><i class="ion-arrow-down-b"></i></a>
                 <ul class="drop-down-menu drop-down-inner">
                     <li><a href="profile_user.php"><i class="active ion-android-person"></i> บัญชีของฉัน</a></li>
-                    <li><a href="../logout.php"><i class="active ion-log-out"></i> ออกจากระบ</a></li>
+                    <li><a href="fucntion_script/logout_user.php"><i class="active ion-log-out"></i> ออกจากระบ</a></li>
                 </ul>
             </li>
         </ul>

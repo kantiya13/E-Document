@@ -42,7 +42,7 @@ include 'templateAdmin/header.php';
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <div class="col-xs-7 m-20" align="center">
-                    <img src="images/slider-6-450x600.jpg" class="rounded-circle1"/>
+                    <img src="<?php echo $objResult['m_profile']; ?>" class="rounded-circle1"/>
                 </div>
                 <h3 class="mb-20 mt-sm-50" align="center"><b><?php echo $objResult['m_uname'] ?></b></h3>
 

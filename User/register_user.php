@@ -47,26 +47,26 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                         E-Document Register
                     </h1>
                     <hr>
-                    <form class="form-signin" id="fromregister" name="fromregister"  method="post" action="fucntion_script/Check_registerUser.php" OnSubmit="return fncSubmit();">
+                    <form class="form-signin" id="fromregister" name="fromregister"  method="POST" action="fucntion_script/Check_registerUser.php"  enctype="multipart/form-data" OnSubmit="return fncSubmit();">
                         <div class="row p-4">
                             <div class="col-lg-12 col-md-12">
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <label for="username" class="formRow--input-wrapper js-inputWrapper">
-                                            <input type="text" class="formRow--input js-input" id="txtname" name="txtname" placeholder="ชื่อ">
+                                            <input type="text" class="formRow--input js-input" id="txtname" name="txtname" placeholder="ชื่อ" required>
                                         </label>
                                     </div>
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <label for="password" class="formRow--input-wrapper js-inputWrapper">
-                                            <input type="text" class="formRow--input js-input" id="txtlast" name="txtlast" placeholder="นามสกุล">
+                                            <input type="text" class="formRow--input js-input" id="txtlast" name="txtlast" placeholder="นามสกุล" required>
                                         </label>
                                     </div>
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
-                                        <select class="formRow--input js-input" style="height: 50px" name="txtstatus">
+                                        <select class="formRow--input js-input" style="height: 50px" name="txtstatus" required>
                                             <option>- สถานะ -</option>
                                             <?php
                                             if(mysqli_num_rows($objQuery) > 0){
@@ -80,7 +80,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
-                                        <select class="formRow--input js-input" style="height: 50px" name="txtsector" id="exampleFormControlSelect1">
+                                        <select class="formRow--input js-input" style="height: 50px" name="txtsector" id="exampleFormControlSelect1" required>
                                             <option value="">- คณะ -</option>
                                             <option value="วิทยาศาสตร์และเทคโนโลยี">วิทยาศาสตร์และเทคโนโลยี</option>
                                         </select>
@@ -88,7 +88,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
-                                        <select class="formRow--input js-input" style="height: 50px" name="txtmajor" id="exampleFormControlSelect1">
+                                        <select class="formRow--input js-input" style="height: 50px" name="txtmajor" id="exampleFormControlSelect1" required>
                                             <option>- สาขาวิชา -</option>
                                             <option value="สาขาคณิตศาสตร์">สาขาคณิตศาสตร์</option>
                                             <option value="สาขาเคมี">สาขาเคมี</option>
@@ -110,47 +110,47 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <label for="username" class="formRow--input-wrapper js-inputWrapper">
-                                            <input type="email" class="formRow--input js-input" id="txtemail" name="txtemail" placeholder="อีเมล์">
+                                            <input type="email" class="formRow--input js-input" id="txtemail" name="txtemail" placeholder="อีเมล์" required>
                                         </label>
                                     </div>
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <label for="username" class="formRow--input-wrapper js-inputWrapper">
-                                            <input type="text" class="formRow--input js-input" id="txtphone" name="txtphone" placeholder="เบอร์โทรศัพท์">
+                                            <input type="text" class="formRow--input js-input" id="txtphone" name="txtphone" placeholder="เบอร์โทรศัพท์" required>
                                         </label>
                                     </div>
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
-                                        <input type="file" class="formRow--input js-input" id="txtimg" name="txtimg" placeholder="รูปภาพ">
+                                        <input type="file" class="formRow--input js-input" id="image" name="image" placeholder="รูปภาพ" required>
 
                                     </div>
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <label for="username" class="formRow--input-wrapper js-inputWrapper">
-                                            <input type="text" class="formRow--input js-input" id="txtusername" name="txtusername" placeholder="ชื่อผู้ใช้งาน">
+                                            <input type="text" class="formRow--input js-input" id="txtusername" name="txtusername" placeholder="ชื่อผู้ใช้งาน" required>
                                         </label>
                                     </div>
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <label for="username" class="formRow--input-wrapper js-inputWrapper">
-                                            <input type="password" class="formRow--input js-input" id="txtpassword" name="txtpassword" placeholder="รหัสผ่าน">
+                                            <input type="password" class="formRow--input js-input" id="txtpassword" name="txtpassword" placeholder="รหัสผ่าน" required>
                                         </label>
                                     </div>
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <label for="username" class="formRow--input-wrapper js-inputWrapper">
-                                            <input type="password" class="formRow--input js-input" id="txtconpassword" name="txtconpassword" placeholder="ยืนยันรหัสผ่าน">
+                                            <input type="password" class="formRow--input js-input" id="txtconpassword" name="txtconpassword" placeholder="ยืนยันรหัสผ่าน" required>
                                         </label>
                                     </div>
                                 </fieldset>
 
                             </div>
-                            <div class="col-lg-5 col-md-5" >
+                            <div class="col-lg-5 col-md-5">
                                 <button type="submit" class="vamos_mudar_um_pouco" style="background-color: #F9B500;border: 0px;height: 50px;" title="สมัครสมาชิก">สมัครสมาชิก</button>
                             </div>
                             <div class="col-lg-12 col-md-12 mt-3 ml-2">
@@ -177,7 +177,6 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
             document.fromregister.txtconpassword.focus();
             return false;
         }
-
         document.fromregister.submit();
     }
 </script>

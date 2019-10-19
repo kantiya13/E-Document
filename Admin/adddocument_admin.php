@@ -13,11 +13,11 @@ if (!isset($_SESSION["UserID"])) {
 $strSQL = "SELECT * FROM member WHERE m_uname = '" . $_SESSION['UserID'] . "' ";
 $objQuery = mysqli_query($link, $strSQL);
 $objResult = mysqli_fetch_array($objQuery, MYSQLI_ASSOC);
-
 $status = $objResult["m_status"];
 $sector = $objResult["m_major"];
 $mail = $objResult['m_mail'];
 $uname = $objResult['m_uname'];
+
 /*if(mysqli_num_rows($result) == 0){
     header("location:pages-error-404.php");
 }*/
@@ -92,49 +92,15 @@ include 'templateAdmin/header.php';
         <div class="row">
             <div class="card">
                 <div class="col-sm-12 col-md-12 m-3">
-                    <?php
-                    $sql = "SELECT d_id FROM document ORDER BY d_id ASC";
-                    $result = mysqli_query($link,$sql);
-                    if(mysqli_num_rows($result) > 0){
-                        while($doc = mysqli_fetch_assoc($result)){
-                            $id = $doc['d_id'];
-                        }
-                    }else{
-                        $id = 000000;
-                    }
-                    if(isset($_POST['title'])){
-                        $file = basename($_FILES['upload-file']['name']);
-                        $path = "upload_file/".$file;
-                        $success = move_uploaded_file($_FILES['upload-file']['tmp_name'],$path);
-                        if($success){
-                            $sql = "INSERT INTO
-                                document(d_id,d_title,d_detail,m_uname,d_datenow,t_type)
-                              VALUES('".sprintf("%05d",($id+1))."','".$_POST['title']."','".$file."','".$_SESSION['uname']."',NOW(),'".$_POST['type']."')";
-                            mysqli_query($link,$sql);
-                            $i=0;
-                            /*if(count($_POST['all_mail']) == 0){
-                                $sql = "INSERT INTO send(s_to,s_document,s_form) VALUES('AllUser','".sprintf("%05d",($id+1))."','".$uname."')";
-                                mysqli_query($link,$sql);
-                            }else{
-                                while($i < count($_POST['all_mail'])){
-                                    $sql = "INSERT INTO send(s_to,s_document,s_form) VALUES('".$_POST['all_mail'][$i]."','".sprintf("%05d",($id+1))."','".$uname."')";
-                                    mysqli_query($link,$sql);
-                                    $i++;
-                                }
-                            }*/
-                            echo '<script>alert("สำเร็จ");window.location.href="index.php"</script>';
-                        }else{
-                            echo '<script>alert("เกิดข้อผิดพลาด");window.history.back()</script>';
-                        }
-                    }
-                    ?>
                     <h3 class="mb-4"><b>สร้างเอกสาร</b></h3>
-                    <form class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0" method="post" enctype="multipart/form-data" id="document">
+                    <form class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0" method="post"
+                          enctype="multipart/form-data" id="document" action="fucntion_script/check_addDocument.php?id=<?php echo $_SESSION['UserID']; ?>">
                         <div class="row">
                             <div class="col-sm-3">
                                 <p class="color-ash">เลขที่บันทึก</p>
                                 <div class="pos-relative">
-                                    <input class="pr-20" type="text" name="doc_id" value="<?php echo sprintf("%05d", ($id + 1)); ?>"
+                                    <input class="pr-20" type="text" name="doc_id"
+                                           value="<?php echo sprintf("%05d", ($id + 1)); ?>"
                                            readonly>
                                 </div><!-- pos-relative -->
                             </div><!-- col-sm-6 -->
@@ -147,12 +113,15 @@ include 'templateAdmin/header.php';
                                 <div class="row">
                                     <div class="col-sm-4 m-10">
                                         <div class="pos-relative">
-                                            <button type="button" data-toggle="modal" data-target="#addName" type="button"
-                                                    class="btn btn-success">เลือกรายชื่อ</button>
+                                            <button type="button" data-toggle="modal" data-target="#addName"
+                                                    type="button"
+                                                    class="btn btn-success">เลือกรายชื่อ
+                                            </button>
                                             <button type="button" data-toggle="modal" data-target="#addMajor"
-                                                    class="btn btn-success">เลือกสาขา</button>
+                                                    class="btn btn-success">เลือกสาขา
+                                            </button>
                                         </div><!-- pos-relative -->
-                                        <div class="label col-md-12">
+                                        <div class="label col-md-12" id="show">
 
                                         </div>
                                     </div>
@@ -187,7 +156,9 @@ include 'templateAdmin/header.php';
                             <div class="col-sm-3">
                                 <p class="color-ash"></p>จัดหมวดหมู่
                                 <div class="pos-relative mt-10">
-                                    <button type="button" data-toggle="modal" data-target="#addType"  class="btn btn-success">จัดการหมวดหมู่</button>
+                                    <button type="button" data-toggle="modal" data-target="#addType"
+                                            class="btn btn-success">จัดการหมวดหมู่
+                                    </button>
                                 </div><!-- pos-relative -->
                             </div><!-- col-sm-6 -->
 
@@ -195,13 +166,13 @@ include 'templateAdmin/header.php';
                                 <p class="color-ash">อัพโหลดไฟล์เอกสาร</p>
                                 <div class="ml-3 col-md-6 border py-3 mt-3">
                                     <p id="p-file"></p>
-                                    <input class="btn btn-success" id="btn-file" type="button" name="btn-file" value="อัพโหลดไฟล์">
+                                    <input type="file" class="formRow--input js-input" id="file" name="file" placeholder="อัพโหลดไฟล์" required>
                                 </div>
                                 <input id="upload-file" type="file" class="d-none" name="upload-file">
                             </div><!-- col-sm-6 -->
                             <div class="col-sm-12" align="right">
                                 <div class="pos-relative mt-10 mb-10">
-                                    <button class="btn btn-info" type="button" data-toggle="modal" data-target="#modal-write">บันทึก</button>
+                                    <input class="btn btn-info" type="submit" value="บันทึก">
                                 </div><!-- pos-relative -->
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
@@ -209,7 +180,8 @@ include 'templateAdmin/header.php';
                 </div><!-- col-md-6 -->
 
                 <!-- Modal -->
-                <div class="modal fade" id="modal-write" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <!--<div class="modal fade" id="modal-write" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -227,11 +199,12 @@ include 'templateAdmin/header.php';
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- End Modal -->
 
                 <!-- Modal -->
-                <div class="modal fade" id="addType" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+                <div class="modal fade" id="addType" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true" data-backdrop="static">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -241,12 +214,15 @@ include 'templateAdmin/header.php';
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="fucntion_script/check_modalAddType.php" class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0" method="post">
+                                <form action="fucntion_script/check_modalAddType.php"
+                                      class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0"
+                                      method="post">
                                     <div class="row p-10">
                                         <div class="col-sm-10">
                                             <p class="color-ash">หมวดหมู่</p>
                                             <div class="pos-relative">
-                                                <input class="pr-20" align="center" name="typename" type="text" value="">
+                                                <input class="pr-20" align="center" name="typename" type="text"
+                                                       value="">
                                             </div><!-- pos-relative -->
                                         </div><!-- col-sm-6 -->
                                         <div class="col-sm-2 mt-25" align="right">
@@ -269,10 +245,14 @@ include 'templateAdmin/header.php';
                                                     ?>
                                                     <tbody>
                                                     <tr>
-                                                        <td width="80%"><?php echo $result['t_name'];?></td>
+                                                        <td width="80%"><?php echo $result['t_name']; ?></td>
                                                         <td align="right">
-                                                            <a href="" class="edittype" data-toggle="modal" data-target="#edittype" id="<?php echo $result["t_id"]; ?>"><i class="fas fa-edit" style="color: #5bb75b"></i></a>
-                                                            <a href="JavaScript:if(confirm('Confirm Delete?')==true){window.location='fucntion_script/check_deletetypemodal.php?id=<?php echo $result["t_id"];?>';}"><i class="fas fa-trash" style="color: #942a25"></i></a>
+                                                            <a href="" class="edittype" data-toggle="modal"
+                                                               data-target="#edittype"
+                                                               id="<?php echo $result["t_id"]; ?>"><i
+                                                                        class="fas fa-edit" style="color: #5bb75b"></i></a>
+                                                            <a href="JavaScript:if(confirm('Confirm Delete?')==true){window.location='fucntion_script/check_deletetypemodal.php?id=<?php echo $result["t_id"]; ?>';}"><i
+                                                                        class="fas fa-trash" style="color: #942a25"></i></a>
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -291,7 +271,8 @@ include 'templateAdmin/header.php';
                 </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="edittype" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal fade" id="edittype" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true" data-backdrop="static">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -310,7 +291,8 @@ include 'templateAdmin/header.php';
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="addName" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal fade" id="addName" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true" data-backdrop="static">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -322,59 +304,30 @@ include 'templateAdmin/header.php';
                         <div class="modal-body">
                             <div class="form-group row mx-auto">
                                 <div class="col-12">
-                                    <input onkeyup="search_name()" id="search-name" type="text" name="search-name" class="form-control form-control-line" placeholder="ค้นหา">
+                                    <input onkeyup="search_name()" id="search-name" type="text" name="search-name"
+                                           class="form-control form-control-line" placeholder="ค้นหา">
                                 </div>
                             </div>
                             <div id="sh_searchName">
                                 <?php
                                 $strName = "SELECT * FROM member WHERE m_status != '1' AND m_confirm = 'yes' ORDER BY m_fname";
                                 $objQueryName = mysqli_query($link, $strName) or die(mysqli_error());
-                                if (mysqli_num_rows($objQueryName) > 0){
+                                if (mysqli_num_rows($objQueryName) > 0) {
                                     while ($result = mysqli_fetch_array($objQueryName, MYSQLI_ASSOC)) {
                                         echo '
                                          <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" value="'.$result['m_uname'].'">  <strong>'.$result['m_fname'].' '.$result['m_lname'].'</strong> ('.$result['m_mail'].')
+                                            <label class="form-check-label" data-select="'.$i.'" data-mail="'.$result['m_mail'].'">
+                                                <input class="filled-in"id="name'.$i.'" type="checkbox" class="form-check-input" value="' . $result['m_uname'] . '">  <strong>' . $result['m_fname'] . ' ' . $result['m_lname'] . '</strong> (' . $result['m_mail'] . ')
                                             </label>
                                         </div>
                                         ';
                                     }
-                                }else {
+                                } else {
                                     echo '
                                             <label class="form-check-label">ไม่มีข้อมูล</label>
                                         ';
                                 }
 
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="addMajor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">เลือกคณะ</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true" id="1">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="checkbox-major" class="col-md-12">
-                                <?php
-                                $major = ['สาขาคณิตศาสตร์','สาขาเคมี','สาขาชีววิทยา','สาขาฟิสิกส์','สาขาเกษตรศาสตร์',
-                                    'สาขาคอมพิวเตอร์และเทคโนโลยีสารสนเทศ','สาขาวิทยาการคอมพิวเตอร์','สาขาวิทยาศาสตร์การกีฬาและการออกกำลังกาย',
-                                    'สาขาวิทยาศาสตร์และเทคโนโลยีการอาหาร','สาขาวิทยาศาสตร์สิ่งแวดล้อม','สาขาวิชาสัตวศาสตร์','สาขาวิชาสาธารณสุขศาสตร์',
-                                    'สาขาวิชาอาหารและโภชนาการ'];
-                                $iMajor = count($major);
-                                for($i=0;$i<$iMajor;$i++){
-                                    echo '<div class="d-block">
-                                  <input class="filled-in" type="checkbox" id="select'.$i.'" value="'.$major[$i].'">
-                                  <label data-select="'.$i.'">'.$major[$i].'</label>
-                                </div>';
-                                }
                                 ?>
                             </div>
                         </div>
@@ -418,16 +371,7 @@ include 'templateAdmin/header.php';
 
 <script src='email-multiple/jquery.email.multiple.js'></script>
 <script>
-    $("#upload-file").change(function(){
-        $("#p-file").text($(this).val().replace(/\\/g,'/').replace(/.*\//, ''));
-    });
-
-    //uploadfileclick
-    $("#btn-file").click(function(){
-        $("#upload-file").click();
-    });
-
-    $(document).on('click', '.edittype', function() {
+    $(document).on('click', '.edittype', function () {
         let t_id = $(this).attr("id");
         if (t_id != '') {
             $.ajax({
@@ -436,7 +380,7 @@ include 'templateAdmin/header.php';
                 data: {
                     id: t_id
                 },
-                success: function(data) {
+                success: function (data) {
                     $('#showmodal_edit_types').html(data);
                     $('#addType').modal('hide');
                     $('#edittype').modal('show');
@@ -444,44 +388,6 @@ include 'templateAdmin/header.php';
             });
         }
     });
-    //toggle checkbox name
-    $(document).on('click','#checkbox-name label',function(){
-        var select = $(this).data("select");
-        $("#name"+select).attr("checked", !$("#name"+select).attr("checked"));
-        var getValue = $(this).html();
-        var getMail = $(this).data('mail');
-        if($("#name"+select).attr("checked")){
-            $('.label').append('<span id="remove-ids'+select+'" class="email-ids">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getMail +'">');
-        }else{
-            $("#remove-ids"+select).remove();
-        }
-    });
-    //toggle checkbox major
-    $("#checkbox-major label").click(function(){
-        var select = $(this).data("select");
-        $("#select"+select).attr("checked", !$("#select"+select).attr("checked"));
-        var getValue = $(this).html();
-        if($("#select"+select).attr("checked")){
-            $('.label').append('<span id="remove-ids'+select+'" class="email-ids">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
-        }else{
-            $("#remove-ids"+select).remove();
-        }
-    });
-    // search_name
-    function search_name(){
-        var val = $("#search-name").val();
-        $.ajax({
-            type:'post',
-            url:'searchName.php',
-            data:{val:val}
-        })
-            .done(function(data){
-                $("#sh_searchName").html(data);
-            })
-    };
-    $("#send").click(function(){
-        $('form#document').submit();
-    })
 </script>
 </body>
 </html>
