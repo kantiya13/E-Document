@@ -77,8 +77,18 @@ if(mysqli_num_rows($result) > 0){
                             <p class="card-text">เลขที่เอกสาร</p>
                             <strong><?php echo $_GET['id']; ?></strong>
                         </div>
+                        <?php 
+                        $sqlForm = "SELECT * FROM `document` INNER JOIN `send`  WHERE d_id = '".$_GET['id']."'";
+                        $resultForm = mysqli_query($link,$sqlForm);
+                        if(mysqli_num_rows($resultForm) > 0){
+                            while($detail = mysqli_fetch_assoc($resultForm)){
+                                $to = $detail['s_to'];
+                                $from = $detail['m_uname'];
+                            }
+                        }
+                        ?>
                         <div class="mb-15">
-                            <p class="card-text ">จาก ..... ถึง ......</p>
+                            <p class="card-text ">จาก <?php echo $from; ?> ถึง <?php echo $to; ?></p>
                         </div>
                         <div class="mb-15">
                             <p class="card-text">เรื่อง</p>
@@ -90,7 +100,7 @@ if(mysqli_num_rows($result) > 0){
                         </div>
                         <div class="mb-15">
                             <p class="card-text">ไฟล์</p>
-                            <a href="<?php echo $doc; ?>" style="color: #00aeef"><strong><?php echo $doc; ?></strong></a>
+                            <a href="upload_file/<?php echo $doc; ?>" style="color: #00aeef"><strong><?php echo $doc; ?></strong></a>
                         </div>
                     </div>
                 </div>

@@ -3,12 +3,12 @@ session_start();
 ob_start();
 include("../connection/connect.php");
 
-/*if (!isset($_SESSION["UserID"])) {
+if (!isset($_SESSION["UserID"])) {
     $_SESSION["UserID"] == '';
     header("location:login_admin.php");
 } elseif ($_SESSION["Status"] != 1) {
     header("location:login_admin.php");
-}*/
+}
 
 $sql = "SELECT * FROM member WHERE m_uname = '" . $_SESSION['UserID'] . "'";
 $result = mysqli_query($link, $sql);
@@ -103,9 +103,9 @@ if(isset($_POST['trash'])){
                         <thead>
                         <tr>
                             <th scope="col"></th>
-                            <th scope="col">หมวดหมู่</th>
-                            <th scope="col" width="150px">เพิ่มโดย</th>
                             <th scope="col">เรื่อง</th>
+                            <th scope="col" width="150px">เพิ่มโดย</th>
+                            <th scope="col">หมวดหมู่</th>
                             <th scope="col" width="150px">ตัวเลือก</th>
                         </tr>
                         </thead>
@@ -113,9 +113,9 @@ if(isset($_POST['trash'])){
                         <?php
                         $type = [];
                         if ($status == 1) {
-                            $sql = "SELECT * FROM document INNER JOIN member,bookmark,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['uname'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
+                            $sql = "SELECT * FROM document INNER JOIN member,bookmark,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
                         } else if ($row > 0) {
-                            $sql = "SELECT * FROM document INNER JOIN member,send,bookmark,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['uname'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
+                            $sql = "SELECT * FROM document INNER JOIN member,send,bookmark,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
                         } else if ($row == 0) {
                             $sql = "SELECT * FROM document INNER JOIN member,send,bookmark,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND (send.s_to = '" . $major . "' OR send.s_to = '" . $mail . "') AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['uname'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
                         }
@@ -134,9 +134,9 @@ if(isset($_POST['trash'])){
                                 echo '
                                              <tr>
                                                 <th scope="row" width="50px"><a href=""><i class="material-icons bookmark" data-id="'.$doc['d_id'].'">&#xe838;</i></a></th>
-                                                <td>' . $doc['t_name'] . '</td>
+                                                <td><a href="showDetail_Doc.php?id='.$doc['d_id'].'"">' . $doc['d_title'] . '</a></td>
                                                 <td>' . $doc['m_fname'] . ' ' . $doc['m_lname'] . '</td>
-                                                <td>' . $doc['d_title'] . '</td>
+                                                <td>' . $doc['t_name'] . '</td>
                                                 <td>
                                                     <i class="material-icons">&#xe3c9;</i>
                                                     <a href=""><i data-id="' . $doc['d_id'] . '" class="material-icons ml-1 trash">&#xe872;</i></a>
@@ -148,7 +148,7 @@ if(isset($_POST['trash'])){
                         }
 
                         if ($status == 1) {
-                            $sql = "SELECT * FROM document INNER JOIN member,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['uname'] . "') GROUP BY d_id ORDER BY t_type";
+                            $sql = "SELECT * FROM document INNER JOIN member,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
                         } else if ($row > 0) {
                             $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['uname'] . "') GROUP BY d_id ORDER BY t_type";
                         } else if ($row == 0) {
@@ -161,9 +161,9 @@ if(isset($_POST['trash'])){
                                 echo '
                                             <tr>
                                                 <th scope="row" width="50px"><a href=""><i class="material-icons bookmark" data-id="'.$doc['d_id'].'">&#xe83a;</i></a></th>
-                                                <td><a href="showDetail_Doc.php?id='.$doc['d_id'].'"">' . $doc['t_name'] . '</a></td>
+                                                <td><a href="showDetail_Doc.php?id='.$doc['d_id'].'"">' . $doc['d_title'] . '</a></td>
                                                 <td>' . $doc['m_fname'] . ' ' . $doc['m_lname'] . '</td>
-                                                <td>' . $doc['d_title'] . '</td>
+                                                <td>' . $doc['t_name'] . '</td>
                                                 <td align="left">
                                                     <a href="" ><i class="material-icons">&#xe3c9;</i></a>
                                                     <a href=""><i data-id="' . $doc['d_id'] . '" class="material-icons ml-1 trash">&#xe872;</i></a>

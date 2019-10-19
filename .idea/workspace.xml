@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0bf1543-0adc-4bfb-8d82-30e588f0bc21" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Admin/upload_file.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Admin/adddocument_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/adddocument_admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Admin/fucntion_script/check_addDocument.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_addDocument.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/write.php" beforeDir="false" afterPath="$PROJECT_DIR$/write.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +32,7 @@
   <component name="ProjectId" id="1RkGtQkACzoZPoaMXoc37oqqB4A" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/User" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Admin/fucntion_script" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -40,18 +43,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/User" />
-      <recent name="$PROJECT_DIR$/User-test" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/Admin/fucntion_script" />
-      <recent name="D:\Work\xampp\htdocs\E-Document\Admin" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\E-Document\Admin" />
       <recent name="$PROJECT_DIR$/User" />
       <recent name="$PROJECT_DIR$/User/fucntion_script" />
       <recent name="$PROJECT_DIR$/User-test/fucntion_script" />
       <recent name="D:\Work\xampp\htdocs\E-Document\Admin\fucntion_script" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\E-Document\Admin\fucntion_script" />
+      <recent name="$PROJECT_DIR$/User" />
+      <recent name="$PROJECT_DIR$/User-test" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Admin/fucntion_script" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -95,6 +99,8 @@
       <workItem from="1571320941551" duration="21374000" />
       <workItem from="1571390460579" duration="63000" />
       <workItem from="1571413655668" duration="19935000" />
+      <workItem from="1571468118830" duration="1971000" />
+      <workItem from="1571474187268" duration="2544000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1570643170372</created>
