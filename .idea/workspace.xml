@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0bf1543-0adc-4bfb-8d82-30e588f0bc21" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Admin/showDetail_Doc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/adddocument_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/adddocument_admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Admin/fucntion_script/check_addDocument.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_addDocument.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +94,7 @@
       <workItem from="1571210826002" duration="602000" />
       <workItem from="1571320941551" duration="21374000" />
       <workItem from="1571390460579" duration="63000" />
-      <workItem from="1571413655668" duration="18724000" />
+      <workItem from="1571413655668" duration="19935000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1570643170372</created>
@@ -188,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571453861361</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="update account profile">
+      <created>1571464123032</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1571464123032</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

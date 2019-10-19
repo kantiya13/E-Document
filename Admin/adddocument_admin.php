@@ -172,7 +172,7 @@ include 'templateAdmin/header.php';
                             </div><!-- col-sm-6 -->
                             <div class="col-sm-12" align="right">
                                 <div class="pos-relative mt-10 mb-10">
-                                    <input class="btn btn-info" type="submit" value="บันทึก">
+                                    <button class="btn btn-info" type="submit">บันทึก</button>
                                 </div><!-- pos-relative -->
                             </div><!-- col-sm-6 -->
                         </div><!-- row -->
