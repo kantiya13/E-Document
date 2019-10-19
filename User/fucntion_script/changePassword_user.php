@@ -30,10 +30,7 @@ if ($_POST["txtNewPassword"] != $_POST["txtConPassword"]) {
         echo "</script>";
         exit();
     } else {
-        echo "<script type=\"text/javascript\">";
-        echo "alert(\"อัพเดทข้อมูลเรียบร้อยแล้ว\");";
-        echo "window.history.back();";
-        echo "</script>";
+        echo '<script>alert("อัพเดทข้อมูลสำเร็จแล้ว กรุณาเข้าสู่ระบบอีกครั้ง ขอบคุณค่ะ");window.location.href="logout_user.php"</script>';
         exit();
     }
 }
