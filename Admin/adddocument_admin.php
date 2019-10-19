@@ -55,6 +55,7 @@ $uname = $objResult['m_uname'];
 
     <link href='email-multiple/email.multiple.css' rel='stylesheet'>
 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -115,42 +116,43 @@ include 'templateAdmin/header.php';
             }
             ?>
         <div class="row">
-            <div class="card">
-                <div class="col-sm-12 col-md-12 m-3">
+            <div class="card col-sm-12">
+                <div class="card-body">
+                <div class="col-sm-12 m-3">
                     <h3 class="mb-4"><b>สร้างเอกสาร</b></h3>
                     <form id="document" method="post" enctype="multipart/form-data" class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0 form-material">
-                    <div class="form-group mt-3 row mx-3">
+                    <div class="form-group row mx-3">
                         <label class="col-md-12">เลขที่บันทึก</label>
                         <div class="col-md-6">
                             <p><?php echo sprintf("%05d",($id+1)); ?></p>
                         </div>
                     </div>
-                    <div class="form-group mt-3 row mx-3">
+                    <div class="form-group row mx-3">
                         <div class="col-md-6">
                             <label>จาก : <?php if($status == 1){echo 'Admin';}else{echo '<i>'.$major.' (ภาค : '.$sector.')</i>';} ?></label>
                         </div>
                     </div>
-                    <div class="form-group mt-3 row mx-3">
+                    <div class="form-group row mx-3">
                         <span class="to-input col-md-12">ถึง</span>
-                        <div class="col-12 pt-3">
+                        <div class="col-sm-2 pt-3">
                             <input data-toggle="modal" data-target="#moda-name" type="button" class="btn btn-success" value="เลือกรายชื่อ">
                         </div>
-                        <div class="col-12 pt-3 mb-3">
+                        <div class="col-sm-2 pt-3 mb-3">
                             <input type="button" data-toggle="modal" data-target="#moda-major" class="btn btn-success" value="เลือกสาขา">
                         </div>
                         <div class="all-mail col-md-12" id="all_mail" name="all_mail">
 
                         </div>
                     </div>
-                    <div class="form-group mt-3 row mx-3">
+                    <div class="form-group row mx-3">
                         <label class="col-md-12">เรื่อง</label>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <input class="form-control form-control-line" type="text" name="title" placeholder="กรุณาใส่ชื่อเรื่อง" required>
                         </div>
                     </div>
-                    <div class="form-group mt-3 row mx-3">
+                    <div class="form-group row mx-3">
                         <label class="col-md-12 pt-3">หมวดหมู่</label>
-                        <div class="col-md-4 pt-3">
+                        <div class="col-sm-9 pt-3">
                             <select class="form-control" name="type">
                                 <?php
                                 $sql = "SELECT * FROM type";
@@ -165,21 +167,24 @@ include 'templateAdmin/header.php';
                                 ?>
                             </select>
                         </div>
-                        <div class="col-md-4 pt-3">
-                            <input type="button" data-toggle="modal" data-target="#moda-type" class="btn btn-success" value="จัดการหมวดหมู่">
+                        <div class="col-sm-3 pt-3">
+                            <input type="button" data-toggle="modal" data-target="#addType" class="btn btn-success" value="จัดการหมวดหมู่">
                         </div>
                     </div>
                     <div class="form-group mt-3 row mx-3">
                         <span class="to-input col-md-12">อัพโหลดไฟล์</span>
-                        <div class="ml-3 col-md-6 border py-3 mt-3">
-                            <p id="p-file"></p>
+                        <div class="ml-3 col-sm-3 border py-3 mt-3">
+                            <p id="p-file" class="mb-10"></p>
                             <input class="btn btn-success" id="btn-file" type="button" name="btn-file" value="อัพโหลดไฟล์">
                         </div>
                         <input id="upload-file" type="file" class="d-none" name="upload-file">
                     </div>
+                    <div class="col-sm-2">
                     <input class="btn btn-info mt-3" type="button" value="บันทึก" data-toggle="modal" data-target="#modal-write">
+                    </div>
                     </form>
                 </div><!-- col-md-6 -->
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="modal-write" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -227,44 +232,72 @@ include 'templateAdmin/header.php';
             }
             ?>
             <!-- modal type -->
-        <div id="moda-type" class="modal fade bd-example-lg">
-            <div class="modal-dialog modal-lg">
-                <form method="post" class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">จัดการหมวดหมู่</h5>
-                        <button type="button" class="close close_reg" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <div class="modal fade" id="addType" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true" data-backdrop="static">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">เพิ่มหมวดหมู่</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" id="1">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="fucntion_script/check_modalAddType.php"
+                                      class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0"
+                                      method="post">
+                                    <div class="row p-10">
+                                        <div class="col-sm-10">
+                                            <p class="color-ash">หมวดหมู่</p>
+                                            <div class="pos-relative">
+                                                <input class="pr-20" align="center" name="typename" type="text"
+                                                       value="">
+                                            </div><!-- pos-relative -->
+                                        </div><!-- col-sm-6 -->
+                                        <div class="col-sm-2 mt-25" align="right">
+                                            <div class="pos-relative">
+                                                <button class="btn btn-primary" type="submit">เพิ่มข้อมูล</button>
+                                            </div><!-- pos-relative -->
+                                        </div><!-- col-sm-6 -->
+                                    </div>
+                                </form>
+                                <h5 class="mt-20 pl-10">รายการ หมวดหมู่ทั้งหมด</h5>
+                                <div class="row form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-20 pr-sm-0 p-10">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <table class="table">
+                                                <?php
+                                                $i = 1;
+                                                $strSQL = "SELECT * FROM type ORDER BY t_id DESC";
+                                                $objQuery = mysqli_query($link, $strSQL);
+                                                while ($result = mysqli_fetch_array($objQuery, MYSQLI_ASSOC)) {
+                                                    ?>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td width="80%"><?php echo $result['t_name']; ?></td>
+                                                        <td align="right">
+                                                            <a href="" class="edittype" data-toggle="modal"
+                                                               data-target="#edittype"
+                                                               id="<?php echo $result["t_id"]; ?>"><i
+                                                                        class="fas fa-edit" style="color: #5bb75b"></i></a>
+                                                            <a href="JavaScript:if(confirm('Confirm Delete?')==true){window.location='fucntion_script/check_deletetypemodal.php?id=<?php echo $result["t_id"]; ?>';}"><i
+                                                                        class="fas fa-trash" style="color: #942a25"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                    <?php
+                                                    $i++;
+                                                }
+                                                ?>
+                                            </table>
+                                        </div>
+                                    </div><!-- col-sm-6 -->
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <p class="text-danger">สามารถแก้ไขโดยการแก้ไขข้อความในกล่องข้อความแล้วกดยืนยันได้เลย</p>
-                        <?php
-                        $sql = "SELECT * FROM type";
-                        $result = mysqli_query($link,$sql);
-                        echo '<div class="row" id="sh_type">';
-                        if(mysqli_num_rows($result) > 0){
-                            while($type = mysqli_fetch_assoc($result)){
-                                echo '<div class="col-md-6 row">
-                                  <div class="col-md-8 form-group">
-                                    <input type="text" class="form-control" placeholder="ชื่อหมวดหมู่" value="'.$type['t_name'].'">
-                                  </div>
-                                  <div class="col-md-4 form-group">
-                                    <input class="btn btn-outline-danger del_type" data-id="'.$type['t_id'].'" type="button" value="ลบ">
-                                  </div>
-                                </div>';
-                            }
-                        }
-                        echo '</div>';
-                        echo '<input id="add_type" type="button" class="btn btn-outline-success" value="เพิ่มหมวดหมู่">';
-                        ?>
-                    </div>
-                    <div class="modal-footer">
-                        <input name="add" id="add" class="btn btn-success" type="submit" value="ยืนยัน">
-                        <input class="btn btn-danger" type="button" data-dismiss="modal" value="ปิด">
-                    </div>
-                </form>
-            </div>
-        </div>
+                </div>
 
         <!-- modal major -->
         <div id="moda-major" class="modal fade bd-example-md">
@@ -463,7 +496,7 @@ include 'templateAdmin/header.php';
         $("#select"+select).attr("checked", !$("#select"+select).attr("checked"));
         var getValue = $(this).html();
         if($("#select"+select).attr("checked")){
-            $('.all-mail').append('<span id="remove-ids'+select+'" class="email-ids">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
+            $('#all-mail').append('<span id="remove-ids'+select+'" class="email-ids badge badge-secondary">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
         }else{
             $("#remove-ids"+select).remove();
         }

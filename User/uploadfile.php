@@ -16,10 +16,10 @@
     $name = "file_".uniqid()."." . $extension;
 
     // Save file in the uploads folder.
-    move_uploaded_file($_FILES["file"]["tmp_name"], "upload_file/" . $name);
+    move_uploaded_file($_FILES["file"]["tmp_name"], "uploadfile/" . $name);
 
     // Generate response.
     $response = new StdClass;
-    $response->link = "upload_file/" . $name;
+    $response->link = "uploadfile/" . $name;
     echo stripslashes(json_encode($response));
 ?>

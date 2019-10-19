@@ -123,7 +123,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
-                                        <input type="file" class="formRow--input js-input" id="image" name="image" placeholder="รูปภาพ" required>
+                                        <input type="file" class="formRow--input js-input" id="upload-file" name="upload-file" placeholder="รูปภาพ" required>
 
                                     </div>
                                 </fieldset>
