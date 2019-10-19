@@ -7,10 +7,11 @@ $fileinfo = PATHINFO($_FILES["file"]["name"]);
 $newFilename = $fileinfo['filename'] . "_" . time() . "." . $fileinfo['extension'];
 $path = 'file/';
 $location = $path . $newFilename;
-move_uploaded_file($_FILES["file"]["tmp_name"], $location);
-
-$strSQL = "INSERT INTO document(d_id,d_title,d_detail,m_uname,d_datenow,t_type) VALUES('" . $_POST['doc_id'] . "','" . $_POST['title'] . "','" . $location . "','" . $id . "',NOW(),'" . $_POST['type'] . "')";
-$objQuery = mysqli_query($link, $strSQL);
+$upload = move_uploaded_file($_FILES["file"]["tmp_name"], $location);
+if (isset($upload)) {
+    $strSQL = "INSERT INTO document(d_id,d_title,d_detail,m_uname,d_datenow,t_type) VALUES('" . $_POST['doc_id'] . "','" . $_POST['title'] . "','" . $location . "','" . $id . "',NOW(),'" . $_POST['type'] . "')";
+    $objQuery = mysqli_query($link, $strSQL);
+}
 mysqli_close($link);
 /*
 if ($objQuery) {
