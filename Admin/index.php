@@ -150,9 +150,9 @@ if(isset($_POST['trash'])){
                         if ($status == 1) {
                             $sql = "SELECT * FROM document INNER JOIN member,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
                         } else if ($row > 0) {
-                            $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['uname'] . "') GROUP BY d_id ORDER BY t_type";
+                            $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
                         } else if ($row == 0) {
-                            $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND (send.s_to = '" . $major . "' OR send.s_to = '" . $mail . "') AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['uname'] . "') GROUP BY d_id ORDER BY t_type";
+                            $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND (send.s_to = '" . $major . "' OR send.s_to = '" . $mail . "') AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
                         }
                         $result = mysqli_query($link, $sql);
                         if (mysqli_num_rows($result) > 0) {
