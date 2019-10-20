@@ -12,7 +12,16 @@ if (!isset($_SESSION["UserID"])) {
 
 $sql = "SELECT * FROM member WHERE m_uname = '" . $_SESSION['UserID'] . "'";
 $result = mysqli_query($link, $sql);
-
+if (mysqli_num_rows($result) == 0) {
+    header("location:pages-error-404.php");
+} else {
+    while ($mem = mysqli_fetch_assoc($result)) {
+        $status = $mem['m_status'];
+        $major = $mem['m_sector'];
+        $mail = $mem['m_mail'];
+        $uname = $mem['m_uname'];
+    }
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -22,6 +31,8 @@ $result = mysqli_query($link, $sql);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
 <?php
@@ -30,45 +41,159 @@ include 'templateAdmin/header.php';
 <section class="ptb-0">
     <div class="mb-30 brdr-ash-1 opacty-5"></div>
     <div class="container">
-        <a class="mt-10" href="index_user.php"><i class="mr-5 ion-ios-home"></i>หน้าแรก<i
-                class="mlr-10 ion-chevron-right"></i></a>
-        <a class="color-ash mt-10" href="index_user.php">เอกสารทั้งหมด </a>
+        <a class="mt-10" href="index.php"><i class="mr-5 ion-ios-home"></i>หน้าแรก<i
+                    class="mlr-10 ion-chevron-right"></i></a>
+        <a class="color-ash mt-10" href="adddocument_admin.php">เอกสารทั้งหมด </a>
     </div><!-- container -->
 </section>
+<?php 
+$sql = "SELECT * FROM send ";
+$result = mysqli_query($link,$sql);
 
+while ($send = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    $s_to = $send['s_to'];
+}
+
+
+$row = mysqli_num_rows($result);
+    if(isset($_POST['bookmark'])){
+        $sql = "SELECT * FROM bookmark WHERE m_uname = '".$_SESSION['UserID']."' AND document_id = '".$_POST['bookmark']."'";
+        $result = mysqli_query($link,$sql);
+        if(mysqli_num_rows($result) > 0){
+            while($status = mysqli_fetch_assoc($result)){
+                if($status['b_status'] == 'no'){
+                    $sql = "UPDATE bookmark SET b_status = 'yes' WHERE m_uname = '".$_SESSION['UserID']."' AND document_id = '".$_POST['bookmark']."'";
+                    mysqli_query($link,$sql);
+                }else{
+                    $sql = "DELETE FROM bookmark WHERE m_uname = '".$_SESSION['UserID']."' AND document_id = '".$_POST['bookmark']."'";
+                    mysqli_query($link,$sql);
+                }
+            }
+        }else{
+            $sql = "INSERT INTO bookmark(m_uname,document_id,b_status) VALUES('".$_SESSION['UserID']."','".$_POST['bookmark']."','yes')";
+            mysqli_query($link,$sql);
+        }
+    }
+    if(isset($_POST['join'])){
+        $sql = "SELECT * FROM document WHERE d_id = '".$_POST['join']."'";
+        $result = mysqli_query($link,$sql);
+        if(mysqli_num_rows($result) > 0){
+            while($status = mysqli_fetch_assoc($result)){
+                if($status['join_doc'] == 'ยืนยันการเข้าร่วม'){
+                    $sql = "UPDATE document SET join_doc = 'เข้าร่วม' WHERE d_id = '".$_POST['join']."'";
+                    mysqli_query($link,$sql);
+                }elseif($status['join_doc'] == 'เข้าร่วม'){
+                    $sql = "UPDATE document SET join_doc = 'ยืนยันการเข้าร่วม' WHERE d_id = '".$_POST['join']."'";
+                    mysqli_query($link,$sql);
+                }
+            }
+        }else{
+            $sql = "UPDATE document SET join_doc = 'ยืนยันการเข้าร่วม' WHERE d_id = '".$_POST['join']."'";
+            mysqli_query($link,$sql);
+        }
+    }
+?>
 <section>
     <div class="container" style="min-height: 450px">
         <div class="row">
             <div class="card col-sm-12">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div><!-- row -->
-    </div><!-- container -->
+                <div class="col-sm-12 col-md-12 m-3">
+                
+                    <h3 class="mb-4"><b>ตอบรับเอกสาร </b></h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            
+                            <th scope="col"width="250px">เรื่อง</th>
+                            <th scope="col" >หมวดหมู่</th>
+                            <th scope="col" >ไฟล์เอกสาร</th>
+                            <th scope="col" >ตอบรับเอกสาร</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                            $i = 1;
+                            if($status != 1){
+                                $strSQL = "SELECT * FROM document INNER JOIN bookmark,type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "'";
+                            }
+                            $result = mysqli_query($link, $strSQL) or die(mysqli_error());
+                            if (mysqli_num_rows($result) > 0) {
+                                $i = 0;
+                                while ($doc = mysqli_fetch_assoc($result)) {
+                                    $type[$i] = $doc['t_type'];
+                                    if($i > 0){
+                                        if($type[$i-1] != $doc['t_type']){
+                                            $type = $doc['t_name'];
+                                        }
+                                    }else{
+                                        $type = $doc['t_name'];
+                                    }
+                                    echo '
+                                    <tr>
+                                       <td><a href="showDetail_Doc.php?id='.$doc['d_id'].'"">' . $doc['d_title'] . '</a></td>
+                                       <td>' . $doc['t_name'] . '</td>
+                                       <td><a href="upload_file/<?php echo $doc; ?>">' . $doc['d_detail'] . '</a></td>';
+                                       if($doc['join_doc'] == 'เข้าร่วม'){
+                                           echo'
+                                       <td><button type="button" data-id="'.$doc['d_id'].'" class="btn btn-secondary join">ยกเลิก</button></td>
+                                       </tr>   
+                                       ';
+                                       }elseif($doc['join_doc'] == 'ยืนยันการเข้าร่วม'){
+                                           echo'
+                       
+                                           <td><button type="button" data-id="'.$doc['d_id'].'" class="btn btn-primary join">เข้าร่วม</button></td>
+                                       </tr>   
+                                         ';
+                                       }
+                                    $i++;
+                                }
+                            }
+                            ?>
+                            <?php
+                            $type = [];
+                            $i = 1;
+                            if($status != 1){
+                                $sql = "SELECT * FROM document INNER JOIN type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
+                            }
+                            $result = mysqli_query($link, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            $i = 0;
+                            while ($doc = mysqli_fetch_assoc($result)) {
+                                $type[$i] = $doc['t_type'];
+                                if($i > 0){
+                                    if($type[$i-1] != $doc['t_type']){
+                                        $type = $doc['t_name'];
+                                    }
+                                }else{
+                                    $type = $doc['t_name'];
+                                }
+                                echo '
+                                             <tr>
+                                                <td><a href="showDetail_Doc.php?id='.$doc['d_id'].'"">' . $doc['d_title'] . '</a></td>
+                                                <td>' . $doc['t_name'] . '</td>
+                                                <td><a href="upload_file/<?php echo $doc; ?>">' . $doc['d_detail'] . '</a></td>';
+                                                if($doc['join_doc'] == 'เข้าร่วม'){
+                                                    echo'
+                                                <td><button type="button" data-id="'.$doc['d_id'].'" class="btn btn-secondary join">ยกเลิก</button></td>
+                                                </tr>   
+                                                ';
+                                                }elseif($doc['join_doc'] == 'ยืนยันการเข้าร่วม'){
+                                                    echo'
+                                
+                                                    <td><button type="button" data-id="'.$doc['d_id'].'" class="btn btn-primary join">เข้าร่วม</button></td>
+                                                </tr>   
+                                                  ';
+                                                }
+                                
+                                $i++;
+                            }
+                        }
+                        ?>
+                            </tbody>
+                    </table>
+                </div>
+            </div><!-- row -->
+        </div><!-- container -->
 </section>
 
 <?php //include 'templateAdmin/footer.php' ?>
@@ -78,10 +203,21 @@ include 'templateAdmin/header.php';
         var id = $(this).data('id');
         $.ajax({
             method: "post",
-            url: "index.php",
+            url: "index_user.php",
             data: {bookmark: id},
             success: function () {
-                window.location.href = "index.php";
+                window.location.href = "index_user.php";
+            }
+        })
+    })
+    $(document).on('click', '.join', function () {
+        var id = $(this).data('id');
+        $.ajax({
+            method: "post",
+            url: "Document_acceptance.php",
+            data: {join: id},
+            success: function () {
+                window.location.href = "Document_acceptance.php";
             }
         })
     })
@@ -101,3 +237,6 @@ include 'templateAdmin/header.php';
 </script>
 </body>
 </html>
+<?php
+mysqli_close($link);
+?>

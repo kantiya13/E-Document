@@ -54,6 +54,13 @@ $uname = $objResult['m_uname'];
     <link href='assets/node_modules/jquery-ui-1.12.1.custom/jquery-ui.css' rel='stylesheet'>
 
     <link href='email-multiple/email.multiple.css' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -72,7 +79,7 @@ include 'templateAdmin/header.php';
     <div class="container">
         <a class="mt-10" href="index.php"><i class="mr-5 ion-ios-home"></i>หน้าแรก<i
                     class="mlr-10 ion-chevron-right"></i></a>
-        <a class="color-ash mt-10" href="index.php">สร้างเอกสาร</a>
+        <a class="color-ash mt-10" href="index.php">สร้างเอกสาร </a>
     </div><!-- container -->
 </section>
 
@@ -94,21 +101,27 @@ include 'templateAdmin/header.php';
                 $path = "upload_file/".$file;
                 $success = move_uploaded_file($_FILES['upload-file']['tmp_name'],$path);
                 if($success){
-                    $sql = "INSERT INTO
-                                document(d_id,d_title,d_detail,m_uname,d_datenow,t_type)
-                              VALUES('".sprintf("%05d",($id+1))."','".$_POST['title']."','".$file."','".$_SESSION['UserID']."',NOW(),'".$_POST['type']."')";
-                    mysqli_query($link,$sql);
                     $i=0;
-                    if(count($_POST['all_mail']) == 0){
-                        $sql = "INSERT INTO send(s_to,s_document,s_form) VALUES('AllUser','".sprintf("%05d",($id+1))."','".$_SESSION['UserID']."')";
-                        mysqli_query($link,$sql);
+                    
+                    if(count($_POST['namemail']) == 0){
+                        // $sql = "INSERT INTO send(s_to,s_document,s_form) VALUES('AllUser','".sprintf("%05d",($id+1))."','".$_SESSION['UserID']."')";
+                        // mysqli_query($link,$sql);
+                        $sql = "INSERT INTO
+                                document(d_id,d_title,d_detail,m_uname,d_datenow,t_type,to_user,from_user,join_doc)
+                              VALUES('".sprintf("%05d",($id+1))."','".$_POST['title']."','".$file."','".$_SESSION['UserID']."',NOW(),'".$_POST['type']."','AllUser','".$_SESSION['UserID']."','ยืนยันการเข้าร่วม')";
+                         mysqli_query($link,$sql);
                     }else{
-                        while($i < count($_POST['all_mail'])){
-                            $sql = "INSERT INTO send(s_to,s_document,s_form) VALUES('".$_POST['all_mail'][$i]."','".sprintf("%05d",($id+1))."','".$_SESSION['UserID']."')";
-                            mysqli_query($link,$sql);
+                        while($i < count($_POST['namemail'])){
+                            // $sql = "INSERT INTO send(s_to,s_document,s_form) VALUES('".$_POST['namemail'][$i]."','".sprintf("%05d",($id+1))."','".$_SESSION['UserID']."')";
+                            // mysqli_query($link,$sql);
+                            $sql = "INSERT INTO
+                                document(d_docid,d_title,d_detail,m_uname,d_datenow,t_type,to_user,from_user,join_doc)
+                              VALUES('".sprintf("%05d",($id+1))."','".$_POST['title']."','".$file."','".$_SESSION['UserID']."',NOW(),'".$_POST['type']."','".$_POST['namemail'][$i]."','".$_SESSION['UserID']."','ยืนยันการเข้าร่วม')";
+                         mysqli_query($link,$sql);
                             $i++;
                         }
                     }
+                    $i++;
                     echo '<script>alert("สำเร็จ");window.location.href="index.php"</script>';
                 }else{
                     echo '<script>alert("เกิดข้อผิดพลาด");window.history.back()"</script>';
@@ -120,11 +133,12 @@ include 'templateAdmin/header.php';
                 <div class="card-body">
                 <div class="col-sm-12 m-3">
                     <h3 class="mb-4"><b>สร้างเอกสาร</b></h3>
-                    <form id="document" method="post" enctype="multipart/form-data" class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0 form-material">
+                    <form id="document" method="post" enctype="multipart/form-data" class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0 form-material form-horizontal">
+                    <div class="message-center ps ps--theme_default ps--active-y" data-ps-id="a045fe3c-cb6e-028e-3a70-8d6ff0d7f6bd">
                     <div class="form-group row mx-3">
                         <label class="col-md-12">เลขที่บันทึก</label>
                         <div class="col-md-6">
-                            <p><?php echo sprintf("%05d",($id+1)); ?></p>
+                            <input type="text" value="<?php echo sprintf("%05d",($id+1)); ?>">
                         </div>
                     </div>
                     <div class="form-group row mx-3">
@@ -134,15 +148,56 @@ include 'templateAdmin/header.php';
                     </div>
                     <div class="form-group row mx-3">
                         <span class="to-input col-md-12">ถึง</span>
-                        <div class="col-sm-2 pt-3">
-                            <input data-toggle="modal" data-target="#moda-name" type="button" class="btn btn-success" value="เลือกรายชื่อ">
+                        <div class="col-sm-4 pt-3">
+                            <p>เลือกรายชื่อ</p>
+                        <select class="selectpicker all-mail form-control form-control-line" multiple data-live-search="true" id="namemail" name="namemail[]">
+                        <?php
+                                $sql = "SELECT * FROM member WHERE m_status != '1' AND m_confirm = 'yes' ORDER BY m_fname";
+                                $result = mysqli_query($link,$sql);
+                                $count = mysqli_num_rows($result);
+                                $i=0;
+                                if(mysqli_num_rows($result) > 0){
+                                    while($mem = mysqli_fetch_assoc($result)){
+                                        echo '<option name="namemail'.$i.'" value="'.$mem['m_mail'].'">'.$mem['m_fname'].' '.$mem['m_lname'].'</option>';
+                                    }
+                                }else{
+                                    echo '<div class="d-block">
+                                    <label>ไม่มีรายชื่อ</label>
+                                  </div>';
+                                }
+                            ?>
+                        
+                        </select>
                         </div>
-                        <div class="col-sm-2 pt-3 mb-3">
-                            <input type="button" data-toggle="modal" data-target="#moda-major" class="btn btn-success" value="เลือกสาขา">
+                        <div class="col-sm-4 pt-3 mb-3">
+                        <p>เลือกสาขาวิชา</p>
+                        <select class="selectpicker all-mail form-control form-control-line" multiple data-live-search="true" id="namemail" name="namemail[]">
+                        <?php
+                            $major = ['สาขาคณิตศาสตร์',
+                                'สาขาเคมี',
+                                'สาขาชีววิทยา',
+                                'สาขาฟิสิกส์',
+                                'สาขาเกษตรศาสตร์',
+                                'สาขาคอมพิวเตอร์และเทคโนโลยีสารสนเทศ',
+                                'สาขาวิทยาการคอมพิวเตอร์',
+                                'สาขาวิทยาศาสตร์การกีฬาและการออกกำลังกาย',
+                                'สาขาวิทยาศาสตร์และเทคโนโลยีการอาหาร',
+                                'สาขาวิทยาศาสตร์สิ่งแวดล้อม','สาขาวิชาสัตวศาสตร์',
+                                'สาขาวิชาสาธารณสุขศาสตร์',
+                                'สาขาวิชาอาหารและโภชนาการ'];
+                            $iMajor = count($major);
+                            for($i=0;$i<$iMajor;$i++){
+                                echo '<option name="namemail'.$i.'" value="'.$major[$i].'">'.$major[$i].'</option>';
+                            }
+                            ?>
+                    
+                        
+                        </select>
+                            <!-- <input type="button" data-toggle="modal" data-target="#moda-major" class="btn btn-success" value="เลือกสาขา"> -->
                         </div>
-                        <div class="all-mail col-md-12" id="all_mail" name="all_mail">
+                        <!-- <div class="all-mail col-md-12" id="all_mail" name="all_mail">
 
-                        </div>
+                        </div> -->
                     </div>
                     <div class="form-group row mx-3">
                         <label class="col-md-12">เรื่อง</label>
@@ -182,6 +237,8 @@ include 'templateAdmin/header.php';
                     <div class="col-sm-2">
                     <input class="btn btn-info mt-3" type="button" value="บันทึก" data-toggle="modal" data-target="#modal-write">
                     </div>
+                    </div>
+                    
                     </form>
                 </div><!-- col-md-6 -->
                 </div>
@@ -207,30 +264,7 @@ include 'templateAdmin/header.php';
                 </div>
                 <!-- End Modal -->
             </div>
-            <?php
-            if(isset($_POST['add'])){
-                count($_POST['add_type']);
-                for($i=0;$i<count($_POST['add_type']);$i++){
-                    $sql = "SELECT * FROM type WHERE t_name = '".$_POST['add_type'][$i]."'";
-                    $result = mysqli_query($link,$sql);
-                    if(mysqli_num_rows($result) == 0){
-                        if($_POST['add_type'][$i] != ''){
-                            $sql = "INSERT INTO type(t_name) VALUES('".$_POST['add_type'][$i]."')";
-                            mysqli_query($link,$sql);
-                            echo '<script>window.location.href="write.php"</script>';
-                        }else{
-                            echo '<script>alert("ห้ามใส่ช่องว่าง");window.location.href="write.php"</script>';
-                        }
-                    }else{
-                        echo '<script>alert("มีหมวดหมู่นี้แล้ว");window.location.href="write.php"</script>';
-                    }
-                }
-            }
-            if(isset($_POST['del'])){
-                $sql = "DELETE FROM type WHERE t_id = '".$_POST['del']."'";
-                mysqli_query($link,$sql);
-            }
-            ?>
+            
             <!-- modal type -->
             <div class="modal fade" id="addType" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                      aria-hidden="true" data-backdrop="static">
@@ -488,23 +522,35 @@ include 'templateAdmin/header.php';
     $(document).on('click','.cancel-email',function(){
         $(this).parent().remove();
     });
+    $('select').selectpicker();
     // $('.enter-mail-id').click()
 
     //toggle checkbox major
-    $("#checkbox-major label").click(function(){
+    // $("#checkbox-major").click(function(){
+    //     var select = $(this).data("select");
+    //     $("#select"+select).attr("checked", !$("#select"+select).attr("checked"));
+    //     var getValue = $(this).html();
+    //     if($("#select"+select).attr("checked")){
+    //         $('.all-mail').append('<span id="remove-ids'+select+'" class="email-ids ">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
+    //     }else{
+    //         $("#remove-ids"+select).remove();
+    //     }
+    // })
+    $("#checkbox-major").click(function(){
         var select = $(this).data("select");
         $("#select"+select).attr("checked", !$("#select"+select).attr("checked"));
         var getValue = $(this).html();
         if($("#select"+select).attr("checked")){
-            $('#all-mail').append('<span id="remove-ids'+select+'" class="email-ids badge badge-secondary">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
+            $('.all-mail').append('<input name="all_mail[]" value="'+ getValue +'">');
         }else{
             $("#remove-ids"+select).remove();
         }
     })
 
 
+
     //toggle checkbox name
-    $(document).on('click','#checkbox-name label',function(){
+    $(document).on('click','#checkbox-name',function(){
         var select = $(this).data("select");
         $("#name"+select).attr("checked", !$("#name"+select).attr("checked"));
         var getValue = $(this).html();

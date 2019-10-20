@@ -113,11 +113,11 @@ if(isset($_POST['trash'])){
                         <?php
                         $type = [];
                         if ($status == 1) {
-                            $sql = "SELECT * FROM document INNER JOIN member,bookmark,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
+                            $sql = "SELECT * FROM document INNER JOIN  member,bookmark,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
                         } else if ($row > 0) {
-                            $sql = "SELECT * FROM document INNER JOIN member,send,bookmark,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
+                            $sql = "SELECT * FROM document INNER JOIN member,bookmark,type WHERE document.t_type = type.t_id AND  AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
                         } else if ($row == 0) {
-                            $sql = "SELECT * FROM document INNER JOIN member,send,bookmark,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND (send.s_to = '" . $major . "' OR send.s_to = '" . $mail . "') AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['uname'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
+                            $sql = "SELECT * FROM document INNER JOIN member,bookmark,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_id ORDER BY t_type";
                         }
                         $result = mysqli_query($link, $sql);
                         if (mysqli_num_rows($result) > 0) {

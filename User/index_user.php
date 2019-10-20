@@ -47,11 +47,9 @@ include 'templateAdmin/header.php';
     </div><!-- container -->
 </section>
 <?php 
-$sql = "SELECT s_form FROM send WHERE s_form = '".$_SESSION['UserID']."'";
-$result = mysqli_query($link,$sql);
-$send = mysqli_fetch_array($result, MYSQLI_ASSOC);
-$row = mysqli_num_rows($result);
 
+
+$row = mysqli_num_rows($result);
     if(isset($_POST['bookmark'])){
         $sql = "SELECT * FROM bookmark WHERE m_uname = '".$_SESSION['UserID']."' AND document_id = '".$_POST['bookmark']."'";
         $result = mysqli_query($link,$sql);
@@ -89,9 +87,9 @@ $row = mysqli_num_rows($result);
                         <?php
                             $i = 1;
                             if($status != 1){
-                                $strSQL = "SELECT * FROM document INNER JOIN send,bookmark,type WHERE document.d_id = send.s_document AND document.t_type = type.t_id AND send.s_to = '".$mail."' AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "'";
+                                $strSQL = "SELECT * FROM document INNER JOIN bookmark,type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "'";
                             }
-                            $result = mysqli_query($link, $strSQL) or die(mysqli_error());
+                            $result = mysqli_query($link, $strSQL);
                             if (mysqli_num_rows($result) > 0) {
                                 $i = 0;
                                 while ($doc = mysqli_fetch_assoc($result)) {
@@ -130,9 +128,9 @@ $row = mysqli_num_rows($result);
                         <?php
                             $i = 1;
                             if($status != 1){
-                                $strSQL = "SELECT * FROM document INNER JOIN send,bookmark,type WHERE document.d_id = send.s_document AND document.t_type = type.t_id AND send.s_to = '".$mail."' AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "'";
+                                $strSQL = "SELECT * FROM document INNER JOIN bookmark,type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "'";
                             }
-                            $result = mysqli_query($link, $strSQL) or die(mysqli_error());
+                            $result = mysqli_query($link, $strSQL);
                             if (mysqli_num_rows($result) > 0) {
                                 $i = 0;
                                 while ($doc = mysqli_fetch_assoc($result)) {
@@ -159,7 +157,7 @@ $row = mysqli_num_rows($result);
                             $type = [];
                             $i = 1;
                             if($status != 1){
-                                $sql = "SELECT * FROM document INNER JOIN send,type WHERE document.d_id = send.s_document AND document.t_type = type.t_id AND send.s_to = '".$mail."' AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
+                                $sql = "SELECT * FROM document INNER JOIN type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
                             }
                             $result = mysqli_query($link, $sql);
                         if (mysqli_num_rows($result) > 0) {

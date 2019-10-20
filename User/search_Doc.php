@@ -87,7 +87,7 @@ if(isset($_POST["txtKeyword"]))
                         </thead>
                     <tbody>
                     <?php 
-                     $sqls = "SELECT * FROM document INNER JOIN send,type WHERE send.s_to = '".$mail."' AND document.d_id = send.s_document AND document.t_type = type.t_id AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') AND document.d_title LIKE '%".$strKeyword."' ";
+                     $sqls = "SELECT * FROM document INNER JOIN type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') AND document.d_title LIKE '%".$strKeyword."'";
 
                     $result = mysqli_query($link, $sqls) or die(mysqli_error());
                     while ($doc = mysqli_fetch_assoc($result)) 
@@ -105,7 +105,7 @@ if(isset($_POST["txtKeyword"]))
 
                     <?php 
 
-                     $sqls = "SELECT * FROM document INNER JOIN send,bookmark,type WHERE send.s_to = '".$mail."' AND document.d_id = send.s_document AND document.t_type = type.t_id AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.d_title LIKE '%".$strKeyword."'";
+                        $sqls = "SELECT * FROM document INNER JOIN bookmark,type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.d_title LIKE '%".$strKeyword."'";
 
                 
                     $result = mysqli_query($link, $sqls) or die(mysqli_error());

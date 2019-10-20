@@ -50,6 +50,7 @@ if(mysqli_num_rows($result) > 0){
         $title = $detail['d_title'];
         $doc = $detail['d_detail'];
         $from = $detail['m_major'];
+        $iddoc = $detail['d_docid'];
     }
 }else{
     header("location:pages-error-404.php");
@@ -62,28 +63,28 @@ if(mysqli_num_rows($result) > 0){
                 class="mlr-10 ion-chevron-right"></i></a>
         <a class="mt-10" href="index_user.php"><i class="mr-5 ion-android-document"></i>เอกสารทั้งหมด<i
                 class="mlr-10 ion-chevron-right"></i></a>
-        <a class="color-ash mt-10" href="">รายละเอียดเอกสาร <?php echo $_GET['id']; ?></a>
+        <a class="color-ash mt-10" href="">รายละเอียดเอกสาร <?php echo $iddoc; ?></a>
     </div><!-- container -->
 </section>
 
 <section>
     <div class="container">
-        <h3 class="mb-15">รายละเอียดเอกสาร (<?php echo $_GET['id']; ?>)</h3>
+        <h3 class="mb-15">รายละเอียดเอกสาร (<?php echo $iddoc; ?>)</h3>
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12 p-40 mt">
                         <div class="mb-15">
                             <p class="card-text">เลขที่เอกสาร</p>
-                            <strong><?php echo $_GET['id']; ?></strong>
+                            <strong><?php echo $iddoc; ?></strong>
                         </div>
                         <?php 
-                        $sqlForm = "SELECT * FROM `document` INNER JOIN `send`  WHERE d_id = '".$_GET['id']."'";
+                        $sqlForm = "SELECT * FROM `document` WHERE d_id = '".$_GET['id']."'";
                         $resultForm = mysqli_query($link,$sqlForm);
                         if(mysqli_num_rows($resultForm) > 0){
                             while($detail = mysqli_fetch_assoc($resultForm)){
-                                $to = $detail['s_to'];
-                                $from = $detail['m_uname'];
+                                $from = $detail['from_user'];
+                                $to = $detail['to_user'];
                             }
                         }
                         ?>
