@@ -53,8 +53,15 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
         <ul class="main-menu" id="main-menu">
             <li><a href="index_user.php"><i class="active ion-document"></i> เอกสารทั้งหมด</a></li>
-            <li><a href="Document_acceptance.php"><i class="active ion-edit"></i> การตอบรับเอกสาร</a></li>
-            <li><a href="Download_Doc.php"><i class="active ion-android-download"></i> ดาวน์โหลดเอกสาร</a></li>
+            
+            
+            <li class="drop-down"><a href="#"><i class="active ion-document"></i> จัดการเอกสาร<i class="ion-arrow-down-b"></i></a>
+                <ul class="drop-down-menu drop-down-inner">
+                    <li><a href="Document_acceptance.php"><i class="active ion-edit"></i> การตอบรับเอกสาร</a></li>
+                    <li><a href="fromDocument.php"><i class="active ion-document"></i> แบบฟอร์มต่างๆ</a></li>
+                    <li><a href="Download_Doc.php"><i class="active ion-android-download"></i> ดาวน์โหลดเอกสาร</a></li>
+                </ul>
+            </li>
             <li><a href="search_Doc.php"><i class="active ion-search"></i> ค้นเอกสารย้อนหลัง</a></li>
             <li class="drop-down"><a href="#"><i class="active ion-android-person"></i> <?php echo $objResult["m_uname"]; ?><i class="ion-arrow-down-b"></i></a>
                 <ul class="drop-down-menu drop-down-inner">

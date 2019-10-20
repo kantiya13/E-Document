@@ -12,8 +12,16 @@ if (!isset($_SESSION["UserID"])) {
 
 $sql = "SELECT * FROM member WHERE m_uname = '" . $_SESSION['UserID'] . "'";
 $result = mysqli_query($link, $sql);
-
-
+if (mysqli_num_rows($result) == 0) {
+    header("location:pages-error-404.php");
+} else {
+    while ($mem = mysqli_fetch_assoc($result)) {
+        $status = $mem['m_status'];
+        $major = $mem['m_sector'];
+        $mail = $mem['m_mail'];
+        $uname = $mem['m_uname'];
+    }
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -22,6 +30,8 @@ $result = mysqli_query($link, $sql);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 <body>
 <?php
@@ -35,70 +45,96 @@ include 'templateAdmin/header.php';
         <a class="color-ash mt-10" href="search_Doc.php">ค้นหาเอกสารย้อนหลัง </a>
     </div><!-- container -->
 </section>
+<?php 
+ini_set('display_errors', 1);
+error_reporting(~0);
 
+$strKeyword = null;
+
+if(isset($_POST["txtKeyword"]))
+{
+    $strKeyword = $_POST["txtKeyword"];
+}
+?>
 <section>
     <div class="container" style="min-height: 450px">
         <div class="row">
             <div class="card col-sm-12">
 
+                <div class="mt-30 pr-50 pl-50">
+                    <form name="frmSearch" method="POST" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
+                    <div class="row">
+                    <div class="form-group col-sm-9 mb-3">
+                        <input name="txtKeyword" type="text" id="txtKeyword" class="form-control" placeholder="ค้นหาด้วย ชื่อเรื่อง หรือ วันที่..."  >
+                    </div>
+                    <div class="col-sm-3">
+                    <button  class="btn btn-info" type="submit" value="ค้นหา">ค้นหา</button>
+                    </div>
+                    </div>
+                    </form>
+                </div>
+                
+                
+                <div class="pr-50 pl-50 mt-20">
                 <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                    </tr>
-                    </thead>
+                <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"width="250px">เรื่อง</th>
+                            <th scope="col" >หมวดหมู่</th>
+                            <th scope="col" >ไฟล์เอกสาร</th>
+                        </tr>
+                        </thead>
                     <tbody>
+                    <?php 
+                     $sqls = "SELECT * FROM document INNER JOIN type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') AND document.d_title LIKE '%".$strKeyword."'";
+
+                    $result = mysqli_query($link, $sqls) or die(mysqli_error());
+                    while ($doc = mysqli_fetch_assoc($result)) 
+                    {
+                    ?>
                     <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                    </tr>
+                        <th scope="row" width="50px"><i class="material-icons bookmark" data-id="'.$doc['d_id'].'">&#xe83a;</i></th>
+                        <td width="200px"><a href="showDetail_Doc.php?id=<?php echo $doc['d_id'];?>""><?php echo $doc['d_title'];?></a></td>
+                        <td><?php echo $doc['t_name'];?></td>
+                        <td><?php echo $doc['d_detail'];?></td>
+                     </tr>   
+                     <?php 
+                        } 
+                     ?>
+
+                    <?php 
+
+                        $sqls = "SELECT * FROM document INNER JOIN bookmark,type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.d_title LIKE '%".$strKeyword."'";
+
+                
+                    $result = mysqli_query($link, $sqls) or die(mysqli_error());
+                    while ($doc = mysqli_fetch_assoc($result)) 
+                    {
+                    ?>
                     <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                    </tr>
-                    <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                    </tr>
+                        <th scope="row" width="50px"><i class="material-icons bookmark" data-id="'.$doc['d_id'].'">&#xe838;</i></th>
+                        <td width="200px"><a href="showDetail_Doc.php?id=<?php echo $doc['d_id'];?>""><?php echo $doc['d_title'];?></a></td>
+                        <td><?php echo $doc['t_name'];?></td>
+                        <td><?php echo $doc['d_detail'];?></td>
+                     </tr>   
+                     <?php 
+                        } 
+                     ?>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div><!-- row -->
     </div><!-- container -->
 </section>
 
-<?php //include 'templateAdmin/footer.php' ?>
+
+<?php include 'templateAdmin/footer.php' ?>
 <!-- SCIPTS -->
-<script type="text/javascript">
-    $(document).on('click', '.bookmark', function () {
-        var id = $(this).data('id');
-        $.ajax({
-            method: "post",
-            url: "index.php",
-            data: {bookmark: id},
-            success: function () {
-                window.location.href = "index.php";
-            }
-        })
-    })
-    $(document).on('click', '.trash', function () {
-        if (confirm('ต้องการลบหรือไม่')) {
-            var id = $(this).data('id');
-            $.ajax({
-                method: "post",
-                url: "index.php",
-                data: {trash: id},
-                success: function () {
-                    window.location.href = "index.php";
-                }
-            })
-        }
-    })
-</script>
+
 </body>
 </html>
+<?php
+mysqli_close($link);
+?>

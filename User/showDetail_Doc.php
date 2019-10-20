@@ -59,9 +59,9 @@ if(mysqli_num_rows($result) > 0){
 <section class="ptb-0">
     <div class="mb-30 brdr-ash-1 opacty-5"></div>
     <div class="container">
-        <a class="mt-10" href="index.php"><i class="mr-5 ion-ios-home"></i>หน้าแรก<i
+        <a class="mt-10" href="index_user.php"><i class="mr-5 ion-ios-home"></i>หน้าแรก<i
                 class="mlr-10 ion-chevron-right"></i></a>
-        <a class="mt-10" href="index.php"><i class="mr-5 ion-android-document"></i>เอกสารทั้งหมด<i
+        <a class="mt-10" href="index_user.php"><i class="mr-5 ion-android-document"></i>เอกสารทั้งหมด<i
                 class="mlr-10 ion-chevron-right"></i></a>
         <a class="color-ash mt-10" href="">รายละเอียดเอกสาร <?php echo $iddoc; ?></a>
     </div><!-- container -->
@@ -101,7 +101,7 @@ if(mysqli_num_rows($result) > 0){
                         </div>
                         <div class="mb-15">
                             <p class="card-text">ไฟล์</p>
-                            <a href="upload_file/<?php echo $doc; ?>" style="color: #00aeef"><strong><?php echo $doc; ?></strong></a>
+                            <a href="../Admin/upload_file/<?php echo $doc; ?>" style="color: #00aeef"><strong><?php echo $doc; ?></strong></a>
                         </div>
                     </div>
                 </div>

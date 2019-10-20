@@ -19,14 +19,15 @@ if (isset($success)) {
             $i++;
         }
     }
+
+    if ($objQuery) {
+        echo '<script>alert("สร้างเอกสารเรียบร้อย");window.location.href="../index_admin.php";</script>';
+    } else {
+        echo '<script>alert("สร้างเอกสารไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");window.location.href="../adddocument_admin.php";</script>';
+    }
 }
 mysqli_close($link);
-/*
-if ($objQuery) {
-    echo '<script>alert("สมัครสมาชิกสำเร็จ");window.location.href="../login_user.php";</script>';
-} else {
-    echo '<script>alert("สมัครสมาชิกไม่สำเร็จ กรุณาทำรายการใหม่อีกครั้ง");window.location.href="../login_user.php";</script>';
-}*/
+
 
 
 ?>
