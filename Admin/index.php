@@ -165,7 +165,7 @@ if(isset($_POST['trash'])){
                                                 <td>' . $doc['m_fname'] . ' ' . $doc['m_lname'] . '</td>
                                                 <td>' . $doc['t_name'] . '</td>
                                                 <td align="left">
-                                                    <a href="" ><i class="material-icons">&#xe3c9;</i></a>
+                                                    <a href="EditDetail_Doc.php?id='.$doc['d_id'].'""><i class="material-icons">&#xe3c9;</i></a>
                                                     <a href=""><i data-id="' . $doc['d_id'] . '" class="material-icons ml-1 trash">&#xe872;</i></a>
                                                 </td>
                                             </tr>

@@ -39,6 +39,28 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 <div class="container-fluid">
     <div class="container">
         <div class="row">
+        <?php
+            if(isset($_POST['txtname'])){
+                $confirm = 'no';
+                $file = basename($_FILES['upload-file']['name']);
+                $path = "../Admin/upload_file/" . $file;
+                $success = move_uploaded_file($_FILES['upload-file']['tmp_name'], $path);
+                if ($success) {
+                    $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_profile, m_status, m_sector, m_major, m_confirm)
+                        VALUES ('" . $_POST["txtusername"] . "','" . $_POST["txtpassword"] . "','" . $_POST["txtname"] . "'
+                        ,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','".$file."','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "', '" . $confirm . "')";
+                    $objQuery = mysqli_query($link, $strSQL);
+                    
+                }
+                if ($objQuery) {
+                        echo '<script>alert("สมัครสมาชิกสำเร็จ");window.location.href="login_user.php";</script>';
+                    } else {
+                        echo '<script>alert("สมัครสมาชิกไม่สำเร็จ กรุณาทำรายการใหม่อีกครั้ง");window.location.href="login_user.php";</script>';
+                    }
+              
+                
+            }
+            ?>
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
                 <div class="caixa">
@@ -47,7 +69,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                         E-Document Register
                     </h1>
                     <hr>
-                    <form class="form-signin" id="fromregister" name="fromregister"  method="POST" action="fucntion_script/Check_registerUser.php"  enctype="multipart/form-data" OnSubmit="return fncSubmit();">
+                    <form id="document" method="post" enctype="multipart/form-data" class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0 form-material form-horizontal" OnSubmit="return fncSubmit();">
                         <div class="row p-4">
                             <div class="col-lg-12 col-md-12">
                                 <fieldset class="formRow">
@@ -121,12 +143,14 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                                         </label>
                                     </div>
                                 </fieldset>
-                                <fieldset class="formRow">
-                                    <div class="formRow--item">
-                                        <input type="file" class="formRow--input js-input" id="upload-file" name="upload-file" placeholder="รูปภาพ" required>
-
+                                <div class="form-group mt-3 row mx-3">
+                                        <span class="to-input col-md-12">อัพโหลดรูป</span>
+                                        <div class=" col-sm-12 border py-3 mt-3">
+                                            <p id="p-file" class="mb-10"></p>
+                                            <input class="btn btn-success" id="btn-file" type="button" name="btn-file" value="อัพโหลดไฟล์">
+                                        </div>
+                                        <input id="upload-file" type="file" class="d-none" name="upload-file">
                                     </div>
-                                </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <label for="username" class="formRow--input-wrapper js-inputWrapper">
@@ -151,7 +175,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 
                             </div>
                             <div class="col-lg-5 col-md-5">
-                                <button type="submit" class="vamos_mudar_um_pouco" style="background-color: #F9B500;border: 0px;height: 50px;" title="สมัครสมาชิก">สมัครสมาชิก</button>
+                                <button type="submit" id="send" class="vamos_mudar_um_pouco" style="background-color: #F9B500;border: 0px;height: 50px;" title="สมัครสมาชิก" >สมัครสมาชิก</button>
                             </div>
                             <div class="col-lg-12 col-md-12 mt-3 ml-2">
                                 <fieldset class="formRow">
@@ -165,6 +189,27 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                 </div>
             </div>
             <div class="col-lg-3"></div>
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="modal-write" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-write">ข้อความ</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ต้องการสร้างเอกสารหรือไม่
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                <button type="button" id="send" name="send" class="btn btn-danger">ตกลง</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- End Modal -->
         </div>
     </div>
 </div>
@@ -178,6 +223,112 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
             return false;
         }
         document.fromregister.submit();
+    }
+
+    $("#upload-file").change(function(){
+        $("#p-file").text($(this).val().replace(/\\/g,'/').replace(/.*\//, ''));
+    })
+
+    //uploadfileclick
+    $("#btn-file").click(function(){
+        $("#upload-file").click();
+    })
+
+    $("#send").click(function(){
+        $('form#document').submit();
+    })
+    $("#add_type").click(function(){
+        $("#sh_type").append('<div class="col-md-6 row"><div class="col-md-8 form-group"><input name="add_type[]" type="text" class="form-control add_type" placeholder="ชื่อหมวดหมู่"></div></div>');
+    });
+    $(document).on("click",".del_type",function(){
+        var del = $(this).data('id');
+        if(confirm("ต้องการลบหรือไม่")){
+            deltype(del);
+        }
+    })
+    function deltype(id){
+        $.ajax({
+            type:'post',
+            url:'write.php',
+            data:{del:id}
+        })
+            .done(function(data){
+                location.href="write.php";
+            })
+    }
+    $(".enter-mail-id").keyup(function (e) {
+        if (e.keyCode == 13 || e.keyCode == 32) {
+            //alert('You Press enter');
+            var getValue = $(this).val();
+            if(getValue != ''){
+                $('.all-mail').append('<span class="email-ids">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
+                $(this).val('');
+            }
+        }
+    });
+    $(".enter-mail-id").focusout(function (e) {
+        var getValue = $(this).val();
+        if(getValue != ''){
+            $('.all-mail').append('<span class="email-ids">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
+            $(this).val('');
+        }
+    });
+    /// Cancel
+    $(document).on('click','.cancel-email',function(){
+        $(this).parent().remove();
+    });
+    $('select').selectpicker();
+    // $('.enter-mail-id').click()
+
+    //toggle checkbox major
+    // $("#checkbox-major").click(function(){
+    //     var select = $(this).data("select");
+    //     $("#select"+select).attr("checked", !$("#select"+select).attr("checked"));
+    //     var getValue = $(this).html();
+    //     if($("#select"+select).attr("checked")){
+    //         $('.all-mail').append('<span id="remove-ids'+select+'" class="email-ids ">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getValue +'">');
+    //     }else{
+    //         $("#remove-ids"+select).remove();
+    //     }
+    // })
+    $("#checkbox-major").click(function(){
+        var select = $(this).data("select");
+        $("#select"+select).attr("checked", !$("#select"+select).attr("checked"));
+        var getValue = $(this).html();
+        if($("#select"+select).attr("checked")){
+            $('.all-mail').append('<input name="all_mail[]" value="'+ getValue +'">');
+        }else{
+            $("#remove-ids"+select).remove();
+        }
+    })
+
+
+
+    //toggle checkbox name
+    $(document).on('click','#checkbox-name',function(){
+        var select = $(this).data("select");
+        $("#name"+select).attr("checked", !$("#name"+select).attr("checked"));
+        var getValue = $(this).html();
+        var getMail = $(this).data('mail');
+        if($("#name"+select).attr("checked")){
+            $('.all-mail').append('<span id="remove-ids'+select+'" class="email-ids">'+ getValue +' <span class="cancel-email">x</span></span><input name="all_mail[]" type="hidden" value="'+ getMail +'">');
+        }else{
+            $("#remove-ids"+select).remove();
+        }
+    })
+
+
+    // search_name
+    function search_name(){
+        var val = $("#search-name").val();
+        $.ajax({
+            type:'post',
+            url:'searchName.php',
+            data:{val:val}
+        })
+            .done(function(data){
+                $("#sh_searchName").html(data);
+            })
     }
 </script>
 </body>

@@ -55,7 +55,14 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
             <li><a href="adddocument_admin.php"><i class="active ion-plus-circled"></i> สร้างเอกสาร</a></li>
             <li><a href="index.php"><i class="active ion-document-text"></i> เอกสารทั้งหมด</a></li>
             <li><a href="allaccounts_admin.php"><i class="active ion-ios-book"></i> บัญชีทั้งหมด</a></li>
-            <li><a href="editdocument_admin.php"><i class="active ion-android-document"></i> จัดการหมวดหมู่เอกสาร</a></li>
+            <!-- <li><a href=""><i class="active ion-android-document"></i> จัดการหมวดหมู่เอกสาร</a></li>
+            <li><a href=""><i class="active ion-android-document"></i> เอกสารแบบฟอร์ม</a></li> -->
+            <li class="drop-down"><a href="#"><i class="ion-document"></i> จัดการเอกสาร<i class="ion-arrow-down-b"></i></a>
+                <ul class="drop-down-menu drop-down-inner">
+                    <li><a href="editdocument_admin.php"> จัดการหมวดหมู่เอกสาร</a></li>
+                    <li><a href="fromdocument_admin.php"> เอกสารแบบฟอร์ม</a></li>
+                </ul>
+            </li>
             <li class="drop-down"><a href="#"><i class="active ion-android-person"></i> <?php echo $objResult["m_uname"]; ?><i class="ion-arrow-down-b"></i></a>
                 <ul class="drop-down-menu drop-down-inner">
                     <li><a href="useraccount_admin.php"><i class="active ion-android-person"></i> บัญชีของฉัน</a></li>
