@@ -46,9 +46,9 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                 $path = "../Admin/upload_file/" . $file;
                 $success = move_uploaded_file($_FILES['upload-file']['tmp_name'], $path);
                 if (isset($success)) {
-                    $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_profile, m_status, m_sector, m_major, m_confirm)
+                    $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_profile, m_status, m_sector, m_major,m_ academic,m_position,m_educational,m_management, m_confirm)
                         VALUES ('" . $_POST["txtusername"] . "','" . $_POST["txtpassword"] . "','" . $_POST["txtname"] . "'
-                        ,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','".$file."','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "', '" . $confirm . "')";
+                        ,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','".$file."','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "','" . $_POST["txtacademic"] . "','" . $_POST["txtposition"] . "','" . $_POST["txteducational"] . "','" . $_POST["txtmanagement"] . "', '" . $confirm . "')";
                     $objQuery = mysqli_query($link, $strSQL);
                     
                 }
@@ -89,7 +89,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <select class="formRow--input js-input" style="height: 50px" name="txtstatus" required>
-                                            <option>- สถานะ -</option>
+                                            <option value="-">- สถานะ -</option>
                                             <?php
                                             if(mysqli_num_rows($objQuery) > 0){
                                                 while($objResult = mysqli_fetch_assoc($objQuery)){
@@ -102,8 +102,46 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                                 </fieldset>
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
+                                        <select class="formRow--input js-input" style="height: 50px" name="txtacademic" id="exampleFormControlSelect1" required>
+                                            <option value="-">- ตำแหน่งวิชาการ -</option>
+                                            <option value="ศาสตราจารย์">ศาสตราจารย์</option>
+                                            <option value="ผู้ช่วยศาสตราจารย์">ผู้ช่วยศาสตราจารย์</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="formRow">
+                                    <div class="formRow--item">
+                                        <select class="formRow--input js-input" style="height: 50px" name="txtposition" id="exampleFormControlSelect1" required>
+                                            <option value="-">- ตำแหน่งงาน -</option>
+                                            <option value="อาจารย์">อาจารย์</option>
+                                            <option value="ธุรการ">ธุรการ</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="formRow">
+                                    <div class="formRow--item">
+                                        <select class="formRow--input js-input" style="height: 50px" name="txtmanagement" id="exampleFormControlSelect1" required>
+                                            <option value="-">- ตำแหน่งบริหาร -</option>
+                                            <option value="คณบดี">คณบดี</option>
+                                            <option value="รองคณบดี">รองคณบดี</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="formRow">
+                                    <div class="formRow--item">
+                                        <select class="formRow--input js-input" style="height: 50px" name="txteducational" id="exampleFormControlSelect1" required>
+                                            <option value="-">- วุฒิการศึกษา -</option>
+                                            <option value="ปริญญาตรรี">ปริญญาตรี</option>
+                                            <option value="ปริญญาโท">ปริญญาโท</option>
+                                            <option value="ปริญญาเอก">ปริญญาเอก (ดร.)</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="formRow">
+                                    <div class="formRow--item">
                                         <select class="formRow--input js-input" style="height: 50px" name="txtsector" id="exampleFormControlSelect1" required>
-                                            <option value="">- คณะ -</option>
+                                            <option value="-">- คณะ -</option>
                                             <option value="วิทยาศาสตร์และเทคโนโลยี">วิทยาศาสตร์และเทคโนโลยี</option>
                                         </select>
                                     </div>
@@ -111,7 +149,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                                 <fieldset class="formRow">
                                     <div class="formRow--item">
                                         <select class="formRow--input js-input" style="height: 50px" name="txtmajor" id="exampleFormControlSelect1" required>
-                                            <option>- สาขาวิชา -</option>
+                                            <option value="-">- สาขาวิชา -</option>
                                             <option value="สาขาคณิตศาสตร์">สาขาคณิตศาสตร์</option>
                                             <option value="สาขาเคมี">สาขาเคมี</option>
                                             <option value="สาขาชีววิทยา">สาขาชีววิทยา</option>
