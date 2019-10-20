@@ -130,8 +130,9 @@ include 'templateAdmin/header.php';
             ?>
         <div class="row">
           <?php 
-            $sql = "SELECT * FROM document INNER JOIN member,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_id ORDER BY t_type";
-            $result = mysqli_query($link, $sql);
+            $sql = "SELECT * FROM document WHERE d_id = '".$_REQUEST['id']."' ";
+            $query = mysqli_query($link, $sql);
+            $result=mysqli_fetch_array($query,MYSQLI_ASSOC);
           ?>
             <div class="card col-sm-12">
                 <div class="card-body">
@@ -142,7 +143,7 @@ include 'templateAdmin/header.php';
                     <div class="form-group row mx-3">
                         <label class="col-md-12">เลขที่บันทึก</label>
                         <div class="col-md-6">
-                            <input type="text" value="<?php echo sprintf("%05d",($id+1)); ?>">
+                            <input type="text" value="<?php echo $result['d_docid']; ?>">
                         </div>
                     </div>
                     <div class="form-group row mx-3">
@@ -206,7 +207,7 @@ include 'templateAdmin/header.php';
                     <div class="form-group row mx-3">
                         <label class="col-md-12">เรื่อง</label>
                         <div class="col-md-12">
-                            <input class="form-control form-control-line" type="text" name="title" placeholder="กรุณาใส่ชื่อเรื่อง" required>
+                            <input class="form-control form-control-line"    type="text" name="title" placeholder="กรุณาใส่ชื่อเรื่อง" required>
                         </div>
                     </div>
                     <div class="form-group row mx-3">

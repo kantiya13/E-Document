@@ -45,7 +45,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                 $file = basename($_FILES['upload-file']['name']);
                 $path = "../Admin/upload_file/" . $file;
                 $success = move_uploaded_file($_FILES['upload-file']['tmp_name'], $path);
-                if ($success) {
+                if (isset($success)) {
                     $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_profile, m_status, m_sector, m_major, m_confirm)
                         VALUES ('" . $_POST["txtusername"] . "','" . $_POST["txtpassword"] . "','" . $_POST["txtname"] . "'
                         ,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','".$file."','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "', '" . $confirm . "')";

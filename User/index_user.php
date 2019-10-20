@@ -13,7 +13,7 @@ if (!isset($_SESSION["UserID"])) {
 $sql = "SELECT * FROM member WHERE m_uname = '" . $_SESSION['UserID'] . "'";
 $result = mysqli_query($link, $sql);
 if (mysqli_num_rows($result) == 0) {
-    header("location:pages-error-404.php");
+    header("location:login_user.php");
 } else {
     while ($mem = mysqli_fetch_assoc($result)) {
         $status = $mem['m_status'];
