@@ -45,18 +45,23 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                 $file = basename($_FILES['upload-file']['name']);
                 $path = "../Admin/upload_file/" . $file;
                 $success = move_uploaded_file($_FILES['upload-file']['tmp_name'], $path);
-                if (isset($success)) {
-                    $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_profile, m_status, m_sector, m_major,m_ academic,m_position,m_educational,m_management, m_confirm)
+                if ($success) {
+                    $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_profile, m_status, m_sector, m_major,m_academic,m_position,m_educational,m_management, m_confirm)
                         VALUES ('" . $_POST["txtusername"] . "','" . $_POST["txtpassword"] . "','" . $_POST["txtname"] . "'
                         ,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','".$file."','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "','" . $_POST["txtacademic"] . "','" . $_POST["txtposition"] . "','" . $_POST["txteducational"] . "','" . $_POST["txtmanagement"] . "', '" . $confirm . "')";
                     $objQuery = mysqli_query($link, $strSQL);
-                    
-                }
-                if ($objQuery) {
+                    if ($objQuery) {
                         echo '<script>alert("สมัครสมาชิกสำเร็จ");window.location.href="login_user.php";</script>';
                     } else {
                         echo '<script>alert("สมัครสมาชิกไม่สำเร็จ กรุณาทำรายการใหม่อีกครั้ง");window.location.href="login_user.php";</script>';
                     }
+                }else{
+                    $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_status, m_sector, m_major,m_academic,m_position,m_educational,m_management, m_confirm)
+                        VALUES ('" . $_POST["txtusername"] . "','" . $_POST["txtpassword"] . "','" . $_POST["txtname"] . "'
+                        ,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "','" . $_POST["txtacademic"] . "','" . $_POST["txtposition"] . "','" . $_POST["txteducational"] . "','" . $_POST["txtmanagement"] . "', '" . $confirm . "')";
+                    $objQuery = mysqli_query($link, $strSQL);
+                }
+
               
                 
             }
