@@ -7,7 +7,7 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
 ?><!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>login User</title>
+    <title>Register User</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -46,9 +46,9 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                 $path = "../Admin/upload_file/" . $file;
                 $success = move_uploaded_file($_FILES['upload-file']['tmp_name'], $path);
                 if ($success) {
-                    $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_profile, m_status, m_sector, m_major,m_academic,m_position,m_educational,m_management, m_confirm)
+                    $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_profile, m_status, m_sector, m_major,m_Department,m_academic,m_position,m_educational,m_management, m_confirm)
                         VALUES ('" . $_POST["txtusername"] . "','" . $_POST["txtpassword"] . "','" . $_POST["txtname"] . "'
-                        ,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','".$file."','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "','" . $_POST["txtacademic"] . "','" . $_POST["txtposition"] . "','" . $_POST["txteducational"] . "','" . $_POST["txtmanagement"] . "', '" . $confirm . "')";
+                        ,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','".$file."','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "','" . $_POST["txtDepartment"] . "','" . $_POST["txtacademic"] . "','" . $_POST["txtposition"] . "','" . $_POST["txteducational"] . "','" . $_POST["txtmanagement"] . "', '" . $confirm . "')";
                     $objQuery = mysqli_query($link, $strSQL);
                     if ($objQuery) {
                         echo '<script>alert("สมัครสมาชิกสำเร็จ");window.location.href="login_user.php";</script>';
@@ -56,9 +56,9 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                         echo '<script>alert("สมัครสมาชิกไม่สำเร็จ กรุณาทำรายการใหม่อีกครั้ง");window.location.href="login_user.php";</script>';
                     }
                 }else{
-                    $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_status, m_sector, m_major,m_academic,m_position,m_educational,m_management, m_confirm)
+                    $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_status, m_sector, m_major,m_Department,m_academic,m_position,m_educational,m_management, m_confirm)
                         VALUES ('" . $_POST["txtusername"] . "','" . $_POST["txtpassword"] . "','" . $_POST["txtname"] . "'
-                        ,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "','" . $_POST["txtacademic"] . "','" . $_POST["txtposition"] . "','" . $_POST["txteducational"] . "','" . $_POST["txtmanagement"] . "', '" . $confirm . "')";
+                        ,'" . $_POST["txtlast"] . "','" . $_POST["txtphone"] . "','" . $_POST["txtemail"] . "','" . $_POST["txtstatus"] . "','" . $_POST["txtsector"] . "','" . $_POST["txtmajor"] . "','" . $_POST["txtDepartment"] . "','" . $_POST["txtacademic"] . "','" . $_POST["txtposition"] . "','" . $_POST["txteducational"] . "','" . $_POST["txtmanagement"] . "', '" . $confirm . "')";
                     $objQuery = mysqli_query($link, $strSQL);
                 }
 
@@ -140,6 +140,15 @@ $objResult = mysqli_fetch_array($objQuery,MYSQLI_ASSOC);
                                             <option value="ปริญญาตรรี">ปริญญาตรี</option>
                                             <option value="ปริญญาโท">ปริญญาโท</option>
                                             <option value="ปริญญาเอก">ปริญญาเอก (ดร.)</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="formRow">
+                                    <div class="formRow--item">
+                                        <select class="formRow--input js-input" style="height: 50px" name="txtDepartment" id="exampleFormControlSelect1" required>
+                                            <option value="-">- ภาควิชา -</option>
+                                            <option value="ภาควิชาวิทยาศาสตร์ประยุกต์">ภาควิชาวิทยาศาสตร์ประยุกต์</option>
+                                            <option value="ภาควิชาวิทยาศาสตร์ประยุกต์">ภาควิชาวิทยาศาสตร์ประยุกต์</option>
                                         </select>
                                     </div>
                                 </fieldset>

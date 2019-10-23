@@ -9,6 +9,7 @@ if (!isset($_SESSION["UserID"])) {
 } elseif ($_SESSION["Status"] != 1) {
     header("location:login_admin.php");
 }
+$id = $_GET['id'];
 
 $sql = "SELECT * FROM member WHERE m_uname = '" . $_SESSION['UserID'] . "'";
 $result = mysqli_query($link, $sql);
@@ -42,8 +43,8 @@ include 'templateAdmin/header.php';
     <div class="mb-30 brdr-ash-1 opacty-5"></div>
     <div class="container">
         <a class="mt-10" href="index.php"><i class="mr-5 ion-ios-home"></i>หน้าแรก<i
-                    class="mlr-10 ion-chevron-right"></i></a>
-        <a class="color-ash mt-10" href="adddocument_admin.php">เอกสารทั้งหมด </a>
+                class="mlr-10 ion-chevron-right"></i></a>
+        <a class="color-ash mt-10" href="showDocGroup_admin.php?id=<?php echo $id;?>">เอกสารทั้งหมดของ <?php echo $id;?></a>
     </div><!-- container -->
 </section>
 <?php
@@ -98,63 +99,27 @@ if(isset($_POST['trash'])){
         <div class="row">
             <div class="card col-sm-12">
                 <div class="col-sm-12 col-md-12 m-3">
-                    <h3 class="mb-4"><b>เอกสารทั้งหมด </b></h3>
+                    <h3 class="mb-4"><b>เอกสารทั้งหมดของ <?php echo $id;?> </b></h3>
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col"></th>
                             <th scope="col">เลขเอกสาร</th>
                             <th scope="col">เรื่อง</th>
-                            <th scope="col" width="150px">เพิ่มโดย</th>
                             <th scope="col">หมวดหมู่</th>
-                            <th scope="col" width="150px">ตัวเลือก</th>
+                            <th scope="col" width="150px">เพิ่มโดย</th>
+                            <th scope="col">ส่งถึง</th>
+                            <th scope="col">สถานะเข้าร่วม</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
                         $type = [];
                         if ($status == 1) {
-                            $sql = "SELECT * FROM document INNER JOIN  member,bookmark,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_docid ORDER BY d_docid  DESC";
+                            $sql = "SELECT * FROM document INNER JOIN member,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND d_docid = '$id' AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') ORDER BY d_docid DESC";
                         } else if ($row > 0) {
-                            $sql = "SELECT * FROM document INNER JOIN member,bookmark,type WHERE document.t_type = type.t_id AND  AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_docid ORDER BY d_docid DESC";
+                            $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND d_docid = '$id' AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') ORDER BY d_docid DESC";
                         } else if ($row == 0) {
-                            $sql = "SELECT * FROM document INNER JOIN member,bookmark,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "' AND document.m_uname = member.m_uname GROUP BY d_docid ORDER BY d_docid DESC";
-                        }
-                        $result = mysqli_query($link, $sql);
-                        if (mysqli_num_rows($result) > 0) {
-                            $i = 0;
-                            while ($doc = mysqli_fetch_assoc($result)) {
-                                $type[$i] = $doc['t_type'];
-                                if($i > 0){
-                                    if($type[$i-1] != $doc['t_type']){
-                                        $type = $doc['t_name'];
-                                    }
-                                }else{
-                                    $type = $doc['t_name'];
-                                }
-                                echo '
-                                             <tr>
-                                                <th scope="row" width="50px"><a href=""><i class="material-icons bookmark" data-id="'.$doc['d_id'].'">&#xe838;</i></a></th>
-                                                <td>' . $doc['d_docid'] . '</td>
-                                                <td><a href="showDocGroup_admin.php?id='.$doc['d_docid'].'"">' . $doc['d_title'] . '</a></td>
-                                                <td>' . $doc['m_fname'] . ' ' . $doc['m_lname'] . '</td>
-                                                <td>' . $doc['t_name'] . '</td>
-                                                <td>
-                                                    <i class="material-icons">&#xe3c9;</i>
-                                                    <a href=""><i data-id="' . $doc['d_id'] . '" class="material-icons ml-1 trash">&#xe872;</i></a>
-                                                </td>
-                                            </tr>   
-                                              ';
-                                $i++;
-                            }
-                        }
-
-                        if ($status == 1) {
-                            $sql = "SELECT * FROM document INNER JOIN member,type WHERE document.t_type = type.t_id AND member.m_uname = document.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_docid ORDER BY d_docid DESC";
-                        } else if ($row > 0) {
-                            $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_docid ORDER BY d_docid DESC";
-                        } else if ($row == 0) {
-                            $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND (send.s_to = '" . $major . "' OR send.s_to = '" . $mail . "') AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "') GROUP BY d_docid ORDER BY d_docid DESC";
+                            $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND d_docid = '$id' AND (send.s_to = '" . $major . "' OR send.s_to = '" . $mail . "') AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "')  ORDER BY d_docid DESC";
                         }
                         $result = mysqli_query($link, $sql);
                         if (mysqli_num_rows($result) > 0) {
@@ -162,15 +127,13 @@ if(isset($_POST['trash'])){
                             while ($doc = mysqli_fetch_assoc($result)) {
                                 echo '
                                             <tr>
-                                                <th scope="row" width="50px"><a href=""><i class="material-icons bookmark" data-id="'.$doc['d_id'].'">&#xe83a;</i></a></th>
-                                                <td>' . $doc['d_docid'] . '</td>
-                                                <td><a href="showDocGroup_admin.php?id='.$doc['d_docid'].'"">' . $doc['d_title'] . '</a></td>
-                                                <td>' . $doc['m_fname'] . ' ' . $doc['m_lname'] . '</td>
+     
+                                                <td><a href="showDetail_Doc.php?id='.$doc['d_id'].'"">' . $doc['d_docid'] . '</a></td>
+                                                <td>' . $doc['d_title'] . '</td>
                                                 <td>' . $doc['t_name'] . '</td>
-                                                <td align="left">
-                                                    <a href="EditDetail_Doc.php?id='.$doc['d_docid'].'""><i class="material-icons">&#xe3c9;</i></a>
-                                                    <a href=""><i data-id="' . $doc['d_id'] . '" class="material-icons ml-1 trash">&#xe872;</i></a>
-                                                </td>
+                                                <td>' . $doc['m_fname'] . ' ' . $doc['m_lname'] . '</td>
+                                                <td>' . $doc['to_user'] . '</td>
+                                                <td>' . $doc['join_doc'] . '</td>
                                             </tr>
                                 ';
                                 $i++;

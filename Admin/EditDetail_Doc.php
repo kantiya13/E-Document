@@ -82,59 +82,12 @@ include 'templateAdmin/header.php';
 </section>
 <?php
 $id = $_GET['id'];
-
-            if(isset($_POST['title'])){
-                // $file = basename($_FILES['upload-file']['name']);
-                // $path = "upload_file/".$file;
-                // $success = move_uploaded_file($_FILES['upload-file']['tmp_name'],$path);
-                // if($success){
-                //     $sql = "UPDATE document SET d_title = '" . $_POST['title'] . "',d_detail = '" .$file. "' 
-                //         ,m_uname = '" . $_SESSION['UserID'] . "',d_datenow = NOW(),t_type = '" .$_POST['type'] . "',from_user = '".$_SESSION['UserID']."' WHERE d_id ='id' ";
-                //         $objQuery = mysqli_query($link, $sql);
-                
-                //         if (!$objQuery){
-                //             echo "<script type=\"text/javascript\">";
-                //             echo "alert(\"แก้ไขข้อมูลไม่สำเร็จ กรุณาทำรายการใหม่อีกครั้ง !!!\");";
-                //             echo "window.history.back();";
-                //             echo "</script>";
-                //             exit();
-                //         }else {
-                //             echo "<script type=\"text/javascript\">";
-                //             echo "alert(\"อัพเดทข้อมูลเรียบร้อยแล้ว\");";
-                //             echo "window.history.back();";
-                //             echo "</script>";
-                //             exit();
-                //         }
-                // }else{
-                //     $sql = "UPDATE document SET d_title = '" . $_POST['title'] . "',d_detail = '" .$file. "' 
-                //         ,m_uname = '" . $_SESSION['UserID'] . "',d_datenow = NOW(),t_type = '" .$_POST['type'] . "',from_user = '".$_SESSION['UserID']."' WHERE d_id ='id' ";
-                //         $objQuery = mysqli_query($link, $sql);
-                
-                //         if (!$objQuery){
-                //             echo "<script type=\"text/javascript\">";
-                //             echo "alert(\"แก้ไขข้อมูลไม่สำเร็จ กรุณาทำรายการใหม่อีกครั้ง !!!\");";
-                //             echo "window.history.back();";
-                //             echo "</script>";
-                //             exit();
-                //         }else {
-                //             echo "<script type=\"text/javascript\">";
-                //             echo "alert(\"อัพเดทข้อมูลเรียบร้อยแล้ว\");";
-                //             echo "window.history.back();";
-                //             echo "</script>";
-                //             exit();
-                //         }
-                // }
-               
-            }else {
-                echo '<script>alert("เกิดข้อผิดพลาด");window.history.back()"</script>';
-            }
-            
-            ?>
+?>
 <section>
     <div class="container">
         <div class="row">
           <?php 
-            $sqlss = "SELECT * FROM document WHERE d_id = '".$_REQUEST['id']."' ";
+            $sqlss = "SELECT * FROM document WHERE d_docid = '".$_REQUEST['id']."' ";
             $queryss = mysqli_query($link, $sqlss);
             $resultss=mysqli_fetch_array($queryss,MYSQLI_ASSOC);
           ?>
@@ -142,16 +95,16 @@ $id = $_GET['id'];
                 <div class="card-body">
                 <div class="col-sm-12 m-3">
                     <h3 class="mb-4"><b>แก้ไขเอกสาร</b></h3>
-                    <form id="document" method="post" enctype="multipart/form-data" action="fucntion_script/check_edit_doc.php?id=<?php echo $_GET['id'] ;?>" class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0 form-material form-horizontal">
+                    <form id="document" method="post" enctype="multipart/form-data" action="fucntion_script/check_edit_doc.php?id=<?php echo $resultss['d_docid'] ;?>" class="form-block form-bold form-mb-20 form-h-35 form-brdr-b-grey pr-50 pr-sm-0 form-material form-horizontal">
                     <div class="message-center ps ps--theme_default ps--active-y" data-ps-id="a045fe3c-cb6e-028e-3a70-8d6ff0d7f6bd">
                     <div class="form-group row mx-3">
                         <label class="col-md-12">เลขที่บันทึก</label>
                         <div class="col-md-6">
-                            <input type="text" value="<?php echo $resultss['d_docid']; ?>">
+                            <input type="text" name="docid" value="<?php echo $resultss['d_docid']; ?>">
                         </div>
                     </div>
                     <?php 
-                        $sqlForm = "SELECT * FROM `document` WHERE d_id = '".$_GET['id']."'";
+                        $sqlForm = "SELECT * FROM `document` WHERE d_docid = '".$_GET['id']."'";
                         $resultForm = mysqli_query($link,$sqlForm);
                         if(mysqli_num_rows($resultForm) > 0){
                             while($detail = mysqli_fetch_assoc($resultForm)){
@@ -162,9 +115,80 @@ $id = $_GET['id'];
                         ?>
                     <div class="form-group row mx-3">
                         <div class="col-md-6">
-                            <label>จาก <?php echo $from; ?> ถึง <?php echo $to; ?></label>
+                            <label>จาก <?php echo $from; ?></label>
                         </div>
                     </div>
+                        <div class="form-group row mx-3">
+                            <span class="to-input col-md-12">ถึง</span>
+                            <div class="col-sm-4 pt-3">
+                                <p>เลือกรายชื่อ</p>
+                                <select class="selectpicker all-mail form-control form-control-line" multiple
+                                        data-live-search="true" id="namemail" name="namemail[]"
+                                        data-actions-box="true"
+                                >
+                                    <?php
+                                    $sql = "SELECT * FROM member WHERE m_status != '1' AND m_confirm = 'yes' ORDER BY m_fname";
+                                    $result = mysqli_query($link, $sql);
+                                    $count = mysqli_num_rows($result);
+                                    $i = 0;
+                                    if (mysqli_num_rows($result) > 0) {
+                                        while ($mem = mysqli_fetch_assoc($result)) {
+                                            echo '<option name="namemail' . $i . '" value="' . $mem['m_mail'] . '">' . $mem['m_fname'] . ' ' . $mem['m_lname'] . '</option>';
+                                        }
+                                    } else {
+                                        echo '<div class="d-block">
+                                    <label>ไม่มีรายชื่อ</label>
+                                  </div>';
+                                    }
+                                    ?>
+
+                                </select>
+                            </div>
+                            <div class="col-sm-4 pt-3 mb-3">
+                                <p>เลือกสาขาวิชา</p>
+                                <select class="selectpicker all-mail form-control form-control-line" multiple
+                                        data-live-search="true" id="namemail" name="namemail[]"
+                                        data-actions-box="true"
+                                >
+                                    <?php
+                                    $major = ['สาขาคณิตศาสตร์',
+                                        'สาขาเคมี',
+                                        'สาขาชีววิทยา',
+                                        'สาขาฟิสิกส์',
+                                        'สาขาเกษตรศาสตร์',
+                                        'สาขาคอมพิวเตอร์และเทคโนโลยีสารสนเทศ',
+                                        'สาขาวิทยาการคอมพิวเตอร์',
+                                        'สาขาวิทยาศาสตร์การกีฬาและการออกกำลังกาย',
+                                        'สาขาวิทยาศาสตร์และเทคโนโลยีการอาหาร',
+                                        'สาขาวิทยาศาสตร์สิ่งแวดล้อม', 'สาขาวิชาสัตวศาสตร์',
+                                        'สาขาวิชาสาธารณสุขศาสตร์',
+                                        'สาขาวิชาอาหารและโภชนาการ'];
+                                    $iMajor = count($major);
+                                    for ($i = 0; $i < $iMajor; $i++) {
+                                        echo '<option name="namemail' . $i . '" value="' . $major[$i] . '">' . $major[$i] . '</option>';
+                                    }
+                                    ?>
+
+
+                                </select>
+                                <!-- <input type="button" data-toggle="modal" data-target="#moda-major" class="btn btn-success" value="เลือกสาขา"> -->
+                            </div>
+                            <div class="col-sm-4 pt-3">
+                                <p>เลือกภาควิชา</p>
+                                <select class="selectpicker all-mail form-control form-control-line"
+                                        id="namemail" name="namemail[]"
+                                        multiple
+                                        data-live-search="true" id="namemail" name="namemail[]"
+                                        data-actions-box="true"
+                                >
+                                    <option value="ภาควิชาวิทยาศาสตร์">ภาควิชาวิทยาศาสตร์</option>
+                                    <option value="ภาควิชาวิทยาศาสตร์ประยุกต์">ภาควิชาวิทยาศาสตร์ประยุกต์</option>
+                                </select>
+                            </div>
+                            <!-- <div class="all-mail col-md-12" id="all_mail" name="all_mail">
+
+                            </div> -->
+                        </div>
                     
                     <div class="form-group row mx-3">
                         <label class="col-md-12">เรื่อง</label>
@@ -193,14 +217,20 @@ $id = $_GET['id'];
                             <input type="button" data-toggle="modal" data-target="#addType" class="btn btn-success" value="จัดการหมวดหมู่">
                         </div>
                     </div>
-                    <div class="form-group mt-3 row mx-3">
-                        <span class="to-input col-md-12">อัพโหลดไฟล์</span>
-                        <div class="ml-3 col-sm-3 border py-3 mt-3">
-                            <p id="p-file" class="mb-10"></p>
-                            <input class="btn btn-success" id="btn-file" type="button" name="btn-file" value="อัพโหลดไฟล์">
+<!--                    <div class="form-group mt-3 row mx-3">-->
+<!--                        <span class="to-input col-md-12">อัพโหลดไฟล์</span>-->
+<!--                        <div class="ml-3 col-sm-3 border py-3 mt-3">-->
+<!--                            <p id="p-file" class="mb-10"></p>-->
+<!--                            <input class="btn btn-success" id="btn-file" type="button" name="btn-file" value="อัพโหลดไฟล์">-->
+<!--                        </div>-->
+<!--                        <input id="upload-file" type="file" class="d-none" name="upload-file">-->
+<!--                    </div>-->
+                        <div class="form-group mt-3 row mx-3">
+                            <span class="to-input col-md-12">ไฟล์</span>
+                            <div class="ml-3 col-sm-3 border py-3 mt-3 file">
+                                <p><?php echo $resultss['d_detail']?></p>
+                            </div>
                         </div>
-                        <input id="upload-file" type="file" class="d-none" name="upload-file">
-                    </div>
                     <div class="col-sm-2">
                     <input class="btn btn-info mt-3" type="submit" value="บันทึก" data-toggle="modal" data-target="#modal-write">
                     </div>

@@ -85,7 +85,9 @@ if(mysqli_num_rows($result) > 0){
                             while($detail = mysqli_fetch_assoc($resultForm)){
                                 $from = $detail['from_user'];
                                 $to = $detail['to_user'];
+                                $statusDoc = $detail['join_doc'];
                             }
+
                         }
                         ?>
                         <div class="mb-15">
@@ -102,6 +104,14 @@ if(mysqli_num_rows($result) > 0){
                         <div class="mb-15">
                             <p class="card-text">ไฟล์</p>
                             <a href="../Admin/upload_file/<?php echo $doc; ?>" style="color: #00aeef"><strong><?php echo $doc; ?></strong></a>
+                        </div>
+                        <div class="mb-15">
+                            <p class="card-text">สถานะการเข้าร่วม</p>
+                            <?php if($statusDoc == 'เข้าร่วม'){ ?>
+                            <p style="color: #16EF3F;"><strong>เข้าร่วมแล้ว</strong></p>
+                            <?php }elseif($statusDoc == 'ยืนยันการเข้าร่วม'){?>
+                                <p style="color: #EF2C14;"><strong>ยังไม่ได้เข้าร่วม</strong></p>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

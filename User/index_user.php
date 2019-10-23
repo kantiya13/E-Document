@@ -17,9 +17,11 @@ if (mysqli_num_rows($result) == 0) {
 } else {
     while ($mem = mysqli_fetch_assoc($result)) {
         $status = $mem['m_status'];
-        $major = $mem['m_sector'];
+        $sector = $mem['m_sector'];
+        $major = $mem['m_major'];
         $mail = $mem['m_mail'];
         $uname = $mem['m_uname'];
+        $Depart = $mem['m_Department'];
     }
 }
 
@@ -87,7 +89,7 @@ $row = mysqli_num_rows($result);
                         <?php
                             $i = 1;
                             if($status != 1){
-                                $strSQL = "SELECT * FROM document INNER JOIN bookmark,type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "'";
+                                $strSQL = "SELECT * FROM document INNER JOIN bookmark,type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."'AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "'";
                             }
                             $result = mysqli_query($link, $strSQL);
                             if (mysqli_num_rows($result) > 0) {
@@ -128,7 +130,7 @@ $row = mysqli_num_rows($result);
                         <?php
                             $i = 1;
                             if($status != 1){
-                                $strSQL = "SELECT * FROM document INNER JOIN bookmark,type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."' AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "'";
+                                $strSQL = "SELECT * FROM document INNER JOIN bookmark,type WHERE document.t_type = type.t_id AND document.to_user = '".$mail."'AND document.to_user = '".$major."'AND document.to_user = '".$sector."' AND document.to_user = '".$Depart."'  AND document.d_id = bookmark.document_id AND bookmark.m_uname = '" . $_SESSION['UserID'] . "'";
                             }
                             $result = mysqli_query($link, $strSQL);
                             if (mysqli_num_rows($result) > 0) {

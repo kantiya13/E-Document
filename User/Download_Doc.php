@@ -133,7 +133,7 @@ include 'templateAdmin/header.php';
                                              <tr>
                                                 <td><a href="showDetail_Doc.php?id='.$doc['d_id'].'"">' . $doc['d_title'] . '</a></td>
                                                 <td>' . $doc['t_name'] . '</td>
-                                                <td><a href="upload_file/<?php echo $doc; ?>">' . $doc['d_detail'] . '</a></td>
+                                                <td><a href="../Admin/upload_file/' . $doc['d_detail'] . '">' . $doc['d_detail'] . '</a></td>
                                             </tr>   
                                               ';
                                 $i++;
