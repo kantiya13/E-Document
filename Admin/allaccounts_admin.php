@@ -41,7 +41,7 @@ include 'templateAdmin/header.php';
         <div class="row">
             <div class="card col-sm-12">
                 <div class="col-sm-12 col-md-12 m-3">
-                    <h3 class="mb-4"><b>บัญชีทั้งหมด</b></h3>
+                    <h3 class="mb-4"><b>บัญชีทั้งหมด</b> <button type="button" class="btn btn-info btn-sm" onclick="window.location.href='addUser_admin.php'">เพิ่มข้อมูลผู้ใช้งาน</button></h3>
                     <div class="table-responsive">
                         <table class="table table-sm ">
                             <thead>

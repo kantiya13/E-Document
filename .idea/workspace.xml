@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="724493f4-0404-476b-9cba-a13f210ceb98" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Admin/showDocGroup_admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Admin/addUser_admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/EditDetail_Doc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/EditDetail_Doc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/adddocument_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/adddocument_admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/fucntion_script/check_edit_doc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/fucntion_script/check_edit_doc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/showDetail_Doc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/showDetail_Doc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/Download_Doc.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/Download_Doc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/index_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/index_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/register_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/register_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/showDetail_Doc.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/showDetail_Doc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/allaccounts_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/allaccounts_admin.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +64,8 @@
       <workItem from="1571586220190" duration="4000" />
       <workItem from="1571588924469" duration="923000" />
       <workItem from="1571668810287" duration="79000" />
-      <workItem from="1571761419458" duration="19464000" />
+      <workItem from="1571761419458" duration="19662000" />
+      <workItem from="1572282456765" duration="1455000" />
     </task>
     <task id="LOCAL-00002" summary="update">
       <created>1571586066568</created>
@@ -88,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571802163053</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update">
+      <created>1571838522748</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1571838522748</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
