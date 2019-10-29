@@ -83,6 +83,7 @@ include 'templateAdmin/header.php';
                                     <td class="<?php echo $color; ?>"><?php echo $status; ?></td>
                                     <td class="<?php echo $color; ?>"><?php echo $confirm; ?></td>
                                     <td>
+                                        <a href="accountViewAdmin_admin.php?id=<?php echo $result['m_uname']; ?>" class="mr-10" style="color: #087b80;">ดูข้อมูล</a>
                                         <a href="accountlistAdmin_admin.php?id=<?php echo $result['m_uname']; ?>" class="mr-10" style="color: green;">แก้ไข</a>
 <!--                                        <a href="fucntion_script/delectlist_admin.php?id=--><?php //echo $result['m_uname']; ?><!--" class="ml-10" style="color: red;">ลบ</a>-->
                                     </td>

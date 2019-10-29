@@ -43,7 +43,7 @@ include 'templateAdmin/header.php';
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <div class="col-xs-7 m-20" align="center">
-                    <img src="images/slider-6-450x600.jpg" class="rounded-circle1"/>
+                    <img src="upload_file/<?php echo $objResultUSer['m_profile']; ?>" class="rounded-circle1"/>
                 </div>
                 <h3 class="mb-10" align="center"><b><?php echo $objResultUSer['m_uname'] ?></b></h3>
 

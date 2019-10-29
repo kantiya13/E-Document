@@ -40,7 +40,7 @@ include 'templateAdmin/header.php';
         if(isset($_POST['txtname'])){
             $confirm = 'no';
             $file = basename($_FILES['upload-file']['name']);
-            $path = "../Admin/upload_file/" . $file;
+            $path = "Admin/upload_file/" . $file;
             $success = move_uploaded_file($_FILES['upload-file']['tmp_name'], $path);
             if ($success) {
                 $strSQL = "INSERT INTO member (m_uname, m_pass, m_fname, m_lname, m_phone, m_mail, m_profile, m_status, m_sector, m_major,m_Department,m_academic,m_position,m_educational,m_management, m_confirm)
