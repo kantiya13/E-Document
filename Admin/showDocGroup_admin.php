@@ -108,6 +108,7 @@ if(isset($_POST['trash'])){
                             <th scope="col">หมวดหมู่</th>
                             <th scope="col" width="150px">เพิ่มโดย</th>
                             <th scope="col">ส่งถึง</th>
+                            <th scope="col">ส่งไปแล้ว</th>
                             <th scope="col">สถานะเข้าร่วม</th>
                         </tr>
                         </thead>
@@ -122,9 +123,23 @@ if(isset($_POST['trash'])){
                             $sql = "SELECT * FROM document INNER JOIN member,send,type WHERE document.t_type = type.t_id AND send.s_document = document.d_id AND send.s_form = member.m_uname AND d_docid = '$id' AND (send.s_to = '" . $major . "' OR send.s_to = '" . $mail . "') AND d_id NOT IN (SELECT document_id FROM bookmark WHERE m_uname = '" . $_SESSION['UserID'] . "')  ORDER BY d_docid DESC";
                         }
                         $result = mysqli_query($link, $sql);
+
                         if (mysqli_num_rows($result) > 0) {
                             $i = 0;
+                            function duration($begin,$end){
+                                $remain=intval(strtotime($begin)-strtotime($end));
+                                $wan=floor($remain/86400);
+                                $l_wan=$remain%86400;
+                                $hour=floor($l_wan/3600);
+                                $l_hour=$l_wan%3600;
+                                $minute=floor($l_hour/60);
+                                $second=$l_hour%60;
+                                return $wan." วัน ".$hour." ชั่วโมง ".$minute." นาที ".$second." วินาที";
+                            }
                             while ($doc = mysqli_fetch_assoc($result)) {
+
+                                $date = $doc['d_date'];
+                                $dateShow = duration($date,date("Y-m-d H:i:s"));
                                 echo '
                                             <tr>
      
@@ -133,6 +148,7 @@ if(isset($_POST['trash'])){
                                                 <td>' . $doc['t_name'] . '</td>
                                                 <td>' . $doc['m_fname'] . ' ' . $doc['m_lname'] . '</td>
                                                 <td>' . $doc['to_user'] . '</td>
+                                                <td>' . $dateShow . '</td>
                                                 <td>' . $doc['join_doc'] . '</td>
                                             </tr>
                                 ';
@@ -175,6 +191,8 @@ if(isset($_POST['trash'])){
             })
         }
     })
+
+
 </script>
 </body>
 </html>

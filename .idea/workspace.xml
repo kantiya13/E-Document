@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="724493f4-0404-476b-9cba-a13f210ceb98" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Admin/accountViewAdmin_admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Admin/upload_file/cold-conifer-dawn-917494.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/accountlistAdmin_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/accountlistAdmin_admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/accountlist_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/accountlist_admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/addAdmin_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/addAdmin_admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/addUser_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/addUser_admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/alladmin_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/alladmin_admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/adddocument_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/adddocument_admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/showDetail_Doc.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/showDetail_Doc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/showDocGroup_admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/showDocGroup_admin.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +74,8 @@
       <workItem from="1571668810287" duration="79000" />
       <workItem from="1571761419458" duration="19662000" />
       <workItem from="1572282456765" duration="1645000" />
-      <workItem from="1572370977743" duration="2983000" />
+      <workItem from="1572370977743" duration="3065000" />
+      <workItem from="1572445392850" duration="4445000" />
     </task>
     <task id="LOCAL-00002" summary="update">
       <created>1571586066568</created>
@@ -115,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572372140044</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update create admin">
+      <created>1572374142001</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1572374142001</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

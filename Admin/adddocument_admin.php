@@ -106,16 +106,16 @@ include 'templateAdmin/header.php';
                     // $sql = "INSERT INTO send(s_to,s_document,s_form) VALUES('AllUser','".sprintf("%05d",($id+1))."','".$_SESSION['UserID']."')";
                     // mysqli_query($link,$sql);
                     $sql = "INSERT INTO
-                                document(d_docid,d_title,d_detail,m_uname,d_datenow,t_type,to_user,from_user,join_doc)
-                              VALUES('" . sprintf("%05d", ($id + 1)) . "','" . $_POST['title'] . "','" . $file . "','" . $_SESSION['UserID'] . "',NOW(),'" . $_POST['type'] . "','AllUser','" . $_SESSION['UserID'] . "','ยืนยันการเข้าร่วม')";
+                                document(d_docid,d_title,d_detail,m_uname,d_datenow,t_type,to_user,from_user,join_doc,d_to,d_note)
+                              VALUES('" . sprintf("%05d", ($id + 1)) . "','" . $_POST['title'] . "','" . $file . "','" . $_SESSION['UserID'] . "',NOW(),'" . $_POST['type'] . "','AllUser','" . $_SESSION['UserID'] . "','ยืนยันการเข้าร่วม','" . $_POST['docto'] . "','" . $_POST['note'] . "')";
                     mysqli_query($link, $sql);
                 } else {
                     while ($i < count($_POST['namemail'])) {
                         // $sql = "INSERT INTO send(s_to,s_document,s_form) VALUES('".$_POST['namemail'][$i]."','".sprintf("%05d",($id+1))."','".$_SESSION['UserID']."')";
                         // mysqli_query($link,$sql);
                         $sql = "INSERT INTO
-                                document(d_docid,d_title,d_detail,m_uname,d_datenow,t_type,to_user,from_user,join_doc)
-                              VALUES('" . sprintf("%05d", ($id + 1)) . "','" . $_POST['title'] . "','" . $file . "','" . $_SESSION['UserID'] . "',NOW(),'" . $_POST['type'] . "','" . $_POST['namemail'][$i] . "','" . $_SESSION['UserID'] . "','ยืนยันการเข้าร่วม')";
+                                document(d_docid,d_title,d_detail,m_uname,d_datenow,t_type,to_user,from_user,join_doc,d_to,d_note)
+                              VALUES('" . sprintf("%05d", ($id + 1)) . "','" . $_POST['title'] . "','" . $file . "','" . $_SESSION['UserID'] . "',NOW(),'" . $_POST['type'] . "','" . $_POST['namemail'][$i] . "','" . $_SESSION['UserID'] . "','ยืนยันการเข้าร่วม','" . $_POST['docto'] . "','" . $_POST['note'] . "')";
                         mysqli_query($link, $sql);
                         $i++;
                     }
@@ -149,6 +149,12 @@ include 'templateAdmin/header.php';
                                             } else {
                                                 echo '<i>' . $major . ' (ภาค : ' . $sector . ')</i>';
                                             } ?></label>
+                                    </div>
+                                </div>
+                                <div class="form-group row mx-3">
+                                    <label class="col-md-12">เรียน</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="docto" value="">
                                     </div>
                                 </div>
                                 <div class="form-group row mx-3">
@@ -259,6 +265,12 @@ include 'templateAdmin/header.php';
                                                value="อัพโหลดไฟล์">
                                     </div>
                                     <input id="upload-file" type="file" class="d-none" name="upload-file">
+                                </div>
+                                <div class="form-group row mx-3">
+                                    <label class="col-md-12">หมายเหตุ</label>
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" rows="5" id="note" name="note"></textarea>
+                                    </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <input class="btn btn-info mt-3" type="button" value="บันทึก" data-toggle="modal"

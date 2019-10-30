@@ -43,6 +43,17 @@ $MonthTH = ['มกราคม','กุมภาพันธ์','มีนา�
 $sql = "SELECT * FROM document INNER JOIN member WHERE d_id = '".$_GET['id']."' AND document.m_uname = member.m_uname";
 $result = mysqli_query($link,$sql);
 if(mysqli_num_rows($result) > 0){
+    function duration($begin,$end){
+        $remain=intval(strtotime($begin)-strtotime($end));
+        $wan=floor($remain/86400);
+        $l_wan=$remain%86400;
+        $hour=floor($l_wan/3600);
+        $l_hour=$l_wan%3600;
+        $minute=floor($l_hour/60);
+        $second=$l_hour%60;
+        return $wan." วัน ".$hour." ชั่วโมง ".$minute." นาที ".$second." วินาที";
+    }
+
     while($detail = mysqli_fetch_assoc($result)){
         $day = date('j',strtotime($detail['d_datenow']));
         $iMonth = date('n',strtotime($detail['d_datenow']))-1;
@@ -51,6 +62,11 @@ if(mysqli_num_rows($result) > 0){
         $doc = $detail['d_detail'];
         $from = $detail['m_major'];
         $iddoc = $detail['d_docid'];
+        $d_to = $detail['d_to'];
+        $note = $detail['d_note'];
+        $date = $detail['d_date'];
+        $dateShow = duration($date,date("Y-m-d H:i:s"));
+
     }
 }else{
     header("location:pages-error-404.php");
@@ -88,9 +104,15 @@ if(mysqli_num_rows($result) > 0){
                                 $statusDoc = $detail['join_doc'];
                             }
                         }
+
+
                         ?>
                         <div class="mb-15">
                             <p class="card-text ">จาก <?php echo $from; ?> ถึง <?php echo $to; ?></p>
+                        </div>
+                        <div class="mb-15">
+                            <p class="card-text ">เรียน</p>
+                            <strong><?php echo $d_to; ?></strong>
                         </div>
                         <div class="mb-15">
                             <p class="card-text">เรื่อง</p>
@@ -105,12 +127,20 @@ if(mysqli_num_rows($result) > 0){
                             <a href="upload_file/<?php echo $doc; ?>" style="color: #00aeef"><strong><?php echo $doc; ?></strong></a>
                         </div>
                         <div class="mb-15">
+                            <p class="card-text ">หมายเหตุ</p>
+                            <strong><?php echo $note; ?></strong>
+                        </div>
+
+                        <div class="mb-15">
                             <p class="card-text">สถานะการเข้าร่วม</p>
                             <?php if($statusDoc == 'เข้าร่วม'){ ?>
                                 <p style="color: #16EF3F;"><strong>เข้าร่วมแล้ว</strong></p>
                             <?php }elseif($statusDoc == 'ยืนยันการเข้าร่วม'){?>
                                 <p style="color: #EF2C14;"><strong>ยังไม่ได้เข้าร่วม</strong></p>
                             <?php } ?>
+                        </div>
+                        <div class="mb-15">
+                            <p class="card-text" style="font-size: 12px">ส่งไปเมื่อ <?php echo $dateShow; ?></p>
                         </div>
                     </div>
                 </div>
